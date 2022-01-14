@@ -5,7 +5,7 @@ Take My Dog!
 
 ## Problematica que atiende
 En la actualidad las personas tienen muchas ocupaciones, y a veces no hay tiempo de poder cumplir con algunas cosas que se tienen contempladas en segundo plano.
-Muchos hogares cuentan con perros en sus casas, a quienes considean como a un miembro más de la familia, pero no siempre son atendidos como se merece. Los perros necestitan pasear, tener actividades al aire libre,divertirse, es cuestión de salud.
+Muchos hogares cuentan con perros en sus casas, a quienes considean como a un miembro más de la familia, pero no siempre son atendidos como se merece. Los perros necestitan pasear, tener actividades al aire libre,divertirse, es cuestión de salud, ademas de los problemas que causa un perro estresado por no haber salido en varios dias como ponerse agresivo o enfermarse.
 El tener un día tan ajetreado suele hacer que las personas no logren darles los cuidados necesarios a sus perros, es por eso que se necesita que alguien pueda hacer este trabajo
 por ellos.
 
@@ -16,9 +16,21 @@ estarán tranquilos de saber en tiempo real donde se encuentran sus mascotas y q
 
 ## Definición de requerimientos del MVP
 
+## Usuarios
+- Dueño
+- Paseador
 
 ### Requerimientos funcionales
 La App deberá cumplir con los siguientes requerimientos:
+
+- El dueño podra contratar los servicios de un paseador
+- El paseador puede atender los paseos de los dueños
+- El dueño podra ver el recorrido del paseador
+- El dueño podra ver los paseadores cercanos
+- El paseo debe tener una hora de inicio y de termino
+- El dueño debe poder pagar por medio de la app
+- El dueño puede calificar al paseador
+- El dueño debe confirmar que su mascota llego correctamente dentro de la app
 
 -**Descripción del proceso:**
 - Se elige un paseador cercano
