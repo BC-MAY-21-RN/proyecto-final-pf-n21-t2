@@ -1,20 +1,69 @@
 ![BrightCoders Logo](img/logo-bc.png)
 
 # Nombre del proyecto
-Definan un nombre para su proyecto
+Take My Dog!
 
 ## Problematica que atiende
-Describan la problemática que pretenden atender con su proyecto
+En la actualidad las personas tienen muchas ocupaciones, y a veces no hay tiempo de poder cumplir con algunas cosas que se tienen contempladas en segundo plano.
+Muchos hogares cuentan con perros en sus casas, a quienes considean como a un miembro más de la familia, pero no siempre son atendidos como se merece. Los perros necestitan pasear, tener actividades al aire libre,divertirse, es cuestión de salud.
+El tener un día tan ajetreado suele hacer que las personas no logren darles los cuidados necesarios a sus perros, es por eso que se necesita que alguien pueda hacer este trabajo
+por ellos.
 
 ## Propuesta de solución
-Describan de manera general las características de tu propuesta así como la forma en que atiende o resuelve la problemática que definieron.
+Con "Take My Dog" pretendemos crear una app donde los usuarios pueden encontrar a una persona que se encargue de estar paseando a sus perros, tener monitoreada la ruta que
+se sigue durante el trayecto, medir el tiempo de acividades y lograr tener mascotas contentas y con buena salud. Con sto, a pesar de que el día del cliente sea muy ajetreado,
+estarán tranquilos de saber en tiempo real donde se encuentran sus mascotas y que están siendo atendidas como se merecen.
 
 ## Definición de requerimientos del MVP
 
+
 ### Requerimientos funcionales
+La App deberá cumplir con los siguientes requerimientos:
 
+-**Descripción del proceso:**
+- Se elige un paseador cercano
+-  Se llena el formulario del paseo
+-  El paseador comienza a pasear el perro
+- Se termina el paseo
+- El paseador regresa las o la mascota a su casa
+- El dueño de la mascota confirma que la o las mascotas hayan regresado bien
+-  El dueño califica el paseador
+
+**Pantallas**
+- **Menú principal**
+- **TAB- ver paseadores cercanos**
+  - Información de paseador (botón para contratar)
+  - Formulario para contratar
+  - Hora inicio
+  - Hora termino
+  - Seleccionar mascotas
+
+- **TAB -servicios**
+  - Información del servicio (mostrar recorrido del paseo)
+  - Confirmar servicio (Servicio en orden)
+  - Calificar paseador
+
+- **MENÚ -Menú desplegable**
+  - Mascotas
+  - Perfil
+  - Ayuda
+  - Cerrar sesión
 ### Requerimientos no funcionales
-
+- Base de datos
+  - La información se guardará en firebase
+- Calidad
+  - Utilizar un estilo de código estandarizado (revisado por Eslint y SOLID)
+  - Incluir pruebas unitarias
+  - Puntuación A obtenida en CodeClimate
+- Ejecución
+  - Puede ejecutarse en Android o iOs
+- Diseño
+  - Debe ser lo más cercano posible al proporcionado
+- Código fuente
+  - Orientado a Objetos
+  - Métodos pequeños
+- Manejo del estado
+  - Redux para el manejo del estado de la App
 ## Diseño del MVP
 
 Incluyan en [esta carpeta](/design) su propuesta de diseño
