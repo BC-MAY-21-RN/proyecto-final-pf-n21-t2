@@ -1,3 +1,8 @@
+## Code Climate
+<a href="https://codeclimate.com/github/BC-MAY-21-RN/proyecto-final-pf-n21-t2/maintainability"><img src="https://api.codeclimate.com/v1/badges/6e1a9a54bba9a1825145/maintainability" width="500px"/></a>
+
+## Deep Scan
+<a href="https://deepscan.io/dashboard#view=project&tid=16251&pid=19989&bid=529711"><img src="https://deepscan.io/api/teams/16251/projects/19989/branches/529711/badge/grade.svg" alt="DeepScan grade" width="500px"></a>
 ![BrightCoders Logo](img/logo-bc.png)
 
 # Nombre del proyecto
