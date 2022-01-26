@@ -5,6 +5,7 @@ const palette = {
   lightpurple: '#A239EA',
   pink: '#FF94CC',
   lightpink: '#F0D9E7',
+  red: 'red',
 };
 
 const theme = {
@@ -15,6 +16,7 @@ const theme = {
     primary4: palette.lightpink,
     secondary1: palette.white,
     secondary2: palette.black,
+    danger: palette.red,
   },
   font: {
     xs: 12,

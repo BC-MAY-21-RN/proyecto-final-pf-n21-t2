@@ -5,6 +5,9 @@
 <a href="https://deepscan.io/dashboard#view=project&tid=16251&pid=19989&bid=529711"><img src="https://deepscan.io/api/teams/16251/projects/19989/branches/529711/badge/grade.svg" alt="DeepScan grade" width="500px"></a>
 ![BrightCoders Logo](img/logo-bc.png)
 
+
+Design of the project in FIGMA: https://www.figma.com/file/lPyVNixGl71taX2aLjmFye/Take-my-Dog?node-id=0%3A1
+
 # Nombre del proyecto
 Take My Dog!
 
