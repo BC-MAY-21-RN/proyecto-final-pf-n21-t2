@@ -2,12 +2,14 @@ import React from "react";
 import { Text, Pressable, View } from "react-native";
 import theme from "../../themes/lights";
 import styles from "./styles";
+import { ActivityIndicator } from "react-native";
 
-const CustomButton = ({title, onPress, width}) => {
+const CustomButton = ({loading, disabled, title, onPress, width}) => {
+  console.log(disabled);
   return (
     <View style={styles.container}>
-      <Pressable style={[{width: width}, styles.button]} onPress={onPress}>
-        <Text style={styles.text}>{title}</Text>
+      <Pressable style={[{width: width}, styles.button, disabled ? styles.disabled : null]} onPress={onPress}>
+        {loading ? <ActivityIndicator size="small" color={theme.color.secondary1} /> : <Text style={styles.text}>{title}</Text>}
       </Pressable>
     </View>
   );

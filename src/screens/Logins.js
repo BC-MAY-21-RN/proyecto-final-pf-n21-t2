@@ -4,12 +4,12 @@ import LoginForm from '../components/LoginForm';
 import ToNextSectionText from '../components/ToNextSectionText';
 import ImageLogo from '../components/ImageLogo';
 
-const Login = ()=>{
+const Login = ({navigation}) => {
   return(
     <View style={{flex: 1}}>
       <ImageLogo />  
       <LoginForm />
-      <ToNextSectionText text="Don't have an account yet?" nextSection="SignUp" />
+      <ToNextSectionText navigation={navigation} text="Don't have an account yet?" nextSection="SignUp" />
     </View>
   )
 }

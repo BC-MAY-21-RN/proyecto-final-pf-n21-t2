@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 12,
+      height: 2,
     },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.00,
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
     
-    elevation: 24,
+    elevation: 14,
     
   },
   text: {
@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     color: theme.color.secondary1,
     textAlign: 'center',
     fontWeight: 'bold',
+  },
+  disabled: {
+    opacity: .5,
   },
 });
 

@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: theme.color.secondary2,
     paddingLeft: theme.spacing.m,
+  },
+  inputError: {
+    color: theme.color.danger,
   }
 });
 
