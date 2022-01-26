@@ -38,7 +38,7 @@
         "client_info": {
           "mobilesdk_app_id": "1:511882630961:android:948c129c13ac260099c210",
           "android_client_info": {
-            "package_name": "com.foodog"
+            "package_name": "com.foo"
           }
         },
         "oauth_client": [
@@ -46,7 +46,7 @@
             "client_id": "511882630961-nrt3k7oprt4oaj7k8efc36etrms072jc.apps.googleusercontent.com",
             "client_type": 1,
             "android_info": {
-              "package_name": "com.foodog",
+              "package_name": "com.foo",
               "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
             }
           },
