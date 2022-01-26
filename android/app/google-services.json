@@ -1,0 +1,76 @@
+{
+    "project_info": {
+      "project_number": "511882630961",
+      "project_id": "take-my-dog",
+      "storage_bucket": "take-my-dog.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:511882630961:android:a013df2807c3462f99c210",
+          "android_client_info": {
+            "package_name": "com.foo"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "511882630961-fugks638hm6bkkkb6ff3lcudo0vmrhpi.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAxOEs6RKfbZe8Dl-s-njSccXzjpbOYfWc"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "511882630961-fugks638hm6bkkkb6ff3lcudo0vmrhpi.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:511882630961:android:948c129c13ac260099c210",
+          "android_client_info": {
+            "package_name": "com.foodog"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "511882630961-nrt3k7oprt4oaj7k8efc36etrms072jc.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.foodog",
+              "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+            }
+          },
+          {
+            "client_id": "511882630961-fugks638hm6bkkkb6ff3lcudo0vmrhpi.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAxOEs6RKfbZe8Dl-s-njSccXzjpbOYfWc"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "511882630961-fugks638hm6bkkkb6ff3lcudo0vmrhpi.apps.googleusercontent.com",
+                "client_type": 3
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
