@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import ImageLogo from '../components/ImageLogo';
 import ToNextSectionText from '../components/ToNextSectionText';
 import UserTypeSign from '../components/UserTypeSign';
