@@ -2,9 +2,9 @@ import { View, Image } from 'react-native';
 import React from 'react';
 import styles from './styles'
 
-const ImageLogo = () => {
+const ImageLogo = ({flex}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {flex: flex}]}>
       <Image 
         style={styles.image}
         source={require('../../assets/images/logo.png')}

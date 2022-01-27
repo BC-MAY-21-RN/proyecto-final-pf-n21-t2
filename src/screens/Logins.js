@@ -7,9 +7,9 @@ import ImageLogo from '../components/ImageLogo';
 const Login = ({navigation}) => {
   return(
     <View style={{flex: 1}}>
-      <ImageLogo />  
+      <ImageLogo flex={3} />  
       <LoginForm />
-      <ToNextSectionText navigation={navigation} text="Don't have an account yet?" nextSection="SignUp" />
+      <ToNextSectionText navigation={navigation} text="Don't have an account yet? " nextSection={{label: 'SignUp', section: 'SignUpType'}} />
     </View>
   )
 }
