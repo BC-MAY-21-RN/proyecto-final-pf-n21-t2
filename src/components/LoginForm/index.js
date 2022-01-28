@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
-import CustomButton from "../CustomButton";
 import { View } from "react-native";
-import {CustomInput, InputValidation} from "../CustomInput";
 import styles from './styles'
 import auth from '@react-native-firebase/auth';
 import useLoginForm from '../../hooks/useLoginForm';

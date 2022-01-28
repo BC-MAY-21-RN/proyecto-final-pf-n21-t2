@@ -1,6 +1,5 @@
 import React from "react";
 import { View } from "react-native";
-import CustomButton from "../CustomButton";
 import { CustomInput, InputValidation, InputState } from "../CustomInput";
 import ButtonSign from "../ButtonSign";
 

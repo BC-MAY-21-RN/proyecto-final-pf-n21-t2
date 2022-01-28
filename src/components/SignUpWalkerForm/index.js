@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { View } from "react-native";
-import {CustomInput, InputValidation} from "../CustomInput";
+import {CustomInput, InputValidation, InputState} from "../CustomInput";
 import useSignUpWalkerForm from "../../hooks/useSignUpWalkerForm";
 import styles from './styles'
 import auth from '@react-native-firebase/auth';
@@ -44,9 +44,7 @@ const SignUpWalkerForm = ({navigation}) => {
   const [form, setForm] = useSignUpWalkerForm();
   const [loading, setLoading] = useState(false);
 
-  const getInputState = name => {
-    return ({name, form, setForm});
-  };
+  const getInputState = InputState(form, setForm);
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
@@ -60,12 +58,12 @@ const SignUpWalkerForm = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <CustomInput title="Username" state={{name: 'username', form, setForm}} validation={InputValidation.string} />
+      <CustomInput title="Username" state={getInputState('username')} validation={InputValidation.string} />
       <GenericSign title="Sign Up" form={form} setForm={setForm} loading={loading} onPress={() => {
         setLoading(true);
         SignUpWalker(setLoading, form.email.value, form.password.value);
       }}>
-        <CustomInput title="Mobile" state={{name: 'mobile', form, setForm}} validation={InputValidation.phone} />
+        <CustomInput title="Mobile" state={getInputState('mobile')} validation={InputValidation.phone} />
         <CustomPicker title="Dog size" itemdata={dogSizes} state={{name: 'dogSize', form, setForm}} />
         <CustomCheckBox texto="I am older than 18 years old" state={{name: 'checkbox', form, setForm}} />
       </GenericSign>
