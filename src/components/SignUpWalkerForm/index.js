@@ -44,6 +44,10 @@ const SignUpWalkerForm = ({navigation}) => {
   const [form, setForm] = useSignUpWalkerForm();
   const [loading, setLoading] = useState(false);
 
+  const getInputState = name => {
+    return ({name, form, setForm});
+  };
+
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {

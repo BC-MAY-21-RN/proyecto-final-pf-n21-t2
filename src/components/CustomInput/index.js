@@ -2,6 +2,12 @@ import React, {useRef} from "react";
 import { Text, TextInput, View } from "react-native";
 import styles from "./styles";
 
+export const InputState = (form, setForm) => {
+  return name => {
+    return ({name, form, setForm});
+  };
+};
+
 export const InputValidation = {
   email: {
     required: true,
