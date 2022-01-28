@@ -4,7 +4,7 @@ const allIsOk = (username, email, password, mobile, checkbox, dogSize) => {
   return username.isOk && email.isOk && password.isOk && mobile.isOk && checkbox.isOk && dogSize.isOk;
 };
 
-const getSetState = (username, email, password, mobile, checkbox, dogSize) => {
+const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox, setDogSize) => {
   return (action, value, isOk) => {
     if (action === 'email') {
       setEmail({value: value, isOk: isOk});
@@ -35,7 +35,7 @@ const useSignUpWalkerForm = () => {
     setDisabled(!allIsOk(username, email, password, mobile, checkbox, dogSize));
   }, [username, email, password, mobile, checkbox, dogSize]);
 
-  const setState = getSetState(username, email, password, mobile, checkbox, dogSize);
+  const setState = getSetState(setUsername, setEmail, setPassword, setMobile, setCheckbox, setDogSize);
 
   return [{username, email, password, mobile, checkbox, dogSize, disabled}, setState];
 };

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import CustomButton from "../CustomButton";
 import { View } from "react-native";
 import {CustomInput, InputValidation} from "../CustomInput";
 import useSignUpWalkerForm from "../../hooks/useSignUpWalkerForm";
@@ -9,6 +8,7 @@ import {CustomPicker} from '../CustomPicker';
 import {CustomCheckBox} from "../CustomCheckBox";
 import {firebase} from '@react-native-firebase/firestore';
 import { Alert } from "react-native";
+import GenericSign from "../GenericSign";
 
 const dogSizes = require('./../../assets/datasets/dogSizes.json');
 
@@ -57,17 +57,14 @@ const SignUpWalkerForm = ({navigation}) => {
   return (
     <View style={styles.container}>
       <CustomInput title="Username" state={{name: 'username', form, setForm}} validation={InputValidation.string} />
-      <CustomInput title="Email" state={{name: 'email', form, setForm}} validation={InputValidation.email} />
-      <CustomInput type="password" title="Password" state={{name: 'password', form, setForm}} validation={InputValidation.password} />
-      <CustomInput title="Mobile" state={{name: 'mobile', form, setForm}} validation={InputValidation.phone} />
-      <CustomPicker title="Dog size" itemdata={dogSizes} state={{name: 'dogSize', form, setForm}} />
-      <CustomCheckBox texto="I am older than 18 years old" state={{name: 'checkbox', form, setForm}} />
-      <CustomButton style={styles.button} loading={loading} disabled={form.disabled} width={150} title="Sign Up" onPress={() => {
-        if (!form.disabled) {
-          setLoading(true);
-          SignUpWalker(setLoading, form.email.value, form.password.value);          
-        }
-      }} />
+      <GenericSign title="Sign Up" form={form} setForm={setForm} loading={loading} onPress={() => {
+        setLoading(true);
+        SignUpWalker(setLoading, form.email.value, form.password.value);
+      }}>
+        <CustomInput title="Mobile" state={{name: 'mobile', form, setForm}} validation={InputValidation.phone} />
+        <CustomPicker title="Dog size" itemdata={dogSizes} state={{name: 'dogSize', form, setForm}} />
+        <CustomCheckBox texto="I am older than 18 years old" state={{name: 'checkbox', form, setForm}} />
+      </GenericSign>
     </View>
   );
 

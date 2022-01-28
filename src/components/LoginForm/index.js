@@ -5,6 +5,7 @@ import {CustomInput, InputValidation} from "../CustomInput";
 import styles from './styles'
 import auth from '@react-native-firebase/auth';
 import useLoginForm from '../../hooks/useLoginForm';
+import GenericSign from "../GenericSign";
 
 //auth().signOut();
 
@@ -23,15 +24,11 @@ const LoginForm = () => {
 
   return (
     <View style={styles.container}>
-      <CustomInput title="Email" state={{name: 'email', form, setForm}} validation={InputValidation.email} />
-      <CustomInput type="password" title="Password" state={{name: 'password', form, setForm}} validation={InputValidation.password} />
-      <CustomButton loading={loading} disabled={form.disabled} width={150} title="Login" onPress={() => {
-        if (!form.disabled) {
-          setLoading(true);
-          auth().signInWithEmailAndPassword(form.email.value, form.password.value).then(() => {
-            setLoading(false);
-          });
-        }
+      <GenericSign title="Login" form={form} setForm={setForm} loading={loading} onPress={() => {
+        setLoading(true);
+        auth().signInWithEmailAndPassword(form.email.value, form.password.value).then(() => {
+          setLoading(false);
+        });
       }} />
     </View>
   );
