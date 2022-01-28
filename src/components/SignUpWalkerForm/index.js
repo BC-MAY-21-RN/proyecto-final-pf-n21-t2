@@ -22,17 +22,21 @@ const SignUpWalker = (setLoading, email, password) => {
   });
 };
 
-const UploadLeftData = (setLoading, username, mobile, dogSize) => {
-  firebase.firestore().collection('users').add({
-    username,
-    mobile,
-    dogSize,
+const UploadLeftData = (navigation, setLoading, useruid, username, mobile, dogSize) => {
+  firebase.firestore().collection('Walkers').add({
+    useruid: useruid,
+    username: username,
+    mobile: mobile,
+    dogSize: dogSize,
   }).catch(e => {
     console.log(e);
   })
   .then(r => {
     setLoading(false);
-    console.log("open new screen");
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'Walker', params: {}}],
+    });
   });
 };
 
@@ -43,7 +47,8 @@ const SignUpWalkerForm = ({navigation}) => {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
-        UploadLeftData(setLoading, form.username.value, form.mobile.value, form.dogSize.value);
+        console.log("user signed in");
+        UploadLeftData(navigation, setLoading, user.uid, form.username.value, form.mobile.value, form.dogSize.value);
       }
     });
     return subscriber;
