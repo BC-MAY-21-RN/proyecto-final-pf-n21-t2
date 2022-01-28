@@ -6,18 +6,19 @@ const allIsOk = (username, email, password, mobile, checkbox, dogSize) => {
 
 const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox, setDogSize) => {
   return (action, value, isOk) => {
+    let result = {value: value, isOk: isOk};
     if (action === 'email') {
-      setEmail({value: value, isOk: isOk});
+      setEmail(result);
     } else if (action === 'password') {
-      setPassword({value: value, isOk: isOk});
+      setPassword(result);
     } else if (action === 'username') {
-      setUsername({value: value, isOk: isOk});
+      setUsername(result);
     } else if (action === 'mobile') {
-      setMobile({value: value, isOk: isOk});
+      setMobile(result);
     } else if (action === 'checkbox') {
-      setCheckbox({value: value, isOk: isOk});
+      setCheckbox(result);
     } else if (action === 'dogSize') {
-      setDogSize({value: value, isOk: isOk});
+      setDogSize(result);
     }
   };
 };
