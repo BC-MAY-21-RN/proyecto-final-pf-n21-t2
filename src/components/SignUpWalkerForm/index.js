@@ -7,14 +7,33 @@ import styles from './styles'
 import auth from '@react-native-firebase/auth';
 import {CustomPicker} from '../CustomPicker';
 import {CustomCheckBox} from "../CustomCheckBox";
-
+import {firebase} from '@react-native-firebase/firestore';
+import { Alert } from "react-native";
 
 const dogSizes = require('./../../assets/datasets/dogSizes.json');
-//const dogBehaviurs = require('./../../assets/datasets/dogBehavior.json');
 
-const SignUpWalker = (setLoading, username, email, password, mobile, dogSize) => {
-  console.log(username, email, password, mobile, dogSize);
-  auth().createUserWithEmailAndPassword(email, password);
+const SignUpWalker = (setLoading, email, password) => {
+  auth().createUserWithEmailAndPassword(email, password).catch(e => {
+    setLoading(false);
+    console.log(e);
+    if (e.code === 'auth/email-already-in-use') {
+      Alert.alert('Error', 'That email is already in use');
+    }
+  });
+};
+
+const UploadLeftData = (setLoading, username, mobile, dogSize) => {
+  firebase.firestore().collection('users').add({
+    username,
+    mobile,
+    dogSize,
+  }).catch(e => {
+    console.log(e);
+  })
+  .then(r => {
+    setLoading(false);
+    console.log("open new screen");
+  });
 };
 
 const SignUpWalkerForm = ({navigation}) => {
@@ -24,9 +43,7 @@ const SignUpWalkerForm = ({navigation}) => {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
-        user.uid
-
-        console.log("user logged");
+        UploadLeftData(setLoading, form.username.value, form.mobile.value, form.dogSize.value);
       }
     });
     return subscriber;
@@ -43,7 +60,7 @@ const SignUpWalkerForm = ({navigation}) => {
       <CustomButton style={styles.button} loading={loading} disabled={form.disabled} width={150} title="Sign Up" onPress={() => {
         if (!form.disabled) {
           setLoading(true);
-          SignUpWalker(setLoading, form.username.value, form.email.value, form.password.value, form.mobile.value, form.dogSize.value);          
+          SignUpWalker(setLoading, form.email.value, form.password.value);          
         }
       }} />
     </View>

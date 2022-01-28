@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import styles from './styles';
 
@@ -7,10 +7,13 @@ let mounted = false;
 
 export const CustomPicker = ({state, title, itemdata}) => {
   const [value, setValue] = useState(null);
-  if (!mounted) {
-    mounted = true;
-    state.setForm(state.name, '1', true);
-  }
+  
+  useEffect(() => {
+    if (!mounted) {
+      mounted = true;
+      state.setForm(state.name, '1', true);
+    }
+  }, []);
 
   return (
     <View>
