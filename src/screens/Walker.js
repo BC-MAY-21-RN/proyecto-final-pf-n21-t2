@@ -4,7 +4,7 @@ import React from 'react';
 const Walker = () => {
   return (
     <View>
-      <Text>Walker</Text>
+      <Text>Good evening Hil</Text>
     </View>
   );
 };

@@ -4,20 +4,8 @@ const allIsOk = (username, email, password, mobile, checkbox, dogSize) => {
   return username.isOk && email.isOk && password.isOk && mobile.isOk && checkbox.isOk && dogSize.isOk;
 };
 
-const useSignUpWalkerForm = () => {
-  let [username, setUsername] = useState({value: '', isOk: false});
-  let [email, setEmail] = useState({value: '', isOk: false});
-  let [password, setPassword] = useState({value: '', isOk: false});
-  let [mobile, setMobile] = useState({value: '', isOk: false});
-  let [checkbox, setCheckbox] = useState({value: '', isOk: false});
-  let [dogSize, setDogSize] = useState({value: '', isOk: false});
-  let [disabled, setDisabled] = useState(false);
-
-  useEffect(() => {
-    setDisabled(!allIsOk(username, email, password, mobile, checkbox, dogSize));
-  }, [username, email, password, mobile, checkbox, dogSize]);
-
-  const setState = (action, value, isOk) => {
+const getSetState = (username, email, password, mobile, checkbox, dogSize) => {
+  return (action, value, isOk) => {
     if (action === 'email') {
       setEmail({value: value, isOk: isOk});
     } else if (action === 'password') {
@@ -32,6 +20,22 @@ const useSignUpWalkerForm = () => {
       setDogSize({value: value, isOk: isOk});
     }
   };
+};
+
+const useSignUpWalkerForm = () => {
+  let [username, setUsername] = useState({value: '', isOk: false});
+  let [email, setEmail] = useState({value: '', isOk: false});
+  let [password, setPassword] = useState({value: '', isOk: false});
+  let [mobile, setMobile] = useState({value: '', isOk: false});
+  let [checkbox, setCheckbox] = useState({value: '', isOk: false});
+  let [dogSize, setDogSize] = useState({value: '', isOk: false});
+  let [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    setDisabled(!allIsOk(username, email, password, mobile, checkbox, dogSize));
+  }, [username, email, password, mobile, checkbox, dogSize]);
+
+  const setState = getSetState(username, email, password, mobile, checkbox, dogSize);
 
   return [{username, email, password, mobile, checkbox, dogSize, disabled}, setState];
 };
