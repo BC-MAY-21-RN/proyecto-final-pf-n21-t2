@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
 
-const allIsOk = (username, email, password, mobile, checkbox, dogSize) => {
-  return username.isOk && email.isOk && password.isOk && mobile.isOk && checkbox.isOk && dogSize.isOk;
+const allIsOk = (username, email, password, mobile, checkbox, address) => {
+  return username.isOk && email.isOk && password.isOk && mobile.isOk && checkbox.isOk && address.isOk;
 };
 
-const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox, setDogSize) => {
+const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox, setAddress) => {
   return (action, value, isOk) => {
     let result = {value: value, isOk: isOk};
     switch(action){
@@ -23,29 +23,29 @@ const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox,
       case 'mobile':
         setMobile(result);
         break;
-      case 'dogSize':
-        setDogSize(result);
+      case 'address':
+        setAddress(result);
         break;
     }
   };
 };
 
-const useSignUpWalkerForm = () => {
+const useSignUpClientForm = () => {
   let [username, setUsername] = useState({value: '', isOk: false});
   let [email, setEmail] = useState({value: '', isOk: false});
   let [password, setPassword] = useState({value: '', isOk: false});
   let [mobile, setMobile] = useState({value: '', isOk: false});
   let [checkbox, setCheckbox] = useState({value: '', isOk: false});
-  let [dogSize, setDogSize] = useState({value: '', isOk: false});
+  let [address, setAddress] = useState({value: '', isOk: false});
   let [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
-    setDisabled(!allIsOk(username, email, password, mobile, checkbox, dogSize));
-  }, [username, email, password, mobile, checkbox, dogSize]);
+    setDisabled(!allIsOk(username, email, password, mobile, checkbox, address));
+  }, [username, email, password, mobile, checkbox, address]);
 
-  const setState = getSetState(setUsername, setEmail, setPassword, setMobile, setCheckbox, setDogSize);
+  const setState = getSetState(setUsername, setEmail, setPassword, setMobile, setCheckbox, setAddress);
 
-  return [{username, email, password, mobile, checkbox, dogSize, disabled}, setState];
+  return [{username, email, password, mobile, checkbox, address, disabled}, setState];
 };
 
-export default useSignUpWalkerForm;
+export default useSignUpClientForm;

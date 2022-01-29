@@ -8,7 +8,7 @@ const UserTypeSign = ({navigation}) => {
     <View style={styles.container}>
       <Text style={styles.header}>¿What kind of user are you?</Text>
       <ButtonSign title="I am a walker" onPress={() => navigation.navigate('SignUpWalker')} />
-      <ButtonSign title="I am a client" onPress={() => console.log('to signupclient')} />
+      <ButtonSign title="I am a client" onPress={() => navigation.navigate('SignUpClient')} />
     </View>
   );
 };
