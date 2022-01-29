@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 
 const allIsOk = (username, email, password, mobile, checkbox, dogSize, address) => {
-  return username.isOk && email.isOk && password.isOk && mobile.isOk && checkbox.isOk && dogSize.isOk
-    && address.isOk;
+  console.log(address.isOk);
+  return username.isOk && email.isOk && password.isOk && mobile.isOk && checkbox.isOk && dogSize.isOk && address.isOk;
 };
 
-const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox, setDogSize, address) => {
+const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox, setDogSize, setAddress) => {
   return (action, value, isOk) => {
     let result = {value: value, isOk: isOk};
     switch(action){
@@ -35,13 +35,14 @@ const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox,
 };
 
 const useSignUpForm = (type) => {
+  console.log(type);
   let [username, setUsername] = useState({value: '', isOk: false});
   let [email, setEmail] = useState({value: '', isOk: false});
   let [password, setPassword] = useState({value: '', isOk: false});
   let [mobile, setMobile] = useState({value: '', isOk: false});
   let [checkbox, setCheckbox] = useState({value: '', isOk: false});
-  let [dogSize, setDogSize] = useState({value: '', isOk: type === 'client' ? false: true});
-  let [address, setAddress] = useState({value: '', isOk: type === 'walker' ? false: true});
+  let [dogSize, setDogSize] = useState({value: '', isOk: type === 'walker' ? false: true});
+  let [address, setAddress] = useState({value: '', isOk: type === 'client' ? false: true});
   let [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
