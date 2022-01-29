@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { View } from "react-native";
 import {CustomInput, InputValidation, InputState} from "../CustomInput";
-import useSignUpWalkerForm from "../../hooks/useSignUpWalkerForm";
+import useSignUpForm from "../../hooks/useSignUpForm";
 import styles from './styles'
 import auth from '@react-native-firebase/auth';
 import {CustomPicker} from '../CustomPicker';
@@ -12,7 +12,7 @@ import GenericSign from "../GenericSign";
 
 const dogSizes = require('./../../assets/datasets/dogSizes.json');
 
-const SignUpWalker = (setLoading, email, password) => {
+const SignUp = (setLoading, email, password) => {
   auth().createUserWithEmailAndPassword(email, password).catch(e => {
     setLoading(false);
     console.log(e);
@@ -22,13 +22,29 @@ const SignUpWalker = (setLoading, email, password) => {
   });
 };
 
-const UploadLeftData = (navigation, setLoading, useruid, username, mobile, dogSize) => {
-  firebase.firestore().collection('Walkers').add({
+const getCollectionAndData = (type, useruid, username, mobile, dogSize, address) => {
+  let collection;
+  let dataStructure = dataStructure = {
     useruid: useruid,
     username: username,
     mobile: mobile,
-    dogSize: dogSize,
-  }).catch(e => {
+  };
+  switch (type) {
+    case 'walker':
+      collection = 'Walkers';
+      dataStructure.dogSize = dogSize;
+      break;
+    case 'client':
+      collection = 'Clients';
+      dataStructure.address = address;
+      break;
+  }
+  return [collection, dataStructure];
+};
+
+const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile, dogSize, address) => {
+  let [collection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address);
+  firebase.firestore().collection(collection).add(dataStructure).catch(e => {
     console.log(e);
   })
   .then(r => {
@@ -40,8 +56,8 @@ const UploadLeftData = (navigation, setLoading, useruid, username, mobile, dogSi
   });
 };
 
-const SignUpWalkerForm = ({navigation}) => {
-  const [form, setForm] = useSignUpWalkerForm();
+const SignUpForm = ({type, navigation}) => {
+  const [form, setForm] = useSignUpForm(type);
   const [loading, setLoading] = useState(false);
 
   const getInputState = InputState(form, setForm);
@@ -50,7 +66,7 @@ const SignUpWalkerForm = ({navigation}) => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
         console.log("user signed in");
-        UploadLeftData(navigation, setLoading, user.uid, form.username.value, form.mobile.value, form.dogSize.value);
+        UploadLeftData(type, navigation, setLoading, user.uid, form.username.value, form.mobile.value, form.dogSize.value, form.address.value);
       }
     });
     return subscriber;
@@ -61,10 +77,13 @@ const SignUpWalkerForm = ({navigation}) => {
       <CustomInput title="Username" state={getInputState('username')} validation={InputValidation.string} />
       <GenericSign title="Sign Up" form={form} setForm={setForm} loading={loading} onPress={() => {
         setLoading(true);
-        SignUpWalker(setLoading, form.email.value, form.password.value);
+        SignUp(setLoading, form.email.value, form.password.value);
       }}>
         <CustomInput title="Mobile" state={getInputState('mobile')} validation={InputValidation.phone} />
-        <CustomPicker title="Dog size" itemdata={dogSizes} state={{name: 'dogSize', form, setForm}} />
+        {type === 'walker'
+          ? <CustomPicker title="Dog size" itemdata={dogSizes} state={{name: 'dogSize', form, setForm}} />
+          : <CustomInput title="Address" state={getInputState('address')} validation={InputValidation.string} />
+        }
         <CustomCheckBox texto="I am older than 18 years old" state={{name: 'checkbox', form, setForm}} />
       </GenericSign>
     </View>
@@ -72,4 +91,5 @@ const SignUpWalkerForm = ({navigation}) => {
 
 };
 
-export default SignUpWalkerForm;
+export default SignUpForm;
+
