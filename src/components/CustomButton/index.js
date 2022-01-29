@@ -5,7 +5,6 @@ import styles from "./styles";
 import { ActivityIndicator } from "react-native";
 
 const CustomButton = ({style, loading, disabled, title, onPress, width}) => {
-  console.log(disabled);
   return (
     <View style={[styles.container, style]}>
       <Pressable style={[{width: width}, styles.button, disabled ? styles.disabled : null]} onPress={onPress}>
