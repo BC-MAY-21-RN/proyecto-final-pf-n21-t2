@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { View } from "react-native";
 import {CustomInput, InputValidation, InputState} from "../CustomInput";
-import useSignUpClientForm from '../../hooks/useSignUpClientForm';
+import useSignUpForm from "../../hooks/useSignUpForm";
 import styles from './styles'
 import auth from '@react-native-firebase/auth';
 import {CustomCheckBox} from "../CustomCheckBox";
@@ -38,7 +38,7 @@ const UploadLeftData = (navigation, setLoading, useruid, username, mobile, addre
 };
 
 const SignUpClientForm = ({navigation}) => {
-  const [form, setForm] = useSignUpClientForm();
+  const [form, setForm] = useSignUpForm('client');
   const [loading, setLoading] = useState(false);
 
   const getInputState = InputState(form, setForm);

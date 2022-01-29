@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { View } from "react-native";
 import {CustomInput, InputValidation, InputState} from "../CustomInput";
-import useSignUpWalkerForm from "../../hooks/useSignUpWalkerForm";
+import useSignUpForm from "../../hooks/useSignUpForm";
 import styles from './styles'
 import auth from '@react-native-firebase/auth';
 import {CustomPicker} from '../CustomPicker';
@@ -41,7 +41,7 @@ const UploadLeftData = (navigation, setLoading, useruid, username, mobile, dogSi
 };
 
 const SignUpWalkerForm = ({navigation}) => {
-  const [form, setForm] = useSignUpWalkerForm();
+  const [form, setForm] = useSignUpForm('walker');
   const [loading, setLoading] = useState(false);
 
   const getInputState = InputState(form, setForm);
