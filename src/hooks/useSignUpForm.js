@@ -10,26 +10,19 @@ const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox,
     let result = {value: value, isOk: isOk};
     switch(action){
       case 'email':
-        setEmail(result);
-        break;
+        setEmail(result);break;
       case 'username':
-        setUsername(result);
-        break;
+        setUsername(result);break;
       case 'password':
-        setPassword(result);
-        break;
+        setPassword(result);break;
       case 'checkbox':
-        setCheckbox(result);
-        break;
+        setCheckbox(result);break;
       case 'mobile':
-        setMobile(result);
-        break;
+        setMobile(result);break;
       case 'dogSize':
-        setDogSize(result);
-        break;
+        setDogSize(result);break;
       case 'address':
-        setAddress(result);
-        break;
+        setAddress(result);break;
     }
   };
 };
