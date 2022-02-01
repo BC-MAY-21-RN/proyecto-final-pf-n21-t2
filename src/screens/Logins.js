@@ -6,8 +6,7 @@ const Login = ({navigation}) => {
   return (
     <SignWithLogo navigation={navigation}
       imageFlex={3}
-      footer={{text: `Don't have an account yet? `,
-      nextSection: {label: 'SignUp', section: 'SignUpType'}}}>
+      footer={{text: `Don't have an account yet? `, label: 'SignUp', section: 'SignUpType'}}>
       <LoginForm navigation={navigation} />
     </SignWithLogo>
   )

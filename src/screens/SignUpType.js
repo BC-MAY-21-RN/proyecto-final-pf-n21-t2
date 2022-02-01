@@ -4,7 +4,9 @@ import SignWithLogo from '../components/SignWithLogo';
 
 const SignUpType = ({navigation})=>{
   return (
-    <SignWithLogo navigation={navigation} imageFlex={2} footer={{text: `Already have an account? `, nextSection: {label: 'Login', section: 'Login'}}}>
+    <SignWithLogo navigation={navigation}
+      imageFlex={2}
+      footer={{text: `Already have an account? `, label: 'Login', section: 'Login'}}>
       <UserTypeSign navigation={navigation} />
     </SignWithLogo>
   )
