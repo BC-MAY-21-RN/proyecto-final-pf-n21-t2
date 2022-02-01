@@ -1,10 +1,13 @@
 import { View, Text } from 'react-native';
 import React from 'react';
+import CardGeneric from '../components/GenericCard';
 
 const Walker = () => {
   return (
     <View>
-      <Text>Good evening Hil</Text>
+      <Text>Hola</Text>
+      <CardGeneric />
+
     </View>
   );
 };
