@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import {CustomInput, InputValidation, InputState} from "../CustomInput";
 import useSignUpForm from "../../hooks/useSignUpForm";
 import styles from './styles'
@@ -70,7 +70,7 @@ const SignUpForm = ({type, navigation}) => {
       }
     });
     return subscriber;
-  }, [form]);
+  }, [form.username.value, form.mobile.value, form.dogSize.value, form.address.value]);
 
   return (
     <ScrollView style={styles.container}>
