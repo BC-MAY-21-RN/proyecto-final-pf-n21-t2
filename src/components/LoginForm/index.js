@@ -5,7 +5,7 @@ import auth from '@react-native-firebase/auth';
 import useLoginForm from '../../hooks/useLoginForm';
 import GenericSign from "../GenericSign";
 
-//auth().signOut();
+// auth().signOut();
 
 const LoginForm = () => {
   const [form, setForm] = useLoginForm();
