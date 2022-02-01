@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 
 const allIsOk = (username, email, password, mobile, checkbox, dogSize, address) => {
-  console.log(address.isOk);
   return username.isOk && email.isOk && password.isOk && mobile.isOk && checkbox.isOk && dogSize.isOk && address.isOk;
 };
 
@@ -28,7 +27,6 @@ const getSetState = (setUsername, setEmail, setPassword, setMobile, setCheckbox,
 };
 
 const useSignUpForm = (type) => {
-  console.log(type);
   let [username, setUsername] = useState({value: '', isOk: false});
   let [email, setEmail] = useState({value: '', isOk: false});
   let [password, setPassword] = useState({value: '', isOk: false});
