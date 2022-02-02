@@ -3,21 +3,22 @@ import theme from "../../themes/lights";
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 2,
-    borderColor: theme.color.primary2,
-    borderRadius: 25,
     display: 'flex',
-    flexDirection: 'row',
-    padding: theme.spacing.m,
-    marginBottom: theme.spacing.xl,
   },
-  title: {
+  text: {
+    fontSize: theme.font.m,
     color: theme.color.secondary2,
-    fontSize: theme.font.xxl,
   },
-  rightContainer: {
+  rowData: {
     display: 'flex',
     justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  separator: {
+    marginBottom: theme.spacing.xl,
   },
 });
 

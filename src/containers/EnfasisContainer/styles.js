@@ -4,9 +4,10 @@ import theme from "../../themes/lights";
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignContent: 'center',
-    height: '30%',
+    flex: 1,
+    alignSelf: 'center',
   },
 });
 

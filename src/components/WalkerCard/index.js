@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Pressable, Image, Text } from "react-native";
+import { View, Pressable, Text } from "react-native";
 import { AirbnbRating } from 'react-native-ratings';
+import RoundImage from "../RoundImage";
 import styles from "./styles";
 
 const toHireWalkerSection = (navigation, data) => {
@@ -13,10 +14,7 @@ const WalkerCard = ({title, rating, navigation}) => {
   return (
     <Pressable style={styles.container} onPress={() => toHireWalkerSection(navigation, data)}>
       <View>
-        <Image
-          style={styles.tinyLogo}
-          source={require('../../assets/images/image_loading.gif')}
-        />
+        <RoundImage source={require('../../assets/images/image_loading.gif')} />
       </View>
       <View style={styles.rightContainer}>
         <Text style={styles.title}>{title}</Text>
