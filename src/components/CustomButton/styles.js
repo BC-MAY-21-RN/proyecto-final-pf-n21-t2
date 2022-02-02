@@ -18,9 +18,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    
     elevation: 14,
-    
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   text: {
     fontSize: theme.font.xl,
@@ -30,6 +31,11 @@ const styles = StyleSheet.create({
   },
   disabled: {
     opacity: .5,
+  },
+  icon: {
+    fontSize: theme.font.xxl,
+    color: theme.color.secondary1,
+    marginRight: theme.spacing.xl,
   },
 });
 

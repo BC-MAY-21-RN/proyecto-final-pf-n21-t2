@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='ClientWalkers'>
+      <Stack.Navigator initialRouteName='Client'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
