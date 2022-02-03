@@ -1,6 +1,6 @@
 import React from 'react';
 import GenericContainer from '../containers/GenericContainer';
-import { FlatList } from 'react-native';
+import CustomFlatList from '../components/CustomFlatList';
 import ReviewCard from '../components/ReviewCard';
 
 const DATA = [
@@ -23,11 +23,7 @@ const ClientWalkerReviews = () => {
 
   return (
     <GenericContainer>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      <CustomFlatList data={DATA} render={renderItem} />
     </GenericContainer>
   );
 };
