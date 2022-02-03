@@ -8,6 +8,13 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
   },
+  enfasisContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    flex: 1,
+    alignSelf: 'center',
+  },
 });
 
 export default styles;
