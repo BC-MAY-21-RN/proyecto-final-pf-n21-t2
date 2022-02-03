@@ -18,18 +18,25 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    
     elevation: 14,
-    
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  textColor: {
+    color: theme.color.secondary1,
   },
   text: {
     fontSize: theme.font.xl,
-    color: theme.color.secondary1,
     textAlign: 'center',
     fontWeight: 'bold',
   },
   disabled: {
     opacity: .5,
+  },
+  icon: {
+    fontSize: theme.font.xxl,
+    marginRight: theme.spacing.xl,
   },
 });
 
