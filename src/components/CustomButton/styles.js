@@ -23,9 +23,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  textColor: {
+    color: theme.color.secondary1,
+  },
   text: {
     fontSize: theme.font.xl,
-    color: theme.color.secondary1,
     textAlign: 'center',
     fontWeight: 'bold',
   },
@@ -34,7 +36,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: theme.font.xxl,
-    color: theme.color.secondary1,
     marginRight: theme.spacing.xl,
   },
 });
