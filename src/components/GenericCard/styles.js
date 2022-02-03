@@ -21,12 +21,17 @@ const styles = StyleSheet.create({
   },
   Data: {
     flexDirection: "column",
+    left: 30,
+    paddingVertical: 10,
   },
   Tittle: {
     color: "lightgrey"
   },
   Owner: {
     fontWeight: "bold",
+  },
+  Space: {
+    paddingVertical: 10,
   }
 
 

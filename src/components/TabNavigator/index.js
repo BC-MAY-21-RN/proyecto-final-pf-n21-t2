@@ -4,11 +4,14 @@ import Walker from '../../screens/Walker';
 import WalkerServices from '../../screens/WalkerServices';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+// import DrawerMenu from '../DrawerMenu';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
+    <>
+        {/* <DrawerMenu /> */}
         <Tab.Navigator screenOptions={
             {
                 headerShown: false,
@@ -33,6 +36,7 @@ const TabNavigator = () => {
                 }
             }}/>
         </Tab.Navigator>
+    </>
   );
 };
 
