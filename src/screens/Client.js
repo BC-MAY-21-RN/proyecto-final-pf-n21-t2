@@ -13,7 +13,6 @@ const Client = () => {
         <CustomButton marginTop={theme.spacing.xxxl} title='Search Walker' loading={false} width={200} leftIconName="search-outline"/>
       </EnfasisContainer>
     </GenericContainer>
-    
   );
 };
 

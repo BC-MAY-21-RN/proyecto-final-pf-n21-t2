@@ -9,6 +9,8 @@ import SignUpWalker from './src/screens/SignUpWalker';
 import SignUpClient from './src/screens/SignUpClient';
 import ClientWalkers from './src/screens/ClientWalkers';
 import ClientDogWalker from './src/screens/ClientDogWalker';
+import ClientDateForm from './src/screens/ClientDateForm';
+import ClientWalkerReviews from './src/screens/ClientWalkerReviews';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -17,7 +19,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='ClientDogWalker'>
+      <Stack.Navigator initialRouteName='ClientDateForm'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
@@ -26,6 +28,8 @@ function App() {
         <Stack.Screen name="Client" component={Client} />
         <Stack.Screen name="ClientWalkers" component={ClientWalkers} />
         <Stack.Screen name="ClientDogWalker" component={ClientDogWalker} />
+        <Stack.Screen name="ClientWalkerReviews" component={ClientWalkerReviews} />
+        <Stack.Screen name="ClientDateForm" component={ClientDateForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );

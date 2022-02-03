@@ -9,7 +9,7 @@ import theme from '../themes/lights';
 const ClientDogWalker = () => {
   return (
     <GenericContainer>
-      <UserPresentation rating="2" />
+      <UserPresentation rating="2" image={require('../assets/images/image_loading.gif')} />
       <CustomButton marginTop={theme.spacing.xl} title="See reviews" onPress={() => console.log("to reviews screen")} />
       <LineSeparator marginVertical={theme.spacing.xxl} />
       <UserInfo address="Molusco #139" age="22" email="hmaldonado0@ucol.mx" services="1230"  />
