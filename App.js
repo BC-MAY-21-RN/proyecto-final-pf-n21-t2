@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Login from './src/screens/Logins';
 import SignUpType from './src/screens/SignUpType';
-import Walker from './src/screens/Walker';
 import WalkerServices from './src/screens/WalkerServices';
 import Client from './src/screens/Client';
 import SignUpWalker from './src/screens/SignUpWalker';
@@ -17,7 +16,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName='Walker'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
