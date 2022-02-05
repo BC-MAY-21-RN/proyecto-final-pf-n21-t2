@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Walker from '../../screens/Walker';
 import WalkerServices from '../../screens/WalkerServices';
@@ -11,15 +11,15 @@ const Tab = createBottomTabNavigator();
 const setMenu = navigation => {
   navigation.setOptions({
     headerLeft: () => (
-      <MenuButton iconName="menu" onPress={() => navigation.navigate('Settings')} />
+      <MenuButton iconName="menu" onPress={() => navigation.navigate('SettingsWalker')} />
     ),
   });
 };
 
-
-
 const TabNavigator = ({navigation}) => {
-  setMenu(navigation);
+  useEffect(() => {
+    setMenu(navigation);
+  }, [navigation]);
 
   return (
     <>
@@ -28,21 +28,18 @@ const TabNavigator = ({navigation}) => {
           headerShown: false,
           tabBarInactiveTintColor: 'black',
           tabBarStyle : {
-            backgroundColor: '#F0D9E7', 
+            backgroundColor: theme.color.primary4, 
           },
           tabBarLabelStyle: {
             fontSize: theme.font.m,
           },
         }
       }>
-        
         <Tab.Screen name="Home" component={Walker} options={{
-          tabBarIcon: color => <Icon name="menu" color={color} size={24} />,
+          tabBarIcon: ({color, size}) => <Icon name="home-outline" color={color} size={size} />,
         }}/>
         <Tab.Screen name="Services" component={WalkerServices}  options={{
-          tabBarIcon: ({focused, color, size}) => {
-            return <Icon name="menu" size={24} color="#000000" />
-          }
+          tabBarIcon: ({color, size}) => <Icon name="walk-outline" color={color} size={size} />
         }}/>
       </Tab.Navigator>
     </>

@@ -9,9 +9,10 @@ const DATA = [
   {id: 4, name: "foo", duration: 2, start: 2}
 ];
 
-const Walker = () => {
+const Walker = ({navigation}) => {
   const renderItem = ({ item }) => (
-    <CardGeneric 
+    <CardGeneric
+      navigation={navigation}
       Name={item.name}
       Duration={item.duration}
       Start={item.start} />
