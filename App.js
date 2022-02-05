@@ -7,6 +7,8 @@ import WalkerServices from './src/screens/WalkerServices';
 import Client from './src/screens/Client';
 import SignUpWalker from './src/screens/SignUpWalker';
 import SignUpClient from './src/screens/SignUpClient';
+import SettingsClient from './src/screens/DrawerScreens/SettingsClient';
+import SettingsWalker from './src/screens/DrawerScreens/SettingsWalker';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './src/components/TabNavigator';
@@ -24,6 +26,8 @@ function App() {
         <Stack.Screen name="Walker" component={TabNavigator} />
         <Stack.Screen name="WalkerServices" component={WalkerServices} />
         <Stack.Screen name="Client" component={Client} />
+        <Stack.Screen name="SettingsWalker" component={SettingsWalker} />
+        <Stack.Screen name="SettingsClient" component={SettingsClient} />
       </Stack.Navigator>
     </NavigationContainer>
   );

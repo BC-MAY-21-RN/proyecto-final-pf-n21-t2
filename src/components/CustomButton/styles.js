@@ -5,7 +5,14 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
   },
+  iconContainer: {
+    marginRight: theme.spacing.xl,
+    marginLeft: theme.spacing.xxl,
+  },
   button: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: theme.color.primary2,
     borderRadius: 100,
     overflow: 'hidden',
