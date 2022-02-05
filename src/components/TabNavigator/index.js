@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Walker from '../../screens/Walker';
 import WalkerServices from '../../screens/WalkerServices';
-import Icon from 'react-native-vector-icons/Ionicons';
 import MenuButton from '../MenuButton';
 import theme from '../../themes/lights';
+import tabNavUtils from '../../assets/controllers/tabNavigationUtils';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,12 +35,8 @@ const TabNavigator = ({navigation}) => {
           },
         }
       }>
-        <Tab.Screen name="Home" component={Walker} options={{
-          tabBarIcon: ({color, size}) => <Icon name="home-outline" color={color} size={size} />,
-        }}/>
-        <Tab.Screen name="Services" component={WalkerServices}  options={{
-          tabBarIcon: ({color, size}) => <Icon name="walk-outline" color={color} size={size} />
-        }}/>
+        <Tab.Screen name="Home" component={Walker} options={tabNavUtils.tabBarIcon('home-outline')}/>
+        <Tab.Screen name="Services" component={WalkerServices}  options={tabNavUtils.tabBarIcon('walk')}/>
       </Tab.Navigator>
     </>
   );
