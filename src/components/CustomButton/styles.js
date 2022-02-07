@@ -5,7 +5,18 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
   },
+  iconContainer: {
+    marginRight: theme.spacing.xl,
+    marginLeft: theme.spacing.xxl,
+  },
+  icon: {
+    fontSize: theme.font.xxl,
+    marginRight: theme.spacing.xl,
+  },
   button: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: theme.color.primary2,
     borderRadius: 100,
     overflow: 'hidden',
@@ -22,6 +33,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  textColor: {
+    color: theme.color.secondary1,
   },
   textColor: {
     color: theme.color.secondary1,
