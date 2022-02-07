@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     marginRight: theme.spacing.xl,
     marginLeft: theme.spacing.xxl,
   },
+  icon: {
+    fontSize: theme.font.xxl,
+    marginRight: theme.spacing.xl,
+  },
   button: {
     display: 'flex',
     flexDirection: 'row',
@@ -29,9 +33,11 @@ const styles = StyleSheet.create({
     elevation: 14,
     
   },
+  textColor: {
+    color: theme.color.secondary1,
+  },
   text: {
     fontSize: theme.font.xl,
-    color: theme.color.secondary1,
     textAlign: 'center',
     fontWeight: 'bold',
   },
