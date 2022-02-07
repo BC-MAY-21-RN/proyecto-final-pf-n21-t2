@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const Home = () => {
+const WalkerServices = () => {
   return (
     <View>
-      <Text>Home</Text>
+        <Text>WalkerServices</Text>
     </View>
   );
 };
 
-export default Home;
+export default WalkerServices;
