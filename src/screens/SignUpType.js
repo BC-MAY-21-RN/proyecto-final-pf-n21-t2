@@ -1,16 +1,14 @@
 import React from 'react';
-import {View} from 'react-native';
-import ImageLogo from '../components/ImageLogo';
-import ToNextSectionText from '../components/ToNextSectionText';
 import UserTypeSign from '../components/UserTypeSign';
+import SignWithLogo from '../components/SignWithLogo';
 
 const SignUpType = ({navigation})=>{
   return (
-    <View style={{flex: 1}}>
-      <ImageLogo flex={2} />
+    <SignWithLogo navigation={navigation}
+      imageFlex={2}
+      footer={{text: `Already have an account? `, label: 'Login', section: 'Login'}}>
       <UserTypeSign navigation={navigation} />
-      <ToNextSectionText navigation={navigation} text="Already have an account? " nextSection={{label: 'Login', section: 'Login'}} />
-    </View>
+    </SignWithLogo>
   )
 }
 

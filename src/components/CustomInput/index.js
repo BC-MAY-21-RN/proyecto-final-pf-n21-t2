@@ -108,10 +108,10 @@ export const CustomInput = ({type, title, label, state, validation}) => {
     <View>
       <Text style={styles.title}>{title}</Text>
       <TextInput style={styles.input} secureTextEntry={isPassword} placeholder={title} onChangeText={text => {
-        if (validation !== undefined) {
+        if (validation && state) {
           TriggerValidation(text, error, validation);
+          state.setForm(state.name, text, error.current.isOk);
         }
-        state.setForm(state.name, text, error.current.isOk);
       }} />
       {error.current.visible ? (
         <Text style={styles.inputError}>*{error.current.message}</Text>

@@ -29,9 +29,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-    
     elevation: 14,
-    
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  textColor: {
+    color: theme.color.secondary1,
   },
   textColor: {
     color: theme.color.secondary1,
@@ -43,6 +47,10 @@ const styles = StyleSheet.create({
   },
   disabled: {
     opacity: .5,
+  },
+  icon: {
+    fontSize: theme.font.xxl,
+    marginRight: theme.spacing.xl,
   },
 });
 

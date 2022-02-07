@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import {CustomInput, InputValidation, InputState} from "../CustomInput";
 import useSignUpForm from "../../hooks/useSignUpForm";
 import styles from './styles'
@@ -15,7 +15,6 @@ const dogSizes = require('./../../assets/datasets/dogSizes.json');
 const SignUp = (setLoading, email, password) => {
   auth().createUserWithEmailAndPassword(email, password).catch(e => {
     setLoading(false);
-    console.log(e);
     if (e.code === 'auth/email-already-in-use') {
       Alert.alert('Error', 'That email is already in use');
     }
@@ -23,35 +22,37 @@ const SignUp = (setLoading, email, password) => {
 };
 
 const getCollectionAndData = (type, useruid, username, mobile, dogSize, address) => {
-  let collection;
   let dataStructure = dataStructure = {
     useruid: useruid,
     username: username,
     mobile: mobile,
+    extraData: {},
   };
+  let targetSection;
   switch (type) {
     case 'walker':
-      collection = 'Walkers';
-      dataStructure.dogSize = dogSize;
+      targetSection = 'Walker';
+      dataStructure.extraData.dogSize = dogSize;
+      dataStructure.type = '2';
       break;
     case 'client':
-      collection = 'Clients';
-      dataStructure.address = address;
+      targetSection = 'Client';
+      dataStructure.extraData.address = address;
+      dataStructure.type = '1';
       break;
   }
-  return [collection, dataStructure];
+  return [targetSection, dataStructure];
 };
 
 const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile, dogSize, address) => {
-  let [collection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address);
-  firebase.firestore().collection(collection).add(dataStructure).catch(e => {
-    console.log(e);
-  })
-  .then(r => {
+  let [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address);
+  firebase.firestore().collection('Users').add(dataStructure).catch(e => {
+    console.error(e);
+  }).then(r => {
     setLoading(false);
     navigation.reset({
       index: 0,
-      routes: [{name: 'Walker', params: {}}],
+      routes: [{name: targetSection, params: {useruid}}],
     });
   });
 };
@@ -65,15 +66,14 @@ const SignUpForm = ({type, navigation}) => {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
-        console.log("user signed in");
         UploadLeftData(type, navigation, setLoading, user.uid, form.username.value, form.mobile.value, form.dogSize.value, form.address.value);
       }
     });
     return subscriber;
-  }, []);
+  }, [form.username.value, form.mobile.value, form.dogSize.value, form.address.value]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <CustomInput title="Username" state={getInputState('username')} validation={InputValidation.string} />
       <GenericSign title="Sign Up" form={form} setForm={setForm} loading={loading} onPress={() => {
         setLoading(true);
@@ -86,7 +86,7 @@ const SignUpForm = ({type, navigation}) => {
         }
         <CustomCheckBox texto="I am older than 18 years old" state={{name: 'checkbox', form, setForm}} />
       </GenericSign>
-    </View>
+    </ScrollView>
   );
 
 };
