@@ -1,10 +1,10 @@
 import React from "react";
 import CustomButton from "../CustomButton";
-import styles from "./styles";
+import theme from "../../themes/lights";
 
 const ButtonSign = ({title, onPress, disabled, loading}) => {
   return (
-    <CustomButton width={200} style={styles.button} disabled={disabled} loading={loading} title={title} onPress={onPress} />
+    <CustomButton width={200} marginTop={theme.spacing.xxl} disabled={disabled} loading={loading} title={title} onPress={onPress} />
   );
 };
 
