@@ -17,6 +17,7 @@ import ClientWalkerReviews from './src/screens/ClientWalkerReviews';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './src/components/TabNavigator';
+import UserSettingsWalker from './src/screens/DrawerScreens/UserSettingsWalker'
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ function App() {
         <Stack.Screen name="ClientDogWalker" component={ClientDogWalker} />
         <Stack.Screen name="ClientWalkerReviews" component={ClientWalkerReviews} />
         <Stack.Screen name="ClientDateForm" component={ClientDateForm} />
+        <Stack.Screen name="UserSettingsWalker" component={UserSettingsWalker} />
       </Stack.Navigator>
     </NavigationContainer>
   );
