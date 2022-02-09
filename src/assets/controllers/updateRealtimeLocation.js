@@ -58,10 +58,9 @@ const listen = async () => {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
                 timestamp: position.coords.timestamp,
-              })
-              .then(() => console.log('Data set.'));
+              });
           });
-        }, 5000);
+        }, 20000);
       });
   });
 };
