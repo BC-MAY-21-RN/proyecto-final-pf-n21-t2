@@ -7,7 +7,9 @@ const reference = database().ref('/locations');
 
 const afterHaveLocationPermissions = async callback => {
   const hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
-  if (!hasPermission) {
+  if (hasPermission) {
+    callback();
+  } else {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
@@ -17,8 +19,6 @@ const afterHaveLocationPermissions = async callback => {
     } catch (err) {
       console.warn(err);
     }
-  } else {
-    callback();
   }
 };
 
