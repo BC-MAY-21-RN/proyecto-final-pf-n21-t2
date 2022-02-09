@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { CustomInput } from '../../components/CustomInput'
 import CustomButton from '../../components/CustomButton'
-const UserSettingsWalker = ({navigation}) => {
+const UserSettingsClient = ({navigation}) => {
   return (
     <View>
       <Text>UserSettingsWalker</Text>

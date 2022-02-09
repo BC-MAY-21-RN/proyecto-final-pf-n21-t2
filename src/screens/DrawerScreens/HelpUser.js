@@ -1,15 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const HelpWalker  = ({navigation}) => {
+const HelpUser = ({navigation}) => {
     return (
       <View>
-        <Text>HelpWalker</Text>
+        <Text>HelpUser</Text>
       </View>
     )
   }
 
-export default HelpWalker
+export default HelpUser;
 
 const styles = StyleSheet.create({
   input: {

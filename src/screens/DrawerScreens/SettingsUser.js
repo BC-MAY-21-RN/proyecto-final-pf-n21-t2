@@ -15,7 +15,7 @@ const SettingsUser = ({navigation, route}) => {
   switch (route.params.type) {
     case 'Client':
       settingsContent =
-        <CustomButton leftIconName="help-circle-outline" style={bottomMargin} title="Pets" width={buttonWidth} 
+        <CustomButton leftIconName="walk" style={bottomMargin} title="Pets" width={buttonWidth} 
           onPress={() => console.log('to pets screen')}
         />
       break;
@@ -30,7 +30,7 @@ const SettingsUser = ({navigation, route}) => {
         onPress={()=>{handleNavigation('UserSettingsWalker')}}
       />
       <CustomButton leftIconName="help-circle-outline" style={bottomMargin} title="Help" width={buttonWidth} 
-        onPress={()=>{handleNavigation('HelpWalker')}}
+        onPress={()=>{handleNavigation('HelpUser')}}
       />
       {settingsContent}
     </MenuOptions>
