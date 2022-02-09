@@ -4,7 +4,11 @@ import styles from './styles'
 
 const CardGeneric = ({navigation, Name, Duration, Start}) => {
   const onPress = () => {
-    navigation.navigate('WalkerDetailsClient');
+    navigation.navigate('WalkerDetailsClient', {
+      Name,
+      Duration,
+      Start
+    });
   };
 
   return (

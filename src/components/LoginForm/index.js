@@ -9,6 +9,8 @@ import {firebase} from '@react-native-firebase/firestore';
 
 let signedIn = false;
 
+// auth().signOut()
+
 const LoginForm = ({navigation}) => {
   const [form, setForm] = useLoginForm();
   const [loading, setLoading] = useState(false);
