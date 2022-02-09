@@ -5,20 +5,24 @@ import { PermissionsAndroid } from 'react-native';
 
 const reference = database().ref('/locations');
 
+const getPermissions = async callback => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      callback();
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
 const afterHaveLocationPermissions = async callback => {
   const hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
   if (hasPermission) {
     callback();
   } else {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        callback();
-      }
-    } catch (err) {
-      console.warn(err);
-    }
+    getPermissions(callback);
   }
 };
 
