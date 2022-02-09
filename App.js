@@ -17,14 +17,17 @@ import ClientWalkerReviews from './src/screens/ClientWalkerReviews';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './src/components/TabNavigator';
-import UserSettingsWalker from './src/screens/DrawerScreens/UserSettingsWalker'
+import UserSettingsWalker from './src/screens/DrawerScreens/UserSettingsWalker';
+import realtimeLocation from './src/assets/controllers/updateRealtimeLocation';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+  realtimeLocation.listen();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Walker'>
+      <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
