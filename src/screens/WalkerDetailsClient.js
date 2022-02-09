@@ -29,8 +29,8 @@ const WalkerDetailsClient = ({route}) => {
         {/* Datos del Perro */}
       </View>
       <View style={styles.buttons}>
-        <CustomButton style={bottomMargin} title='Xd' width={buttonWidth} />
-        <CustomButton  style={bottomMargin} title='Xd' width={buttonWidth} />
+        <CustomButton style={bottomMargin} title='Aceptar' width={buttonWidth} />
+        <CustomButton  style={bottomMargin} title='Cancelar' width={buttonWidth} />
       </View>
     </View>
   );

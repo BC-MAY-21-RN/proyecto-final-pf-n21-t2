@@ -18,6 +18,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigator from './src/components/TabNavigator';
 import UserSettingsWalker from './src/screens/DrawerScreens/UserSettingsWalker';
+import UserSettingsClient from './src/screens/DrawerScreens/UserSettingsClient';
+import HelpWalker from './src/screens/DrawerScreens/HelpWalker';
+import HelpClient from './src/screens/DrawerScreens/HelpClient';
 import realtimeLocation from './src/assets/controllers/updateRealtimeLocation';
 
 const Stack = createNativeStackNavigator();
@@ -27,7 +30,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
+      <Stack.Navigator initialRouteName='UserSettingsClient'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
@@ -43,6 +46,9 @@ function App() {
         <Stack.Screen name="ClientWalkerReviews" component={ClientWalkerReviews} />
         <Stack.Screen name="ClientDateForm" component={ClientDateForm} />
         <Stack.Screen name="UserSettingsWalker" component={UserSettingsWalker} />
+        <Stack.Screen name="UserSettingsClient" component={UserSettingsClient} />
+        <Stack.Screen name="HelpWalker" component={HelpWalker} />
+        <Stack.Screen name="HelpClient" component={HelpClient} />
       </Stack.Navigator>
     </NavigationContainer>
   );
