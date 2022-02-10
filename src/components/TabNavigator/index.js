@@ -18,6 +18,10 @@ const setMenu = (navigation, type) => {
   });
 };
 
+const getScreens = (sn1, sc1, sn2, sc2) => {
+  return [{name: sn1, component: sc1}, {name: sn2, component: sc2}];
+};
+
 const TabNavigator = ({navigation, route}) => {
   let settingstype;
   
@@ -26,17 +30,11 @@ const TabNavigator = ({navigation, route}) => {
   switch (route.name) {
     case 'Walker':
       settingsType = 'Walker';
-      screen1.name = 'HomeWalker';
-      screen1.component = HomeWalker;
-      screen2.name = 'WalkerServices';
-      screen2.component = WalkerServices;
+      [screen1, screen2] = getScreens('HomeWalker', HomeWalker, 'WalkerServices', WalkerServices);
       break;
     case 'Client':
       settingsType = 'Client';
-      screen1.name = 'HomeClient';
-      screen1.component = HomeClient;
-      screen2.name = 'ClientDogWalker';
-      screen2.component = ClientDogWalker;
+      [screen1, screen2] = getScreens('HomeClient', HomeWalker, 'ClientDogWalker', ClientDogWalker);
       break;
   }
 
