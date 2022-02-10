@@ -2,15 +2,21 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { CustomInput } from '../../components/CustomInput'
 import CustomButton from '../../components/CustomButton'
-const UserSettingsWalker = ({navigation}) => {
+
+  const DATAINPUT = [
+    {id: 1, name:'UserName'},
+    {id: 2, name:'Email'},
+    {id: 3, name:'Password'},
+    {id: 4, name:'Mobile'},
+    {id: 5, name:'DogTypes'},
+  ]
+const UserSettingsWalker = ({navigation, item}) => {
   return (
     <View>
-      <Text>UserSettingsWalker</Text>
-      <CustomInput title={"UserName"} styles={styles.input} />
-      <CustomInput title={"Email"}/>
-      <CustomInput title={"Password"}/>
-      <CustomInput title={"Mobile"}/>
-      <CustomInput title={"DogTypes"}/>
+      <CustomInput 
+        title={item.name} 
+        keyExtractor={item => item.id}
+        />
       <CustomButton title={"Save"}/>
 
     </View>
@@ -20,8 +26,4 @@ const UserSettingsWalker = ({navigation}) => {
 export default UserSettingsWalker
 
 const styles = StyleSheet.create({
-  input: {
-    width: 100,
-    height: 30,
-  }
 })

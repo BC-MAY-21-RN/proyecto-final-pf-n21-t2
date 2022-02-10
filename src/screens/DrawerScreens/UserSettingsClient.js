@@ -5,8 +5,7 @@ import CustomButton from '../../components/CustomButton'
 const UserSettingsClient = ({navigation}) => {
   return (
     <View>
-      <Text>UserSettingsWalker</Text>
-      <CustomInput title={"UserName"} styles={styles.input} />
+      <CustomInput title={"UserName"} />
       <CustomInput title={"Email"}/>
       <CustomInput title={"Adress"}/>
       <CustomInput title={"Password"}/>
@@ -20,8 +19,5 @@ const UserSettingsClient = ({navigation}) => {
 export default UserSettingsWalker
 
 const styles = StyleSheet.create({
-  input: {
-    width: 100,
-    height: 30,
-  }
+
 })

@@ -18,23 +18,21 @@ const setMenu = (navigation, type) => {
   });
 };
 
-const getScreens = (sn1, sc1, sn2, sc2) => {
-  return [{name: sn1, component: sc1}, {name: sn2, component: sc2}];
+const getScreens = (sn1, sc1, si1, sn2, sc2, si2) => {
+  return [{name: sn1, component: sc1, icon: si1}, {name: sn2, component: sc2, icon: si2}];
 };
 
 const TabNavigator = ({navigation, route}) => {
   let settingstype;
-  
-  let screen1 = {};
-  let screen2 = {};
+  let screens = [];
   switch (route.name) {
     case 'Walker':
       settingsType = 'Walker';
-      [screen1, screen2] = getScreens('HomeWalker', HomeWalker, 'WalkerServices', WalkerServices);
+      screens = getScreens('HomeWalker', HomeWalker, 'home-outline', 'WalkerServices', WalkerServices, 'walk');
       break;
     case 'Client':
       settingsType = 'Client';
-      [screen1, screen2] = getScreens('HomeClient', HomeWalker, 'ClientDogWalker', ClientDogWalker);
+      screens = getScreens('HomeClient', HomeWalker, 'home-outline', 'ClientDogWalker', ClientDogWalker, 'walk');
       break;
   }
 
@@ -56,8 +54,11 @@ const TabNavigator = ({navigation, route}) => {
           },
         }
       }>
-        <Tab.Screen name={screen1.name} component={screen1.component} options={tabNavUtils.tabBarIcon('home-outline')}/>
-        <Tab.Screen name={screen2.name} component={screen2.component}  options={tabNavUtils.tabBarIcon('walk')}/>
+        {screens.map(screen => {
+          return (
+            <Tab.Screen key={screen.name} name={screen.name} component={screen.component}  options={tabNavUtils.tabBarIcon(screen.icon)}/>
+          );
+        })}
       </Tab.Navigator>
     </>
   );

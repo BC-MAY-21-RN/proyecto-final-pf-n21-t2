@@ -4,8 +4,7 @@ import MenuOptions from '../../components/MenuOptions';
 import theme from '../../themes/lights';
 
 const SettingsUser = ({navigation, route}) => {
-  const buttonWidth = 300;
-  const bottomMargin = {marginBottom: theme.spacing.xxxl};
+  const buttonStyle = {width: 300, style: {marginBottom: theme.spacing.xxxl}};
 
   const handleNavigation = (place)=>{
     navigation.navigate(place)
@@ -15,7 +14,7 @@ const SettingsUser = ({navigation, route}) => {
   switch (route.params.type) {
     case 'Client':
       settingsContent =
-        <CustomButton leftIconName="walk" style={bottomMargin} title="Pets" width={buttonWidth} 
+        <CustomButton leftIconName="walk" title="Pets" {...buttonStyle}
           onPress={() => console.log('to pets screen')}
         />
       break;
@@ -24,12 +23,15 @@ const SettingsUser = ({navigation, route}) => {
       break;
   }
 
+  const person = 'person-circle-outline';
+  const help = 'help-circle-outline';
+
   return (
-    <MenuOptions navigation={navigation} buttonWidth={buttonWidth}>
-      <CustomButton leftIconName="person-circle-outline" style={bottomMargin} title="User settings" width={buttonWidth} 
+    <MenuOptions navigation={navigation} buttonWidth={buttonStyle.width}>
+      <CustomButton leftIconName={person} title="User settings" {...buttonStyle} 
         onPress={()=>{handleNavigation('UserSettingsWalker')}}
       />
-      <CustomButton leftIconName="help-circle-outline" style={bottomMargin} title="Help" width={buttonWidth} 
+      <CustomButton leftIconName={help} title="Help" {...buttonStyle}
         onPress={()=>{handleNavigation('HelpUser')}}
       />
       {settingsContent}
