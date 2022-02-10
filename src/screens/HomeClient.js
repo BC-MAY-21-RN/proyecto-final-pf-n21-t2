@@ -4,7 +4,7 @@ import GenericContainer from '../containers/GenericContainer';
 import EnfasisText from '../components/EnfasisText';
 import theme from '../themes/lights';
 
-const Client = () => {
+const HomeClient = () => {
   return (
     <GenericContainer>
       <GenericContainer type="enfasis">
@@ -15,4 +15,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default HomeClient;

@@ -9,7 +9,7 @@ const DATA = [
   {id: 4, name: "foo", duration: 2, start: 2}
 ];
 
-const Walker = ({navigation}) => {
+const HomeWalker = ({navigation}) => {
   const renderItem = ({ item }) => (
     <CardGeneric
       navigation={navigation}
@@ -29,4 +29,4 @@ const Walker = ({navigation}) => {
   );
 };
 
-export default Walker;
+export default HomeWalker;

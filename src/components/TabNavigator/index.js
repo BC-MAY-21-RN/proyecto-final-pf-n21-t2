@@ -1,24 +1,43 @@
 import React, {useEffect} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Walker from '../../screens/Walker';
+import HomeWalker from '../../screens/HomeWalker';
+import HomeClient from '../../screens/HomeClient';
 import WalkerServices from '../../screens/WalkerServices';
+import ClientDogWalker from '../../screens/ClientDogWalker';
 import MenuButton from '../MenuButton';
 import theme from '../../themes/lights';
 import tabNavUtils from '../../assets/controllers/tabNavigationUtils';
 
 const Tab = createBottomTabNavigator();
 
-const setMenu = navigation => {
+const setMenu = (navigation, type) => {
   navigation.setOptions({
     headerLeft: () => (
-      <MenuButton iconName="menu" onPress={() => navigation.navigate('SettingsWalker')} />
+      <MenuButton iconName="menu" onPress={() => navigation.navigate('SettingsUser', {type})} />
     ),
   });
 };
 
-const TabNavigator = ({navigation}) => {
+const getScreens = (sn1, sc1, si1, sn2, sc2, si2) => {
+  return [{name: sn1, component: sc1, icon: si1}, {name: sn2, component: sc2, icon: si2}];
+};
+
+const TabNavigator = ({navigation, route}) => {
+  let settingstype;
+  let screens = [];
+  switch (route.name) {
+    case 'Walker':
+      settingsType = 'Walker';
+      screens = getScreens('HomeWalker', HomeWalker, 'home-outline', 'WalkerServices', WalkerServices, 'walk');
+      break;
+    case 'Client':
+      settingsType = 'Client';
+      screens = getScreens('HomeClient', HomeWalker, 'home-outline', 'ClientDogWalker', ClientDogWalker, 'walk');
+      break;
+  }
+
   useEffect(() => {
-    setMenu(navigation);
+    setMenu(navigation, settingsType);
   }, [navigation]);
 
   return (
@@ -35,8 +54,11 @@ const TabNavigator = ({navigation}) => {
           },
         }
       }>
-        <Tab.Screen name="Home" component={Walker} options={tabNavUtils.tabBarIcon('home-outline')}/>
-        <Tab.Screen name="Services" component={WalkerServices}  options={tabNavUtils.tabBarIcon('walk')}/>
+        {screens.map(screen => {
+          return (
+            <Tab.Screen key={screen.name} name={screen.name} component={screen.component}  options={tabNavUtils.tabBarIcon(screen.icon)}/>
+          );
+        })}
       </Tab.Navigator>
     </>
   );
