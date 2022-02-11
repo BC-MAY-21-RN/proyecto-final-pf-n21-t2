@@ -15,7 +15,7 @@ const SettingsUser = ({navigation, route}) => {
     case 'Client':
       settingsContent =
         <CustomButton leftIconName="walk" title="Pets" {...buttonStyle}
-          onPress={() => console.log('to pets screen')}
+          onPress={() => navigation.navigate('Pets')}
         />
       break;
     case 'Walker':
