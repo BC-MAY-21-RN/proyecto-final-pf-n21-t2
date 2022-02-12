@@ -33,11 +33,12 @@ const DATA = [
 
   ];
 
-const Card = ({ name, url, onPress }) => (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
-        <PetCard uri={url} imgStyle={styles.img} txtStyle={styles.petName} name={name} />
-    </TouchableOpacity>
-  );
+const Card = ({ name, url, onPress }) => {
+    const petCardStyle = {imgStyle: styles.img, txtStyle: styles.petAdded};
+    return (<TouchableOpacity style={styles.card} onPress={onPress}>
+        <PetCard url={url} {...petCardStyle} name={name} />
+    </TouchableOpacity>);
+  };
 
 const Pets = ({navigation}) => {
     const renderItem = ({item}) => (
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 1
     },
-    petName:{
+    petAdded:{
         fontSize: 20,
         color: 'black',
         

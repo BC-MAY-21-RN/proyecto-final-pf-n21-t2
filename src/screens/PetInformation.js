@@ -3,14 +3,11 @@ import React from 'react';
 import PetCard from '../components/PetCard';
 
 const PetInformation = ({route}) => {
-  
-  const {name, url} = route.params;
-
   return (
     <View style={styles.container}>
 
             <View style={styles.card}>
-                <PetCard uri={url} imgStyle={styles.img} txtStyle={styles.petName} name={name} />
+                <PetCard {...route.params} imgStyle={styles.img} txtStyle={styles.petName} />
             </View>
 
             <View style={styles.petInfo}>
