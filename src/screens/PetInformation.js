@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react';
+import PetCard from '../components/PetCard';
 
 const PetInformation = ({route}) => {
   
@@ -9,9 +10,7 @@ const PetInformation = ({route}) => {
     <View style={styles.container}>
 
             <View style={styles.card}>
-                <Image source={{uri:url}} style={styles.img}/>
-
-                <Text style={styles.petName}>{name}</Text>
+                <PetCard uri={url} imgStyle={styles.img} txtStyle={styles.petName} name={name} />
             </View>
 
             <View style={styles.petInfo}>

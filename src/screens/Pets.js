@@ -1,6 +1,7 @@
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react';
 import CustomButton from '../components/CustomButton';
+import PetCard from '../components/PetCard';
 import theme from '../themes/lights';
 
 const DATA = [
@@ -34,8 +35,7 @@ const DATA = [
 
 const Card = ({ name, url, onPress }) => (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-        <Image source={{uri: url}} style={styles.img}/>
-        <Text style={styles.petName}>{name}</Text>
+        <PetCard uri={url} imgStyle={styles.img} txtStyle={styles.petName} name={name} />
     </TouchableOpacity>
   );
 
