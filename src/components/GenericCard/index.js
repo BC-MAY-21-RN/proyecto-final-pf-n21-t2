@@ -1,21 +1,18 @@
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
 import React from 'react';
 import styles from './styles'
+import CustomImage from '../CustomImage';
 
-const CardGeneric = ({navigation, Name, Duration, Start}) => {
+const CardGeneric = ({navigation, Name, Duration, Start, ImageUri}) => {
+  const testdata = 'https://assets.mycast.io/actor_images/actor-zendaya-17981_large.jpg?1578258382';
   const onPress = () => {
-    navigation.navigate('WalkerDetailsClient', {
-      Name,
-      Duration,
-      Start
-    });
+    navigation.navigate('WalkerDetailsClient');
   };
 
   return (
     <ScrollView style={styles.Space}>
       <TouchableOpacity style={styles.CardBox} onPress={onPress}>
-        <View style={styles.Img}>
-        </View>
+        <CustomImage ImageUri={ImageUri}/>
         <View style={styles.Data}>
           <Text style={styles.Tittle}>Owner</Text>
           <Text>{Name}</Text>
