@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import styles from "./styles";
 
 const getContainerStyle = type => {
@@ -14,9 +14,12 @@ const getContainerStyle = type => {
   return style;
 };
 
-const GenericContainer = ({children, style, type}) => {
+const GenericContainer = ({scroll, children, style, type}) => {
   const containerStyle = getContainerStyle(type);
-  return <View style={[containerStyle, style]}>{children}</View>;
+  const finalStyle = {style: [containerStyle, style]};
+  return scroll
+    ? <ScrollView {...finalStyle}>{children}</ScrollView>
+    : <View {...finalStyle}>{children}</View>;
 };
 
 export default GenericContainer;

@@ -100,14 +100,14 @@ const TriggerValidation = (text, error, validation) => {
   }
 };
 
-export const CustomInput = ({type, title, label, state, validation}) => {
+export const CustomInput = ({height, type, title, label, state, validation}) => {
   const error = useRef(initError());
   const isPassword = type === 'password' ? true : false;
 
   return (
     <View>
       <Text style={styles.title}>{title}</Text>
-      <TextInput style={styles.input} secureTextEntry={isPassword} placeholder={title} onChangeText={text => {
+      <TextInput style={[styles.input, {height: height}]} secureTextEntry={isPassword} placeholder={title} onChangeText={text => {
         if (validation && state) {
           TriggerValidation(text, error, validation);
           state.setForm(state.name, text, error.current.isOk);
