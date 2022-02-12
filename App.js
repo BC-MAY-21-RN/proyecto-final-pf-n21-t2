@@ -19,6 +19,9 @@ import TabNavigator from './src/components/TabNavigator';
 import UserSettingsWalker from './src/screens/DrawerScreens/UserSettingsWalker';
 import HelpUser from './src/screens/DrawerScreens/HelpUser';
 import realtimeLocation from './src/assets/controllers/updateRealtimeLocation';
+import Pets from './src/screens/Pets';
+import AddPet from './src/screens/AddPet';
+import PetInformation from './src/screens/PetInformation';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +30,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Walker'>
+      <Stack.Navigator initialRouteName='Pets'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
@@ -43,6 +46,9 @@ function App() {
         <Stack.Screen name="ClientDateForm" component={ClientDateForm} />
         <Stack.Screen name="UserSettingsWalker" component={UserSettingsWalker} />
         <Stack.Screen name="HelpUser" component={HelpUser} />
+        <Stack.Screen name="Pets" component={Pets} />
+        <Stack.Screen name="AddPet" component={AddPet} />
+        <Stack.Screen name="PetInformation" component={PetInformation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -32,7 +32,7 @@ const TabNavigator = ({navigation, route}) => {
       break;
     case 'Client':
       settingsType = 'Client';
-      screens = getScreens('HomeClient', HomeWalker, 'home-outline', 'ClientDogWalker', ClientDogWalker, 'walk');
+      screens = getScreens('HomeClient', HomeClient, 'home-outline', 'ClientDogWalker', ClientDogWalker, 'walk');
       break;
   }
 

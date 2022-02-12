@@ -50,6 +50,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: theme.font.xxl,
+  },
+  iconWithText: {
     marginRight: theme.spacing.xl,
   },
 });
