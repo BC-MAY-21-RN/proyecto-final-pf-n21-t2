@@ -9,8 +9,13 @@ const getUserByUID = (uid, callback) => {
   });
 };
 
+const getCollection = collection => {
+  return firebase.firestore().collection(collection);
+};
+
+
 const add = (collection, id, newValue, callback) => {
-  firebase.firestore().collection(collection).doc(id).set(newValue).catch(e => {
+  getCollection(collection).doc(id).set(newValue).catch(e => {
     console.error(e);
   }).then(r => {
     if (callback) {
@@ -20,17 +25,13 @@ const add = (collection, id, newValue, callback) => {
 };
 
 const updateDoc = (collection, doc, newValue, callback) => {
-  firebase.firestore().collection(collection).doc(doc).update(newValue).catch(e => {
+  getCollection(collection).doc(doc).update(newValue).catch(e => {
     console.error(e);
   }).then(r => {
     if (callback) {
       callback();
     }
   });
-};
-
-const getCollection = collection => {
-  return firebase.firestore().collection(collection);
 };
 
 const fbShortcuts = {

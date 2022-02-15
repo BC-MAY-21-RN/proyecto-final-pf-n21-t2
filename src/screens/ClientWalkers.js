@@ -15,12 +15,11 @@ const isNearEnought = value => {
   const lastPosition = value.lastPosition;
   const currentPosition = {latitude: 37.42, longitude: -122.08};
   const maxDistance = .01;
-  if ((new Date().getTime() - lastPosition.timestamp) > oneMinute) {
-    return false;
-  } else if (getDiference(lastPosition.latitude, currentPosition.latitude)  > maxDistance) {
-    return false;
-  } else if (getDiference(lastPosition.longitude, currentPosition.longitude) > maxDistance) {
-    return false;
+  if ((new Date().getTime() - lastPosition.timestamp) > oneMinute
+    && getDiference(lastPosition.latitude, currentPosition.latitude)  > maxDistance
+    && getDiference(lastPosition.longitude, currentPosition.longitude) > maxDistance
+    ) {
+      return false;
   }
   return true;
 };
