@@ -23,8 +23,8 @@ const LoginForm = ({navigation}) => {
       if (user && !signedIn) {
         signedIn = true;
         userSession.dispatch(setId(user.uid));
-        fbShortcuts.getUserByUID(user.uid, () => {
-          let targetSection = '1' ? 'Client' : 'Walker';
+        fbShortcuts.getUserByUID(user.uid, data => {
+          let targetSection = data.type === '1' ? 'Client' : 'Walker';
           navigation.reset({
             index: 0,
             routes: [{name: targetSection, params: {useruid: user.uid}}],
