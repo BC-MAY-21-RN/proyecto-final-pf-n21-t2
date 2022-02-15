@@ -4,7 +4,6 @@ import * as React from 'react';
 import Login from './src/screens/Logins';
 import SignUpType from './src/screens/SignUpType';
 import WalkerServices from './src/screens/WalkerServices';
-import HomeClient from './src/screens/HomeClient';
 import SignUpWalker from './src/screens/SignUpWalker';
 import SignUpClient from './src/screens/SignUpClient';
 import SettingsUser from './src/screens/DrawerScreens/SettingsUser';
@@ -26,18 +25,18 @@ import AboutUS from './src/screens/AboutUS';
 
 const Stack = createNativeStackNavigator();
 
+realtimeLocation.listen();
 function App() {
-  realtimeLocation.listen();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Client'>
+    <NavigationContainer> 
+        <Stack.Navigator initialRouteName='Pets'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
         <Stack.Screen name="SignUpClient" component={SignUpClient} />
         <Stack.Screen name="Walker" component={TabNavigator} /> 
-         <Stack.Screen name="Client" component={TabNavigator} />
+        <Stack.Screen name="Client" component={TabNavigator} />
         <Stack.Screen name="WalkerServices" component={WalkerServices} /> 
         <Stack.Screen name="SettingsUser" component={SettingsUser} />
         <Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} />
