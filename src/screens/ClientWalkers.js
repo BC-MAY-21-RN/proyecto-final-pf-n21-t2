@@ -9,8 +9,6 @@ const getDiference = (val1, val2) => {
 };
 
 const isNearEnought = lastPosition => {
-  if (!lastPosition) return true;
-
   const oneMinute = 1000*60;
   const currentPosition = {latitude: 37.42, longitude: -122.08};
   const maxDistance = .01;
