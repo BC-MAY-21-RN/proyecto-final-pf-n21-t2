@@ -30,7 +30,7 @@ function App() {
 
   return (
     <NavigationContainer> 
-        <Stack.Navigator initialRouteName='Pets'>
+        <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />

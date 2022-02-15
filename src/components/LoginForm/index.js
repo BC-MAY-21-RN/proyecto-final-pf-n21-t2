@@ -5,11 +5,9 @@ import auth from '@react-native-firebase/auth';
 import useLoginForm from '../../hooks/useLoginForm';
 import { useIsFocused } from "@react-navigation/native";
 import GenericSign from "../GenericSign";
-import {firebase} from '@react-native-firebase/firestore';
+import fbShortcuts from '../../assets/controllers/firebaseShortcuts';
 
 let signedIn = false;
-
-// auth().signOut()
 
 const LoginForm = ({navigation}) => {
   const [form, setForm] = useLoginForm();
@@ -23,14 +21,11 @@ const LoginForm = ({navigation}) => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user && !signedIn) {
         signedIn = true;
-        firebase.firestore().collection('Users').where('useruid', '==', user.uid).get().then((querySnapshot) => {
-          querySnapshot.forEach(snapshot => {
-            let data = snapshot.data();
-            let targetSection = '1' ? 'Client' : 'Walker';
-            navigation.reset({
-              index: 0,
-              routes: [{name: targetSection, params: {useruid: user.uid}}],
-            });
+        fbShortcuts.getUserByUID(user.uid, () => {
+          let targetSection = '1' ? 'Client' : 'Walker';
+          navigation.reset({
+            index: 0,
+            routes: [{name: targetSection, params: {useruid: user.uid}}],
           });
         });
       }

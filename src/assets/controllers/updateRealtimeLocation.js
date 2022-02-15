@@ -1,9 +1,9 @@
 import auth from '@react-native-firebase/auth';
-import database from '@react-native-firebase/database';
 import Geolocation from 'react-native-geolocation-service';
 import { PermissionsAndroid } from 'react-native';
+import fbShortcuts from '../controllers/firebaseShortcuts';
 
-const reference = database().ref('/locations');
+let updateUsersLocationsInterval;
 
 const getPermissions = async callback => {
   try {
@@ -42,27 +42,24 @@ const getCurrentPosition = callback => {
     (error) => {
       console.log(error.code, error.message);
     },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    { enableHighAccuracy: false, timeout: 15000, maximumAge: 10000 }
   );
 };
 
 const listen = async () => {
-  database()
-    .ref('/locations')
-    .on('value', snapshot => {
-      console.log('Positiions: ', snapshot.val());
-    });
   afterUserStartSession(user => {
+      clearInterval(updateUsersLocationsInterval);
+
       afterHaveLocationPermissions(() => {
-        setInterval(() => {
+        updateUsersLocationsInterval = setInterval(() => {
           getCurrentPosition(position => {
-            database()
-              .ref(`/locations/${user.uid}`)
-              .set({
+            fbShortcuts.updateDoc('Users', user.uid, {
+              'lastPosition': {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
-                timestamp: position.coords.timestamp,
-              });
+                timestamp: position.timestamp,
+              }
+            });
           });
         }, 20000);
       });
@@ -71,6 +68,7 @@ const listen = async () => {
 
 const realtimeLocation = {
   listen: listen,
+  // listen: () => {},
 };
 
 export default realtimeLocation;
