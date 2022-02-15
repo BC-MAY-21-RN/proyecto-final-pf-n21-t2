@@ -50,7 +50,7 @@ const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile,
   let [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address);
   fbShortcuts.add('Users', useruid, dataStructure, () => {
     setLoading(false);
-    sessionStore.dispatch(setId(useruid));
+    userSession.dispatch(setId(useruid));
     navigation.reset({
       index: 0,
       routes: [{name: targetSection, params: {useruid}}],
