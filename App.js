@@ -22,36 +22,45 @@ import Pets from './src/screens/Pets';
 import AddPet from './src/screens/AddPet';
 import PetInformation from './src/screens/PetInformation';
 import AboutUS from './src/screens/AboutUS';
+import {Provider} from 'react-redux';
+import { userSession } from './src/store/reducers/userSession';
 
 const Stack = createNativeStackNavigator();
 
-realtimeLocation.listen();
-function App() {
-
+const NavigationInit = () => {
+  realtimeLocation.listen();
   return (
     <NavigationContainer> 
         <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="SignUpType" component={SignUpType} />
-        <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
-        <Stack.Screen name="SignUpClient" component={SignUpClient} />
-        <Stack.Screen name="Walker" component={TabNavigator} /> 
-        <Stack.Screen name="Client" component={TabNavigator} />
-        <Stack.Screen name="WalkerServices" component={WalkerServices} /> 
-        <Stack.Screen name="SettingsUser" component={SettingsUser} />
-        <Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} />
-        <Stack.Screen name="ClientWalkers" component={ClientWalkers} />
-        <Stack.Screen name="ClientDogWalker" component={ClientDogWalker} />
-        <Stack.Screen name="ClientWalkerReviews" component={ClientWalkerReviews} />
-        <Stack.Screen name="ClientDateForm" component={ClientDateForm} />
-        <Stack.Screen name="UserSettingsWalker" component={UserSettingsWalker} />
-        <Stack.Screen name="HelpUser" component={HelpUser} />
-        <Stack.Screen name="Pets" component={Pets} />
-        <Stack.Screen name="AddPet" component={AddPet} />
-        <Stack.Screen name="PetInformation" component={PetInformation} />
-        <Stack.Screen name="AboutUs" component={AboutUS} />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUpType" component={SignUpType} />
+          <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
+          <Stack.Screen name="SignUpClient" component={SignUpClient} />
+          <Stack.Screen name="Walker" component={TabNavigator} /> 
+          <Stack.Screen name="Client" component={TabNavigator} />
+          <Stack.Screen name="WalkerServices" component={WalkerServices} /> 
+          <Stack.Screen name="SettingsUser" component={SettingsUser} />
+          <Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} />
+          <Stack.Screen name="ClientWalkers" component={ClientWalkers} />
+          <Stack.Screen name="ClientDogWalker" component={ClientDogWalker} />
+          <Stack.Screen name="ClientWalkerReviews" component={ClientWalkerReviews} />
+          <Stack.Screen name="ClientDateForm" component={ClientDateForm} />
+          <Stack.Screen name="UserSettingsWalker" component={UserSettingsWalker} />
+          <Stack.Screen name="HelpUser" component={HelpUser} />
+          <Stack.Screen name="Pets" component={Pets} />
+          <Stack.Screen name="AddPet" component={AddPet} />
+          <Stack.Screen name="PetInformation" component={PetInformation} />
+          <Stack.Screen name="AboutUs" component={AboutUS} />
+        </Stack.Navigator>
+      </NavigationContainer>
+  );
+};
+
+function App() {
+  return (
+    <Provider store={userSession}>
+      <NavigationInit />
+    </Provider>
   );
 }
 

@@ -2,6 +2,7 @@ import auth from '@react-native-firebase/auth';
 import Geolocation from 'react-native-geolocation-service';
 import { PermissionsAndroid } from 'react-native';
 import fbShortcuts from '../controllers/firebaseShortcuts';
+import { setLastPosition } from '../../store/reducers/userSession';
 
 let updateUsersLocationsInterval;
 
@@ -53,13 +54,15 @@ const listen = async () => {
       afterHaveLocationPermissions(() => {
         updateUsersLocationsInterval = setInterval(() => {
           getCurrentPosition(position => {
+            const {latitude, longitude, timestamp} = position.coords;
             fbShortcuts.updateDoc('Users', user.uid, {
               'lastPosition': {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                timestamp: position.timestamp,
+                latitude,
+                longitude,
+                timestamp,
               }
             });
+            setLastPosition({latitude, longitude, timestamp});
           });
         }, 20000);
       });
