@@ -6,9 +6,10 @@ import styles from './styles'
 import auth from '@react-native-firebase/auth';
 import {CustomPicker} from '../CustomPicker';
 import {CustomCheckBox} from "../CustomCheckBox";
-import {firebase} from '@react-native-firebase/firestore';
+import fbShortcuts from "../../assets/controllers/firebaseShortcuts";
 import { Alert } from "react-native";
 import GenericSign from "../GenericSign";
+import { userSession, setId } from "../../store/reducers/userSession";
 
 const dogSizes = require('./../../assets/datasets/dogSizes.json');
 
@@ -27,6 +28,7 @@ const getCollectionAndData = (type, useruid, username, mobile, dogSize, address)
     username: username,
     mobile: mobile,
     extraData: {},
+    lastPosition: {},
   };
   let targetSection;
   switch (type) {
@@ -46,10 +48,9 @@ const getCollectionAndData = (type, useruid, username, mobile, dogSize, address)
 
 const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile, dogSize, address) => {
   let [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address);
-  firebase.firestore().collection('Users').add(dataStructure).catch(e => {
-    console.error(e);
-  }).then(r => {
+  fbShortcuts.add('Users', useruid, dataStructure, () => {
     setLoading(false);
+    sessionStore.dispatch(setId(useruid));
     navigation.reset({
       index: 0,
       routes: [{name: targetSection, params: {useruid}}],

@@ -3,6 +3,7 @@ import styles from "./styles";
 import CustomButton from "../CustomButton";
 import { View } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import { sessionClean } from '../../store/reducers/userSession';
 
 const MenuOptions = ({navigation, children, buttonWidth}) => {
   return (
@@ -13,10 +14,11 @@ const MenuOptions = ({navigation, children, buttonWidth}) => {
       <View style={styles.bottomContainer}>
         <CustomButton width={buttonWidth} leftIconName="log-out-outline" style={styles.bottom} title="Sign out" onPress={() => {
             auth().signOut().then(() => {
-                navigation.reset({
-                  index: 0,
-                  routes: [{name: 'Login'}],
-                });
+              sessionClean();
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'Login'}],
+              });
             })
         }} />
       </View>

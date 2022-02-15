@@ -23,7 +23,7 @@ const ClientWalkerReviews = () => {
 
   return (
     <GenericContainer>
-      <CustomFlatList data={DATA} render={renderItem} />
+      <CustomFlatList get render={renderItem} />
     </GenericContainer>
   );
 };

@@ -2,23 +2,52 @@ import React from "react";
 import WalkerCard from "../components/WalkerCard";
 import GenericContainer from "../containers/GenericContainer";
 import CustomFlatList from "../components/CustomFlatList";
+import fbShortcuts from "../assets/controllers/firebaseShortcuts";
+import { userSession } from "../store/reducers/userSession";
 
-const DATA = [
-  {id: 1, title: "foo1", rating: 3},
-  {id: 2, title: "foo2", rating: 3},
-  {id: 3, title: "foo3", rating: 3},
-  {id: 4, title: "foo4", rating: 3},
-  {id: 5, title: "foo5", rating: 3},
-];
+const getDiference = (val1, val2) => {
+  return Math.abs(Math.abs(val1) - Math.abs(val2));
+};
+
+const isNearEnought = lastPosition => {
+  const oneMinute = 1000*60;
+  const currentPosition = userSession.getState().lastPosition;
+  const maxDistance = .01;
+  if ((new Date().getTime() - lastPosition.timestamp) > oneMinute
+    && getDiference(lastPosition.latitude, currentPosition.latitude)  > maxDistance
+    && getDiference(lastPosition.longitude, currentPosition.longitude) > maxDistance
+    ) {
+      return false;
+  }
+  return true;
+};
+
+const getWalkers = setWalkers => {
+  let result = [];
+  fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
+    q.forEach(documentSnapshot => {
+      const row = documentSnapshot.data();
+      if (isNearEnought(row.lastPosition)) {
+        result.push(
+          {
+            id: documentSnapshot.id,
+            name: row.username,
+          }
+        );
+      }
+    });
+    setWalkers(result);
+  });
+};
 
 const ClientWalkers = ({navigation}) => {
   const renderItem = ({ item }) => (
-    <WalkerCard navigation={navigation} title={item.title} rating={item.rating} />
+    <WalkerCard navigation={navigation} title={item.name} rating={2.5} />
   );
 
   return (
     <GenericContainer>
-      <CustomFlatList data={DATA} render={renderItem} />
+      <CustomFlatList render={renderItem} get={getWalkers} empty="No hay conductores cerca" />
     </GenericContainer>
   );
 };

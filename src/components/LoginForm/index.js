@@ -5,11 +5,10 @@ import auth from '@react-native-firebase/auth';
 import useLoginForm from '../../hooks/useLoginForm';
 import { useIsFocused } from "@react-navigation/native";
 import GenericSign from "../GenericSign";
-import {firebase} from '@react-native-firebase/firestore';
+import fbShortcuts from '../../assets/controllers/firebaseShortcuts';
+import { userSession, setId } from '../../store/reducers/userSession';
 
 let signedIn = false;
-
-// auth().signOut()
 
 const LoginForm = ({navigation}) => {
   const [form, setForm] = useLoginForm();
@@ -23,14 +22,12 @@ const LoginForm = ({navigation}) => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user && !signedIn) {
         signedIn = true;
-        firebase.firestore().collection('Users').where('useruid', '==', user.uid).get().then((querySnapshot) => {
-          querySnapshot.forEach(snapshot => {
-            let data = snapshot.data();
-            let targetSection = '1' ? 'Client' : 'Walker';
-            navigation.reset({
-              index: 0,
-              routes: [{name: targetSection, params: {useruid: user.uid}}],
-            });
+        userSession.dispatch(setId(user.uid));
+        fbShortcuts.getUserByUID(user.uid, data => {
+          let targetSection = data.type === '1' ? 'Client' : 'Walker';
+          navigation.reset({
+            index: 0,
+            routes: [{name: targetSection, params: {useruid: user.uid}}],
           });
         });
       }
@@ -42,8 +39,9 @@ const LoginForm = ({navigation}) => {
     <View style={styles.container}>
       <GenericSign title="Login" form={form} setForm={setForm} loading={loading} onPress={() => {
         setLoading(true);
-        auth().signInWithEmailAndPassword(form.email.value, form.password.value).then(() => {
+        auth().signInWithEmailAndPassword(form.email.value, form.password.value).then(({user}) => {
           setLoading(false);
+          userSession.dispatch(setId(user.uid));
         });
       }} />
     </View>

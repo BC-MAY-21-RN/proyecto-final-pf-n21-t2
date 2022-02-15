@@ -1,9 +1,10 @@
 import auth from '@react-native-firebase/auth';
-import database from '@react-native-firebase/database';
 import Geolocation from 'react-native-geolocation-service';
 import { PermissionsAndroid } from 'react-native';
+import fbShortcuts from '../controllers/firebaseShortcuts';
+import { userSession, setLastPosition } from '../../store/reducers/userSession';
 
-const reference = database().ref('/locations');
+let updateUsersLocationsInterval;
 
 const getPermissions = async callback => {
   try {
@@ -37,34 +38,39 @@ const afterUserStartSession = callback => {
 const getCurrentPosition = callback => {
   Geolocation.getCurrentPosition(
     (position) => {
-      callback(position);
+      if (position) {
+        callback(position);
+      }
     },
     (error) => {
       console.log(error.code, error.message);
     },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    { enableHighAccuracy: false, timeout: 15000, maximumAge: 10000 }
   );
 };
 
 const listen = async () => {
-  database()
-    .ref('/locations')
-    .on('value', snapshot => {
-      console.log('Positiions: ', snapshot.val());
-    });
   afterUserStartSession(user => {
+      clearInterval(updateUsersLocationsInterval);
+
       afterHaveLocationPermissions(() => {
-        setInterval(() => {
+        const doGetAndUpdatePosition = () => {
           getCurrentPosition(position => {
-            database()
-              .ref(`/locations/${user.uid}`)
-              .set({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                timestamp: position.coords.timestamp,
-              });
+            const {latitude, longitude} = position.coords;
+            const {timestamp} = position;
+            fbShortcuts.updateDoc('Users', user.uid, {
+              'lastPosition': {
+                latitude,
+                longitude,
+                timestamp,
+              }
+            });
+            userSession.dispatch(setLastPosition({latitude, longitude, timestamp}));
           });
-        }, 20000);
+        };
+
+        doGetAndUpdatePosition();
+        updateUsersLocationsInterval = setInterval(doGetAndUpdatePosition, 20000);
       });
   });
 };
