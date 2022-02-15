@@ -2,23 +2,39 @@ import React from "react";
 import WalkerCard from "../components/WalkerCard";
 import GenericContainer from "../containers/GenericContainer";
 import CustomFlatList from "../components/CustomFlatList";
+import fbShortcuts from "../assets/controllers/firebaseShortcuts";
 
-const DATA = [
-  {id: 1, title: "foo1", rating: 3},
-  {id: 2, title: "foo2", rating: 3},
-  {id: 3, title: "foo3", rating: 3},
-  {id: 4, title: "foo4", rating: 3},
-  {id: 5, title: "foo5", rating: 3},
-];
+const isNearEnought = value => {
+  console.log(value);
+  return true;
+};
+
+const getWalkers = setWalkers => {
+  let result = [];
+  fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
+    q.forEach(documentSnapshot => {
+      const row = documentSnapshot.data();
+      if (isNearEnought(row.lastPosition)) {
+        result.push(
+          {
+            id: documentSnapshot.id,
+            name: row.username,
+          }
+        );
+      }
+    });
+    setWalkers(result);
+  });
+};
 
 const ClientWalkers = ({navigation}) => {
   const renderItem = ({ item }) => (
-    <WalkerCard navigation={navigation} title={item.title} rating={item.rating} />
+    <WalkerCard navigation={navigation} title={item.name} rating={2.5} />
   );
 
   return (
     <GenericContainer>
-      <CustomFlatList data={DATA} render={renderItem} />
+      <CustomFlatList render={renderItem} get={getWalkers} />
     </GenericContainer>
   );
 };

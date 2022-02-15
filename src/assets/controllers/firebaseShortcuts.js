@@ -29,10 +29,15 @@ const updateDoc = (collection, doc, newValue, callback) => {
   });
 };
 
+const getCollection = collection => {
+  return firebase.firestore().collection(collection);
+};
+
 const fbShortcuts = {
   getUserByUID,
   updateDoc,
   add,
+  getCollection,
 };
 
 export default fbShortcuts;
