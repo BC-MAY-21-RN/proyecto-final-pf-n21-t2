@@ -13,25 +13,26 @@ const getCollection = collection => {
   return firebase.firestore().collection(collection);
 };
 
+const getDoc = (collection, document) => {
+  return getCollection(collection).doc(document);
+}
 
-const add = (collection, id, newValue, callback) => {
-  getCollection(collection).doc(id).set(newValue).catch(e => {
+const handleThen = (req, callback) => {
+  return req.catch(e => {
     console.error(e);
   }).then(r => {
     if (callback) {
       callback();
     }
   });
+}
+
+const add = (collection, id, newValue, callback) => {
+  handleThen(getDoc(collection, id).set(newValue), callback);
 };
 
 const updateDoc = (collection, doc, newValue, callback) => {
-  getCollection(collection).doc(doc).update(newValue).catch(e => {
-    console.error(e);
-  }).then(r => {
-    if (callback) {
-      callback();
-    }
-  });
+  handleThen(getDoc(collection, doc).update(newValue), callback);
 };
 
 const fbShortcuts = {
