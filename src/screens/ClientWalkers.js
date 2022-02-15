@@ -8,11 +8,10 @@ const getDiference = (val1, val2) => {
   return Math.abs(Math.abs(val1) - Math.abs(val2));
 };
 
-const isNearEnought = value => {
-  if (!value) return true;
+const isNearEnought = lastPosition => {
+  if (!lastPosition) return true;
 
   const oneMinute = 1000*60;
-  const lastPosition = value.lastPosition;
   const currentPosition = {latitude: 37.42, longitude: -122.08};
   const maxDistance = .01;
   if ((new Date().getTime() - lastPosition.timestamp) > oneMinute
