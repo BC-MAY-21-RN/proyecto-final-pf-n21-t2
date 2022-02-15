@@ -68,7 +68,6 @@ const listen = async () => {
 
 const realtimeLocation = {
   listen: listen,
-  // listen: () => {},
 };
 
 export default realtimeLocation;
