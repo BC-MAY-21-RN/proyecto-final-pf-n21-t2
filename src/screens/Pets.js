@@ -8,27 +8,57 @@ const DATA = [
     { 
       id: '1',
       name: 'Firulais',
-      url: 'https://i.pinimg.com/236x/1d/84/36/1d8436ad0603bea560b177712df7acea.jpg'
+      age: 4,
+      weight: '20kg',
+      height: '40cm',
+      specialCares: 'Cuetes scare it',
+      url: 'https://i.pinimg.com/236x/1d/84/36/1d8436ad0603bea560b177712df7acea.jpg',
+      
     },
     {
       id: '2',
       name: 'PugBerto',
+      age: 6,
+      weight: '30kg',
+      height: '50cm',
+      specialCares: "Can't run fast for long",
       url: 'https://i.pinimg.com/originals/f2/d9/ce/f2d9ce225a004889f403d7008fb59321.jpg'
     },
     {
       id: '3',
       name: 'Cheems',
+      age: 21,
+      weight: '40kg',
+      height: '60cm',
+      specialCares: 'He got fatigate too fast',
       url: 'https://holatelcel.com/wp-content/uploads/2020/09/cheems-memes-9.jpg'
     },
     {
       id: '4',
-      name: 'La perrona',
-      url: 'https://i.redd.it/1d4gcp5esrk41.jpg'
+      name: 'Tristón',
+      age: 1,
+      weight: '3kg',
+      height: '20cm',
+      specialCares: 'It needs to be played with so that he is not sad',
+      url: 'https://www.soy502.com/sites/default/files/styles/mobile_full_node/public/2022/Feb/05/meme_perrito_cuando_no_quieres_dar_explicaciones_soy502_guatemala.jpg'
     },
     {
       id: '5',
-      name: 'El perron',
+      name: 'El perrón',
+      age: 10,
+      weight: '80kg',
+      height: '3mts',
+      specialCares: 'Territorial Dog',
       url: 'https://www.eluniversal.com.mx/sites/default/files/2020/06/02/mejores-memes-cheems-perrito-muestra-antes-ahora_.jpg'
+    },
+    {
+      id: '6',
+      name: 'Doge',
+      age: 7,
+      weight: '40kg',
+      height: '70cm',
+      specialCares: 'Eats a lot',
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_09WzEY88Nag4w3KX2DZKWYlUxXCqIM0l1w6O4c8KoKulsfXcD2pjfQXhQi3JIqzys0w&usqp=CAU'
     },
 
   ];
@@ -51,9 +81,9 @@ const Pets = ({navigation}) => {
 
     const buttonStyle = {
         width: 150, 
-        style: {
-            marginBottom: 50,
-        }
+        marginBottom: 50,
+        marginTop: 10
+        
     };  
       return (
         <View style={styles.container}>

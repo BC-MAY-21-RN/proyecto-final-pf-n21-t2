@@ -3,6 +3,9 @@ import React from 'react';
 import PetCard from '../components/PetCard';
 
 const PetInformation = ({route}) => {
+
+    const {name, age, weight, height,specialCares} = route.params;
+
   return (
     <View style={styles.container}>
 
@@ -12,10 +15,10 @@ const PetInformation = ({route}) => {
 
             <View style={styles.petInfo}>
                 <View style={styles.info}>
-                    <Text style={styles.text}>Age: {/* VARIABLE AGE*/}</Text>
-                    <Text style={styles.text}>Weight: {/* VARIABLE WEIGHT*/}</Text>
-                    <Text style={styles.text}>Height: {/* VARIABLE HEIGHT*/}</Text>
-                    <Text style={styles.text}>Special cares: {/* VARIABLE SPECIAL CARES*/}</Text>
+                    <Text style={styles.text}>Age: {age}</Text>
+                    <Text style={styles.text}>Weight: {weight}</Text>
+                    <Text style={styles.text}>Height: {height}</Text>
+                    <Text style={styles.text}>Special cares: {specialCares}</Text>
                 </View>
             </View>
 
