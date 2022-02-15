@@ -31,14 +31,14 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Pets'>
+      <Stack.Navigator initialRouteName='Client'>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUpType" component={SignUpType} />
         <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
         <Stack.Screen name="SignUpClient" component={SignUpClient} />
-        <Stack.Screen name="Walker" component={TabNavigator} />
-        <Stack.Screen name="WalkerServices" component={WalkerServices} />
-        <Stack.Screen name="Client" component={TabNavigator} />
+        <Stack.Screen name="Walker" component={TabNavigator} /> 
+         <Stack.Screen name="Client" component={TabNavigator} />
+        <Stack.Screen name="WalkerServices" component={WalkerServices} /> 
         <Stack.Screen name="SettingsUser" component={SettingsUser} />
         <Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} />
         <Stack.Screen name="ClientWalkers" component={ClientWalkers} />

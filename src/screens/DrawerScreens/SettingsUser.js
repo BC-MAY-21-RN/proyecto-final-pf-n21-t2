@@ -23,21 +23,21 @@ const SettingsUser = ({navigation, route}) => {
       break;
   }
 
-  const icons = {
-    person: 'person-circle-outline',
-    help: 'help-circle-outline',
-    about: 'people-outline'
-  }
+  const person = 'person-circle-outline';
+  const help = 'help-circle-outline';
+  const about ='people-outline';
 
+  
   return (
     <MenuOptions navigation={navigation} buttonWidth={buttonStyle.width}>
-      <CustomButton leftIconName={icons.person} title="User settings" {...buttonStyle} 
+      
+      <CustomButton leftIconName={person} title="User settings" {...buttonStyle} 
         onPress={()=>{handleNavigation('UserSettingsWalker')}}
       />
-      <CustomButton leftIconName={icons.help} title="Help" {...buttonStyle}
+      <CustomButton leftIconName={help} title="Help" {...buttonStyle}
         onPress={()=>{handleNavigation('HelpUser')}}
       />
-      <CustomButton leftIconName={icons.about} title="About Us" {...buttonStyle}
+      <CustomButton leftIconName={about} title="About Us" {...buttonStyle}
         onPress={()=>{handleNavigation('AboutUs')}}
       />
       {settingsContent}
