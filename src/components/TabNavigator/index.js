@@ -23,6 +23,7 @@ const getScreens = (sn1, sc1, si1, sn2, sc2, si2) => {
 };
 
 const TabNavigator = ({navigation, route}) => {
+  let settingstype;
   let screens = [];
   switch (route.name) {
     case 'Walker':

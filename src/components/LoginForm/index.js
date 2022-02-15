@@ -6,7 +6,7 @@ import useLoginForm from '../../hooks/useLoginForm';
 import { useIsFocused } from "@react-navigation/native";
 import GenericSign from "../GenericSign";
 import fbShortcuts from '../../assets/controllers/firebaseShortcuts';
-import { setId } from '../../store/reducers/userSession';
+import { userSession, setId } from '../../store/reducers/userSession';
 
 let signedIn = false;
 
@@ -22,7 +22,7 @@ const LoginForm = ({navigation}) => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user && !signedIn) {
         signedIn = true;
-        setId(user.uid);
+        userSession.dispatch(setId(user.uid));
         fbShortcuts.getUserByUID(user.uid, () => {
           let targetSection = '1' ? 'Client' : 'Walker';
           navigation.reset({
@@ -39,8 +39,9 @@ const LoginForm = ({navigation}) => {
     <View style={styles.container}>
       <GenericSign title="Login" form={form} setForm={setForm} loading={loading} onPress={() => {
         setLoading(true);
-        auth().signInWithEmailAndPassword(form.email.value, form.password.value).then(() => {
+        auth().signInWithEmailAndPassword(form.email.value, form.password.value).then(({user}) => {
           setLoading(false);
+          userSession.dispatch(setId(user.uid));
         });
       }} />
     </View>

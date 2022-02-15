@@ -3,6 +3,7 @@ import WalkerCard from "../components/WalkerCard";
 import GenericContainer from "../containers/GenericContainer";
 import CustomFlatList from "../components/CustomFlatList";
 import fbShortcuts from "../assets/controllers/firebaseShortcuts";
+import { userSession } from "../store/reducers/userSession";
 
 const getDiference = (val1, val2) => {
   return Math.abs(Math.abs(val1) - Math.abs(val2));
@@ -10,7 +11,7 @@ const getDiference = (val1, val2) => {
 
 const isNearEnought = lastPosition => {
   const oneMinute = 1000*60;
-  const currentPosition = {latitude: 37.42, longitude: -122.08};
+  const currentPosition = userSession.getState().lastPosition;
   const maxDistance = .01;
   if ((new Date().getTime() - lastPosition.timestamp) > oneMinute
     && getDiference(lastPosition.latitude, currentPosition.latitude)  > maxDistance

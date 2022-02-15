@@ -9,7 +9,7 @@ import {CustomCheckBox} from "../CustomCheckBox";
 import fbShortcuts from "../../assets/controllers/firebaseShortcuts";
 import { Alert } from "react-native";
 import GenericSign from "../GenericSign";
-import { setId } from "../../store/reducers/userSession";
+import { userSession, setId } from "../../store/reducers/userSession";
 
 const dogSizes = require('./../../assets/datasets/dogSizes.json');
 
@@ -50,7 +50,7 @@ const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile,
   let [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address);
   fbShortcuts.add('Users', useruid, dataStructure, () => {
     setLoading(false);
-    setId(useruid);
+    sessionStore.dispatch(setId(useruid));
     navigation.reset({
       index: 0,
       routes: [{name: targetSection, params: {useruid}}],

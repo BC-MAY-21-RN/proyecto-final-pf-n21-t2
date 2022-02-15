@@ -2,7 +2,7 @@ import auth from '@react-native-firebase/auth';
 import Geolocation from 'react-native-geolocation-service';
 import { PermissionsAndroid } from 'react-native';
 import fbShortcuts from '../controllers/firebaseShortcuts';
-import { setLastPosition } from '../../store/reducers/userSession';
+import { userSession, setLastPosition } from '../../store/reducers/userSession';
 
 let updateUsersLocationsInterval;
 
@@ -38,7 +38,9 @@ const afterUserStartSession = callback => {
 const getCurrentPosition = callback => {
   Geolocation.getCurrentPosition(
     (position) => {
-      callback(position);
+      if (position) {
+        callback(position);
+      }
     },
     (error) => {
       console.log(error.code, error.message);
@@ -52,9 +54,10 @@ const listen = async () => {
       clearInterval(updateUsersLocationsInterval);
 
       afterHaveLocationPermissions(() => {
-        updateUsersLocationsInterval = setInterval(() => {
+        const doGetAndUpdatePosition = () => {
           getCurrentPosition(position => {
-            const {latitude, longitude, timestamp} = position.coords;
+            const {latitude, longitude} = position.coords;
+            const {timestamp} = position;
             fbShortcuts.updateDoc('Users', user.uid, {
               'lastPosition': {
                 latitude,
@@ -62,9 +65,12 @@ const listen = async () => {
                 timestamp,
               }
             });
-            setLastPosition({latitude, longitude, timestamp});
+            userSession.dispatch(setLastPosition({latitude, longitude, timestamp}));
           });
-        }, 20000);
+        };
+
+        doGetAndUpdatePosition();
+        updateUsersLocationsInterval = setInterval(doGetAndUpdatePosition, 20000);
       });
   });
 };
