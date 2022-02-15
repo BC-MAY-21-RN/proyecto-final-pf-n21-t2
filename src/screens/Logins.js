@@ -1,15 +1,15 @@
-import React from 'react';
-import LoginForm from '../components/LoginForm';
-import SignWithLogo from '../components/SignWithLogo';
+import React from 'react'
+import LoginForm from '../components/LoginForm'
+import SignWithLogo from '../components/SignWithLogo'
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
   return (
     <SignWithLogo navigation={navigation}
       imageFlex={3}
-      footer={{text: `Don't have an account yet? `, label: 'SignUp', section: 'SignUpType'}}>
+      footer={{ text: 'Don\'t have an account yet? ', label: 'SignUp', section: 'SignUpType' }}>
       <LoginForm navigation={navigation} />
     </SignWithLogo>
   )
 }
 
-export default Login;
+export default Login

@@ -1,25 +1,25 @@
-import { StyleSheet } from "react-native";
-import theme from "../../themes/lights";
+import { StyleSheet } from 'react-native'
+import theme from '../../themes/lights'
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
+    display: 'flex'
   },
   text: {
     fontSize: theme.font.m,
-    color: theme.color.secondary2,
+    color: theme.color.secondary2
   },
   rowData: {
     display: 'flex',
     justifyContent: 'space-between',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   bold: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   separator: {
-    marginBottom: theme.spacing.xl,
-  },
-});
+    marginBottom: theme.spacing.xl
+  }
+})
 
-export default styles;
+export default styles

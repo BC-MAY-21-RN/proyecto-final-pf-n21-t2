@@ -1,82 +1,82 @@
-import auth from '@react-native-firebase/auth';
-import Geolocation from 'react-native-geolocation-service';
-import { PermissionsAndroid } from 'react-native';
-import fbShortcuts from '../controllers/firebaseShortcuts';
-import { userSession, setLastPosition } from '../../store/reducers/userSession';
+import auth from '@react-native-firebase/auth'
+import Geolocation from 'react-native-geolocation-service'
+import { PermissionsAndroid } from 'react-native'
+import fbShortcuts from '../controllers/firebaseShortcuts'
+import { userSession, setLastPosition } from '../../store/reducers/userSession'
 
-let updateUsersLocationsInterval;
+let updateUsersLocationsInterval
 
 const getPermissions = async callback => {
   try {
     const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
+      PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION)
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      callback();
+      callback()
     }
   } catch (err) {
-    console.warn(err);
+    console.warn(err)
   }
-};
+}
 
 const afterHaveLocationPermissions = async callback => {
-  const hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
+  const hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION)
   if (hasPermission) {
-    callback();
+    callback()
   } else {
-    getPermissions(callback);
+    getPermissions(callback)
   }
-};
+}
 
 const afterUserStartSession = callback => {
   auth().onAuthStateChanged(user => {
     if (user) {
-      callback(user);
+      callback(user)
     }
-  });
-};
+  })
+}
 
 const getCurrentPosition = callback => {
   Geolocation.getCurrentPosition(
     (position) => {
       if (position) {
-        callback(position);
+        callback(position)
       }
     },
     (error) => {
-      console.log(error.code, error.message);
+      console.log(error.code, error.message)
     },
     { enableHighAccuracy: false, timeout: 15000, maximumAge: 10000 }
-  );
-};
+  )
+}
 
 const listen = async () => {
   afterUserStartSession(user => {
-      clearInterval(updateUsersLocationsInterval);
+    clearInterval(updateUsersLocationsInterval)
 
-      afterHaveLocationPermissions(() => {
-        const doGetAndUpdatePosition = () => {
-          getCurrentPosition(position => {
-            const {latitude, longitude} = position.coords;
-            const {timestamp} = position;
-            fbShortcuts.updateDoc('Users', user.uid, {
-              'lastPosition': {
-                latitude,
-                longitude,
-                timestamp,
-              }
-            });
-            userSession.dispatch(setLastPosition({latitude, longitude, timestamp}));
-          });
-        };
+    afterHaveLocationPermissions(() => {
+      const doGetAndUpdatePosition = () => {
+        getCurrentPosition(position => {
+          const { latitude, longitude } = position.coords
+          const { timestamp } = position
+          fbShortcuts.updateDoc('Users', user.uid, {
+            lastPosition: {
+              latitude,
+              longitude,
+              timestamp
+            }
+          })
+          userSession.dispatch(setLastPosition({ latitude, longitude, timestamp }))
+        })
+      }
 
-        doGetAndUpdatePosition();
-        updateUsersLocationsInterval = setInterval(doGetAndUpdatePosition, 20000);
-      });
-  });
-};
+      doGetAndUpdatePosition()
+      updateUsersLocationsInterval = setInterval(doGetAndUpdatePosition, 20000)
+    })
+  })
+}
 
 const realtimeLocation = {
-  listen: listen,
-};
+  listen: listen
+}
 
-export default realtimeLocation;
+export default realtimeLocation

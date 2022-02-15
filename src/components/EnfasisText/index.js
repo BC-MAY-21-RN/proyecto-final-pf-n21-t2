@@ -1,11 +1,11 @@
-import React from "react";
-import { Text } from "react-native";
-import styles from "./styles";
+import React from 'react'
+import { Text } from 'react-native'
+import styles from './styles'
 
-const EnfasisText = ({text}) => {
+const EnfasisText = ({ text }) => {
   return (
     <Text style={styles.text}>{text}</Text>
-  );
-};
+  )
+}
 
-export default EnfasisText;
+export default EnfasisText

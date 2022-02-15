@@ -1,15 +1,15 @@
-import React from "react";
-import { View, Pressable, Text } from "react-native";
-import { AirbnbRating } from 'react-native-ratings';
-import RoundImage from "../RoundImage";
-import styles from "./styles";
+import React from 'react'
+import { View, Pressable, Text } from 'react-native'
+import { AirbnbRating } from 'react-native-ratings'
+import RoundImage from '../RoundImage'
+import styles from './styles'
 
 const toHireWalkerSection = (navigation, data) => {
-  console.log('open new section and send props');
-};
+  console.log('open new section and send props')
+}
 
-const WalkerCard = ({title, rating, navigation}) => {
-  const data = {title, rating};
+const WalkerCard = ({ title, rating, navigation }) => {
+  const data = { title, rating }
 
   return (
     <Pressable style={styles.container} onPress={() => toHireWalkerSection(navigation, data)}>
@@ -29,7 +29,7 @@ const WalkerCard = ({title, rating, navigation}) => {
         </View>
       </View>
     </Pressable>
-  );
-};
+  )
+}
 
-export default WalkerCard;
+export default WalkerCard

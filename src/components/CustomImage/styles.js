@@ -6,9 +6,8 @@ const styles = StyleSheet.create({
     width: 85,
     height: 85,
     top: 5,
-    left: 5,
-  },
+    left: 5
+  }
 })
 
-
-export default styles;
+export default styles

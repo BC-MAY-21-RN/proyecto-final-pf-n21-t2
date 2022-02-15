@@ -1,19 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 
-const HelpUser = ({navigation}) => {
-    return (
+const HelpUser = () => {
+  return (
       <View>
         <Text>HelpUser</Text>
       </View>
-    )
-  }
+  )
+}
 
-export default HelpUser;
-
-const styles = StyleSheet.create({
-  input: {
-    width: 100,
-    height: 30,
-  }
-})
+export default HelpUser

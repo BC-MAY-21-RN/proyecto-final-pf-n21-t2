@@ -5,8 +5,8 @@ const palette = {
   lightpurple: '#A239EA',
   pink: '#FF94CC',
   lightpink: '#F0D9E7',
-  red: 'red',
-};
+  red: 'red'
+}
 
 const theme = {
   color: {
@@ -16,22 +16,22 @@ const theme = {
     primary4: palette.lightpink,
     secondary1: palette.white,
     secondary2: palette.black,
-    danger: palette.red,
+    danger: palette.red
   },
   font: {
     xs: 12,
     m: 16,
     xl: 20,
     xxl: 24,
-    xxxl: 28,
+    xxxl: 28
   },
   spacing: {
     xs: 4,
     m: 8,
     xl: 12,
     xxl: 16,
-    xxxl: 20,
-  },
-};
+    xxxl: 20
+  }
+}
 
-export default theme;
+export default theme
