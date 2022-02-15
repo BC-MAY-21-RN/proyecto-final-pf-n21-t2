@@ -4,9 +4,10 @@ import SignWithLogo from '../components/SignWithLogo'
 
 const Login = ({ navigation }) => {
   return (
-    <SignWithLogo navigation={navigation}
+    <SignWithLogo
+      navigation={navigation}
       imageFlex={3}
-      footer={{ text: 'Don\'t have an account yet? ', label: 'SignUp', section: 'SignUpType' }}>
+      footer={['Don\'t have an account yet? ', 'SignUp', 'SignUpType']}>
       <LoginForm navigation={navigation} />
     </SignWithLogo>
   )

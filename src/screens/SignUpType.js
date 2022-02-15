@@ -6,7 +6,7 @@ const SignUpType = ({ navigation }) => {
   return (
     <SignWithLogo navigation={navigation}
       imageFlex={2}
-      footer={{ text: 'Already have an account? ', label: 'Login', section: 'Login' }}>
+      footer={['Already have an account? ', 'Login', 'Login']}>
       <UserTypeSign navigation={navigation} />
     </SignWithLogo>
   )
