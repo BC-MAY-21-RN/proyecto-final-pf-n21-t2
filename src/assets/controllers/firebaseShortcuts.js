@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import {firebase} from '@react-native-firebase/firestore';
 
 const getUserByUID = (uid, callback) => {
@@ -19,7 +20,7 @@ const getDoc = (collection, document) => {
 
 const handleThen = (req, callback) => {
   return req.catch(e => {
-    console.error(e);
+    Alert.alert('Error', e);
   }).then(r => {
     if (callback) {
       callback();
