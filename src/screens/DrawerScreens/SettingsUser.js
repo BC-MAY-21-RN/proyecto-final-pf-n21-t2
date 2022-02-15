@@ -4,7 +4,7 @@ import MenuOptions from '../../components/MenuOptions';
 import theme from '../../themes/lights';
 
 const SettingsUser = ({navigation, route}) => {
-  const buttonStyle = {width: 300, style: {marginBottom: theme.spacing.xxxl}};
+  const buttonStyle = {width: 300, marginBottom: theme.spacing.xxxl};
 
   const handleNavigation = (place)=>{
     navigation.navigate(place)
@@ -23,16 +23,22 @@ const SettingsUser = ({navigation, route}) => {
       break;
   }
 
-  const person = 'person-circle-outline';
-  const help = 'help-circle-outline';
+  const icons = {
+    person: 'person-circle-outline',
+    help: 'help-circle-outline',
+    about: 'people-outline'
+  }
 
   return (
     <MenuOptions navigation={navigation} buttonWidth={buttonStyle.width}>
-      <CustomButton leftIconName={person} title="User settings" {...buttonStyle} 
+      <CustomButton leftIconName={icons.person} title="User settings" {...buttonStyle} 
         onPress={()=>{handleNavigation('UserSettingsWalker')}}
       />
-      <CustomButton leftIconName={help} title="Help" {...buttonStyle}
+      <CustomButton leftIconName={icons.help} title="Help" {...buttonStyle}
         onPress={()=>{handleNavigation('HelpUser')}}
+      />
+      <CustomButton leftIconName={icons.about} title="About Us" {...buttonStyle}
+        onPress={()=>{handleNavigation('AboutUs')}}
       />
       {settingsContent}
     </MenuOptions>

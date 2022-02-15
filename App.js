@@ -22,6 +22,7 @@ import realtimeLocation from './src/assets/controllers/updateRealtimeLocation';
 import Pets from './src/screens/Pets';
 import AddPet from './src/screens/AddPet';
 import PetInformation from './src/screens/PetInformation';
+import AboutUS from './src/screens/AboutUS';
 
 const Stack = createNativeStackNavigator();
 
@@ -49,6 +50,7 @@ function App() {
         <Stack.Screen name="Pets" component={Pets} />
         <Stack.Screen name="AddPet" component={AddPet} />
         <Stack.Screen name="PetInformation" component={PetInformation} />
+        <Stack.Screen name="AboutUs" component={AboutUS} />
       </Stack.Navigator>
     </NavigationContainer>
   );

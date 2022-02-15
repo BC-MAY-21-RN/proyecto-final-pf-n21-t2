@@ -4,9 +4,10 @@ import styles from './styles'
 import CustomImage from '../CustomImage';
 
 const CardGeneric = ({navigation, Name, Duration, Start, ImageUri}) => {
-  const testdata = 'https://assets.mycast.io/actor_images/actor-zendaya-17981_large.jpg?1578258382';
   const onPress = () => {
-    navigation.navigate('WalkerDetailsClient');
+    navigation.navigate('WalkerDetailsClient', {
+      Name, Duration, Start, ImageUri
+    });
   };
 
   return (
