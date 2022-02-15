@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ClientDogWalker = () => {
+const Reviews = () => {
   return (
     <View>
-      <Text>ClientDogWalker</Text>
+      <Text>Reviews</Text>
     </View>
   )
 }
 
-export default ClientDogWalker
+export default Reviews
 
 const styles = StyleSheet.create({})
