@@ -5,7 +5,6 @@ import theme from '../themes/lights';
 
 
 const WalkerDetailsClient = ({route}) => {
-
   const {Name, Duration, Start, ImageUri} = route.params;
 
   const buttonStyle = {width: 300, marginBottom: theme.spacing.xxxl};
