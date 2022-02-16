@@ -1,27 +1,27 @@
-import {createSlice, configureStore} from '@reduxjs/toolkit';
+import { createSlice, configureStore } from '@reduxjs/toolkit'
 
 const counterSlice = createSlice({
   name: 'userSession',
   initialState: {
     id: null,
-    lastPosition: null,
+    lastPosition: null
   },
   reducers: {
     setId: (state, data) => {
-      state.id = data.payload;
+      state.id = data.payload
     },
     setLastPosition: (state, data) => {
-      state.lastPosition = data.payload;
+      state.lastPosition = data.payload
     },
     sessionClean: state => {
-      state.id = null;
-      state.lastPosition = null;
-    },
-  },
-});
+      state.id = null
+      state.lastPosition = null
+    }
+  }
+})
 
-export const {setId, setLastPosition, sessionClean} = counterSlice.actions;
+export const { setId, setLastPosition, sessionClean } = counterSlice.actions
 
 export const userSession = configureStore({
-  reducer: counterSlice.reducer,
-});
+  reducer: counterSlice.reducer
+})

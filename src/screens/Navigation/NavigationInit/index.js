@@ -1,41 +1,38 @@
-import * as React from 'react';
-import Login from '../../Logins';
-import SignUpType from '../../SignUpType';
-import WalkerServices from '../../WalkerServices';
-import SignUpWalker from '../../SignUpWalker';
-import SignUpClient from '../../SignUpClient';
-import SettingsUser from '../../DrawerScreens/SettingsUser';
-import WalkerDetailsClient from '../../WalkerDetailsClient';
-import ClientWalkers from '../../ClientWalkers';
-import ClientDogWalker from '../../ClientDogWalker';
-import ClientDateForm from '../../ClientDateForm';
-import ClientWalkerReviews from '../../ClientWalkerReviews';
-import {NavigationContainer} from '@react-navigation/native';
-import TabNavigator from '../../../components/TabNavigator';
-import UserSettingsWalker from '../../DrawerScreens/UserSettingsWalker';
-import HelpUser from '../../DrawerScreens/HelpUser';
-import realtimeLocation from '../../../assets/controllers/updateRealtimeLocation';
-import Pets from '../../Pets';
-import AddPet from '../../AddPet';
-import PetInformation from '../../PetInformation';
-import ToHireWalkerSelection from '../../ToHireWalkerSelection';
-import AboutUS from '../../AboutUS';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import * as React from 'react'
+import SignWelcome from '../../SignWelcome'
+import WalkerServices from '../../WalkerServices'
+import SignUpWalker from '../../SignUpWalker'
+import SignUpClient from '../../SignUpClient'
+import SettingsUser from '../../DrawerScreens/SettingsUser'
+import WalkerDetailsClient from '../../WalkerDetailsClient'
+import ClientWalkers from '../../ClientWalkers'
+import ClientDogWalker from '../../ClientDogWalker'
+import ClientDateForm from '../../ClientDateForm'
+import ClientWalkerReviews from '../../ClientWalkerReviews'
+import { NavigationContainer } from '@react-navigation/native'
+import TabNavigator from '../../../components/TabNavigator'
+import UserSettingsWalker from '../../DrawerScreens/UserSettingsWalker'
+import HelpUser from '../../DrawerScreens/HelpUser'
+import realtimeLocation from '../../../assets/controllers/updateRealtimeLocation'
+import Pets from '../../Pets'
+import AddPet from '../../AddPet'
+import PetInformation from '../../PetInformation'
+import ToHireWalkerSelection from '../../ToHireWalkerSelection'
+import AboutUS from '../../AboutUS'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-const Stack = createNativeStackNavigator();
-
-realtimeLocation.listen();
+const Stack = createNativeStackNavigator()
 
 const NavigationInit = () => {
+  realtimeLocation.listen()
   return (
-    <NavigationContainer> 
-        <Stack.Navigator initialRouteName='Login'><Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUpType" component={SignUpType} />
-          <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName='Login'><Stack.Screen name="Login" component={SignWelcome} />
+          <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
           <Stack.Screen name="SignUpClient" component={SignUpClient} />
-          <Stack.Screen name="Walker" component={TabNavigator} /> 
+          <Stack.Screen name="Walker" component={TabNavigator} />
           <Stack.Screen name="Client" component={TabNavigator} />
-          <Stack.Screen name="WalkerServices" component={WalkerServices} /> 
+          <Stack.Screen name="WalkerServices" component={WalkerServices} />
           <Stack.Screen name="SettingsUser" component={SettingsUser} />
           <Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} />
           <Stack.Screen name="ClientWalkers" component={ClientWalkers} />
@@ -49,10 +46,9 @@ const NavigationInit = () => {
           <Stack.Screen name="PetInformation" component={PetInformation} />
           <Stack.Screen name="AboutUs" component={AboutUS} />
           <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} />
-          
         </Stack.Navigator>
       </NavigationContainer>
-  );
-};
+  )
+}
 
-export default NavigationInit;
+export default NavigationInit

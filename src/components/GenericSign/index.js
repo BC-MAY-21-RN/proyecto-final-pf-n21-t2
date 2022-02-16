@@ -1,11 +1,11 @@
-import React from "react";
-import { View } from "react-native";
-import { CustomInput, InputValidation, InputState } from "../CustomInput";
-import ButtonSign from "../ButtonSign";
+import React from 'react'
+import { View } from 'react-native'
+import { CustomInput, InputValidation, InputState } from '../CustomInput'
+import ButtonSign from '../ButtonSign'
 
-const GenericSign = ({children, title, loading, form, setForm, onPress}) => {
-  const getInputState = InputState(form, setForm);
-  
+const GenericSign = ({ children, title, loading, form, setForm, onPress }) => {
+  const getInputState = InputState(form, setForm)
+
   return (
     <View>
       <CustomInput title="Email" state={getInputState('email')} validation={InputValidation.email} />
@@ -13,11 +13,11 @@ const GenericSign = ({children, title, loading, form, setForm, onPress}) => {
       {children}
       <ButtonSign loading={loading} disabled={form.disabled} title={title} onPress={() => {
         if (!form.disabled) {
-          onPress();
+          onPress()
         }
       }} />
     </View>
-  );
-};
+  )
+}
 
-export default GenericSign;
+export default GenericSign

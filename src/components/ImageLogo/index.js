@@ -1,16 +1,16 @@
-import { View, Image } from 'react-native';
-import React from 'react';
+import { View, Image } from 'react-native'
+import React from 'react'
 import styles from './styles'
 
-const ImageLogo = ({flex}) => {
+const ImageLogo = ({ flex }) => {
   return (
-    <View style={[styles.container, {flex: flex}]}>
-      <Image 
+    <View style={[styles.container, { flex: flex }]}>
+      <Image
         style={styles.image}
         source={require('../../assets/images/logo.png')}
       />
     </View>
-  );
-};
+  )
+}
 
-export default ImageLogo;
+export default ImageLogo

@@ -1,14 +1,14 @@
-import { Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
-import React from 'react';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native'
+import React from 'react'
 import styles from './styles'
-import CustomImage from '../CustomImage';
+import CustomImage from '../CustomImage'
 
-const CardGeneric = ({navigation, Name, Duration, Start, ImageUri}) => {
+const CardGeneric = ({ navigation, Name, Duration, Start, ImageUri }) => {
   const onPress = () => {
     navigation.navigate('WalkerDetailsClient', {
       Name, Duration, Start, ImageUri
-    });
-  };
+    })
+  }
 
   return (
     <ScrollView style={styles.Space}>
@@ -22,8 +22,7 @@ const CardGeneric = ({navigation, Name, Duration, Start, ImageUri}) => {
         </View>
       </TouchableOpacity>
     </ScrollView>
-  );
-};
+  )
+}
 
-export default CardGeneric;
-
+export default CardGeneric

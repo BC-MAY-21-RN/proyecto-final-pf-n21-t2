@@ -10,5 +10,3 @@ const ClientDogWalker = () => {
 }
 
 export default ClientDogWalker
-
-const styles = StyleSheet.create({})

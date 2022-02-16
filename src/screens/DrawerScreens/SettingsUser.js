@@ -1,48 +1,47 @@
-import React from 'react';
-import CustomButton from '../../components/CustomButton';
-import MenuOptions from '../../components/MenuOptions';
-import theme from '../../themes/lights';
+import React from 'react'
+import CustomButton from '../../components/CustomButton'
+import MenuOptions from '../../components/MenuOptions'
+import theme from '../../themes/lights'
 
-const SettingsUser = ({navigation, route}) => {
-  const buttonStyle = {width: 300, marginBottom: theme.spacing.xxxl};
+const SettingsUser = ({ navigation, route }) => {
+  const buttonStyle = { width: 300, marginBottom: theme.spacing.xxxl }
 
-  const handleNavigation = (place)=>{
+  const handleNavigation = (place) => {
     navigation.navigate(place)
   }
 
-  let settingsContent;
+  let settingsContent
   switch (route.params.type) {
     case 'Client':
       settingsContent =
         <CustomButton leftIconName="walk" title="Pets" {...buttonStyle}
           onPress={() => navigation.navigate('Pets')}
         />
-      break;
+      break
     case 'Walker':
-      settingsContent = null;
-      break;
+      settingsContent = null
+      break
   }
 
-  const person = 'person-circle-outline';
-  const help = 'help-circle-outline';
-  const about ='people-outline';
+  const person = 'person-circle-outline'
+  const help = 'help-circle-outline'
+  const about = 'people-outline'
 
-  
   return (
     <MenuOptions navigation={navigation} buttonWidth={buttonStyle.width}>
-      
-      <CustomButton leftIconName={person} title="User settings" {...buttonStyle} 
-        onPress={()=>{handleNavigation('UserSettingsWalker')}}
+
+      <CustomButton leftIconName={person} title="User settings" {...buttonStyle}
+        onPress={() => { handleNavigation('UserSettingsWalker') }}
       />
       <CustomButton leftIconName={help} title="Help" {...buttonStyle}
-        onPress={()=>{handleNavigation('HelpUser')}}
+        onPress={() => { handleNavigation('HelpUser') }}
       />
       <CustomButton leftIconName={about} title="About Us" {...buttonStyle}
-        onPress={()=>{handleNavigation('AboutUs')}}
+        onPress={() => { handleNavigation('AboutUs') }}
       />
       {settingsContent}
     </MenuOptions>
-  );
-};
+  )
+}
 
-export default SettingsUser;
+export default SettingsUser

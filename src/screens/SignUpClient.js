@@ -1,8 +1,8 @@
-import React from 'react';
-import SignUpForm from '../components/SignUpForm';
+import React from 'react'
+import SignUpForm from '../components/SignUpForm'
 
-const SignUpClient = ({navigation}) => {
-  return <SignUpForm type="client" navigation={navigation} />;
-};
+const SignUpClient = ({ navigation }) => {
+  return <SignUpForm type="client" navigation={navigation} />
+}
 
-export default SignUpClient;
+export default SignUpClient

@@ -1,17 +1,13 @@
-import { StyleSheet } from "react-native"
-import theme from "../../themes/lights";
+import { StyleSheet } from 'react-native'
+import theme from '../../themes/lights'
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
+    display: 'flex'
   },
   iconContainer: {
     marginRight: theme.spacing.xl,
-    marginLeft: theme.spacing.xxl,
-  },
-  icon: {
-    fontSize: theme.font.xxl,
-    marginRight: theme.spacing.xl,
+    marginLeft: theme.spacing.xxl
   },
   button: {
     display: 'flex',
@@ -22,38 +18,33 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     padding: theme.spacing.xl,
     alignSelf: 'center',
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 2
     },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 14,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textColor: {
-    color: theme.color.secondary1,
-  },
-  textColor: {
-    color: theme.color.secondary1,
+    color: theme.color.secondary1
   },
   text: {
     fontSize: theme.font.xl,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   disabled: {
-    opacity: .5,
+    opacity: 0.5
   },
   icon: {
-    fontSize: theme.font.xxl,
+    fontSize: theme.font.xxl
   },
   iconWithText: {
-    marginRight: theme.spacing.xl,
-  },
-});
+    marginRight: theme.spacing.xl
+  }
+})
 
-export default styles;
+export default styles
