@@ -1,25 +1,26 @@
-import * as React from 'react'
-import Login from '../../Logins'
-import SignUpType from '../../SignUpType'
-import WalkerServices from '../../WalkerServices'
-import SignUpWalker from '../../SignUpWalker'
-import SignUpClient from '../../SignUpClient'
-import SettingsUser from '../../DrawerScreens/SettingsUser'
-import WalkerDetailsClient from '../../WalkerDetailsClient'
-import ClientWalkers from '../../ClientWalkers'
-import ClientDogWalker from '../../ClientDogWalker'
-import ClientDateForm from '../../ClientDateForm'
-import ClientWalkerReviews from '../../ClientWalkerReviews'
-import { NavigationContainer } from '@react-navigation/native'
-import TabNavigator from '../../../components/TabNavigator'
-import UserSettingsWalker from '../../DrawerScreens/UserSettingsWalker'
-import HelpUser from '../../DrawerScreens/HelpUser'
-import realtimeLocation from '../../../assets/controllers/updateRealtimeLocation'
-import Pets from '../../Pets'
-import AddPet from '../../AddPet'
-import PetInformation from '../../PetInformation'
-import AboutUS from '../../AboutUS'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import * as React from 'react';
+import Login from '../../Logins';
+import SignUpType from '../../SignUpType';
+import WalkerServices from '../../WalkerServices';
+import SignUpWalker from '../../SignUpWalker';
+import SignUpClient from '../../SignUpClient';
+import SettingsUser from '../../DrawerScreens/SettingsUser';
+import WalkerDetailsClient from '../../WalkerDetailsClient';
+import ClientWalkers from '../../ClientWalkers';
+import ClientDogWalker from '../../ClientDogWalker';
+import ClientDateForm from '../../ClientDateForm';
+import ClientWalkerReviews from '../../ClientWalkerReviews';
+import {NavigationContainer} from '@react-navigation/native';
+import TabNavigator from '../../../components/TabNavigator';
+import UserSettingsWalker from '../../DrawerScreens/UserSettingsWalker';
+import HelpUser from '../../DrawerScreens/HelpUser';
+import realtimeLocation from '../../../assets/controllers/updateRealtimeLocation';
+import Pets from '../../Pets';
+import AddPet from '../../AddPet';
+import PetInformation from '../../PetInformation';
+import ToHireWalkerSelection from '../../ToHireWalkerSelection';
+import AboutUS from '../../AboutUS';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator()
 
@@ -45,6 +46,8 @@ const NavigationInit = () => {
           <Stack.Screen name="AddPet" component={AddPet} />
           <Stack.Screen name="PetInformation" component={PetInformation} />
           <Stack.Screen name="AboutUs" component={AboutUS} />
+          <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} />
+          
         </Stack.Navigator>
       </NavigationContainer>
   )
