@@ -5,8 +5,8 @@ import RoundImage from '../RoundImage'
 import styles from './styles'
 
 const toHireWalkerSection = (navigation, data) => {
-  console.log('open new section and send props')
-}
+  navigation.navigate('ToHireWalkerSelection');
+};
 
 const WalkerCard = ({ title, rating, navigation }) => {
   const data = { title, rating }
