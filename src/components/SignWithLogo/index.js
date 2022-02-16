@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import ImageLogo from '../ImageLogo'
 import ToNextSectionText from '../ToNextSectionText'
 
-const SignWithLogo = ({ navigation, imageFlex, children, footer }) => {
+const SignWithLogo = ({ navigation, children, footer }) => {
   return (
     <View style={{ flex: 1 }}>
       <ImageLogo flex={3} />
