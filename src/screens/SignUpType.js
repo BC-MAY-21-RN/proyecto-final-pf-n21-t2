@@ -2,11 +2,11 @@ import React from 'react'
 import UserTypeSign from '../components/UserTypeSign'
 import SignWithLogo from '../components/SignWithLogo'
 
-const SignUpType = ({ navigation }) => {
+const SignUpType = props => {
   return (
-    <SignWithLogo navigation={navigation}
+    <SignWithLogo {...props}
       footer={['Already have an account? ', 'Login', 'Login']}>
-      <UserTypeSign navigation={navigation} />
+      <UserTypeSign {...props} />
     </SignWithLogo>
   )
 }

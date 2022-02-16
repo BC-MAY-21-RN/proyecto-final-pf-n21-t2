@@ -2,11 +2,11 @@ import React from 'react'
 import LoginForm from '../components/LoginForm'
 import SignWithLogo from '../components/SignWithLogo'
 
-const Login = ({ navigation }) => {
+const Login = props => {
   return (
-    <SignWithLogo navigation={navigation}
+    <SignWithLogo {...props}
       footer={['Don\'t have an account yet? ', 'SignUp', 'SignUpType']}>
-      <LoginForm navigation={navigation} />
+      <LoginForm {...props} />
     </SignWithLogo>
   )
 }
