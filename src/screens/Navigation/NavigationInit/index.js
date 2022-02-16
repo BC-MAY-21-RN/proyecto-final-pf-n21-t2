@@ -28,8 +28,7 @@ const NavigationInit = () => {
   return (
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Login'><Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUpType" component={SignUpType} />
-          <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
+          <Stack.Screen name="SignUpType" component={SignUpType} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
           <Stack.Screen name="SignUpClient" component={SignUpClient} />
           <Stack.Screen name="Walker" component={TabNavigator} />
           <Stack.Screen name="Client" component={TabNavigator} />
