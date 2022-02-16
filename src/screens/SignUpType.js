@@ -5,7 +5,7 @@ import SignWithLogo from '../components/SignWithLogo'
 const SignUpType = ({ navigation }) => {
   return (
     <SignWithLogo navigation={navigation}
-      footer={{ text: 'Already have an account? ', label: 'Login', section: 'Login' }}>
+      footer={['Already have an account? ', 'Login', 'Login']}>
       <UserTypeSign navigation={navigation} />
     </SignWithLogo>
   )
