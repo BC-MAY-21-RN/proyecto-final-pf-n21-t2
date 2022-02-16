@@ -20,7 +20,9 @@ import AddPet from '../../AddPet';
 import PetInformation from '../../PetInformation';
 import ToHireWalkerSelection from '../../ToHireWalkerSelection';
 import AboutUS from '../../AboutUS';
+import Reviews from '../../Reviews';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +31,7 @@ realtimeLocation.listen();
 const NavigationInit = () => {
   return (
     <NavigationContainer> 
-        <Stack.Navigator initialRouteName='Login'><Stack.Screen name="Login" component={Login} />
+        <Stack.Navigator initialRouteName='Reviews'><Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUpType" component={SignUpType} />
           <Stack.Screen name="SignUpWalker" component={SignUpWalker} />
           <Stack.Screen name="SignUpClient" component={SignUpClient} />
@@ -49,6 +51,7 @@ const NavigationInit = () => {
           <Stack.Screen name="PetInformation" component={PetInformation} />
           <Stack.Screen name="AboutUs" component={AboutUS} />
           <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} />
+          <Stack.Screen name="Reviews" component={Reviews} />
           
         </Stack.Navigator>
       </NavigationContainer>
