@@ -4,8 +4,12 @@ import theme from '../../themes/lights'
 const styles = StyleSheet.create({
   tinyLogo: {
     borderRadius: 50,
-    marginRight: theme.spacing.xl,
     alignSelf: 'center'
+  },
+  container: {
+    backgroundColor: theme.color.primary3,
+    borderRadius: 100,
+    overflow: 'hidden'
   }
 })
 
