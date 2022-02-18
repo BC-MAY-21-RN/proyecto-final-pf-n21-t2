@@ -2,6 +2,9 @@ import React from 'react'
 import LoginForm from '../components/LoginForm'
 import UserTypeSign from '../components/UserTypeSign'
 import SignWithLogo from '../components/SignWithLogo'
+import auth from '@react-native-firebase/auth'
+
+// auth().signOut().then(()=>console.log("Sesion cerrada")).catch(()=>console.log("Ya esta cerrada"))
 
 const screenProps = (routeName, navigation) => {
   const p = {
