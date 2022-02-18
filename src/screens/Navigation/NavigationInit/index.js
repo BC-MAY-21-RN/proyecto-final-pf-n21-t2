@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import SignWelcome from '../../SignWelcome'
 import WalkerServices from '../../WalkerServices'
 import SignUpWalker from '../../SignUpWalker'
@@ -27,7 +27,7 @@ const NavigationInit = () => {
   realtimeLocation.listen()
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='AddPet'><Stack.Screen name="Login" component={SignWelcome} />
+        <Stack.Navigator initialRouteName='Login'><Stack.Screen name="Login" component={SignWelcome} />
           <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
           <Stack.Screen name="SignUpClient" component={SignUpClient} />
           <Stack.Screen name="Walker" component={TabNavigator} />

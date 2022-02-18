@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import GenericContainer from '../containers/GenericContainer'
 import { CustomInput } from '../components/CustomInput'
 import ImageInput from '../components/ImageInput'
@@ -8,10 +8,6 @@ import CustomButton from '../components/CustomButton'
 const AddPet = () => {
   const [value, setValue] = useState()
   const [ok, setOk] = useState()
-
-  useEffect(() => {
-    console.log(value)
-  }, [value])
 
   return (
     <GenericContainer scroll={true}>
