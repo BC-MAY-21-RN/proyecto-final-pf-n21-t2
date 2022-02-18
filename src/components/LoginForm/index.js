@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { View } from 'react-native'
 import styles from './styles'
 import auth from '@react-native-firebase/auth'
-import useLoginForm from '../../hooks/useLoginForm'
+import useLogin from '../../hooks/useLogin'
 import { useIsFocused } from '@react-navigation/native'
 import GenericSign from '../GenericSign'
 import fbShortcuts from '../../assets/controllers/firebaseShortcuts'
@@ -11,8 +11,7 @@ import { userSession, setId } from '../../store/reducers/userSession'
 let signedIn = false
 
 const LoginForm = ({ navigation }) => {
-  const [form, setForm] = useLoginForm()
-  const [loading, setLoading] = useState(false)
+  const { submit, email, password } = useLogin()
   const isFocused = useIsFocused()
 
   useEffect(() => {
@@ -37,10 +36,10 @@ const LoginForm = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <GenericSign title="Login" form={form} setForm={setForm} loading={loading} onPress={() => {
-        setLoading(true)
-        auth().signInWithEmailAndPassword(form.email.value, form.password.value).then(({ user }) => {
-          setLoading(false)
+      <GenericSign title="Login" {...{ email, password, submit }} onPress={() => {
+        submit.setLoading(true)
+        auth().signInWithEmailAndPassword(email.value, password.value).then(({ user }) => {
+          submit.setLoading(false)
           userSession.dispatch(setId(user.uid))
         })
       }} />
