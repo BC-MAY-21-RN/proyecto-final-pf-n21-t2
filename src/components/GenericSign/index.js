@@ -1,18 +1,16 @@
 import React from 'react'
 import { View } from 'react-native'
-import { CustomInput, InputValidation, InputState } from '../CustomInput'
+import CustomInput from '../CustomInput'
 import ButtonSign from '../ButtonSign'
 
-const GenericSign = ({ children, title, loading, form, setForm, onPress }) => {
-  const getInputState = InputState(form, setForm)
-
+const GenericSign = ({ children, title, email, password, submit, onPress }) => {
   return (
     <View>
-      <CustomInput title="Email" state={getInputState('email')} validation={InputValidation.email} />
-      <CustomInput type="password" title="Password" state={getInputState('password')} validation={InputValidation.password} />
+      <CustomInput title="Email" {...email} />
+      <CustomInput type="password" title="Password" {...password} />
       {children}
-      <ButtonSign loading={loading} disabled={form.disabled} title={title} onPress={() => {
-        if (!form.disabled) {
+      <ButtonSign {...submit} title={title} onPress={() => {
+        if (submit.ok) {
           onPress()
         }
       }} />

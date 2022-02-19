@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: theme.color.primary2,
     borderRadius: 100,
     overflow: 'hidden',
     padding: theme.spacing.xl,

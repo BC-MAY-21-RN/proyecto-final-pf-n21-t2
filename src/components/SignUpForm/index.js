@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { ScrollView, Alert } from 'react-native'
-import { CustomInput, InputValidation, InputState } from '../CustomInput'
-import useSignUpForm from '../../hooks/useSignUpForm'
+import CustomInput from '../CustomInput'
+import useSignUp from '../../hooks/useSignUp'
 import styles from './styles'
 import auth from '@react-native-firebase/auth'
 import { CustomPicker } from '../CustomPicker'
 import { CustomCheckBox } from '../CustomCheckBox'
 import fbShortcuts from '../../assets/controllers/firebaseShortcuts'
-
 import GenericSign from '../GenericSign'
 import { userSession, setId } from '../../store/reducers/userSession'
 
@@ -49,8 +48,8 @@ const getCollectionAndData = (type, useruid, username, mobile, dogSize, address)
 const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile, dogSize, address) => {
   const [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address)
   fbShortcuts.add('Users', useruid, dataStructure, () => {
-    setLoading(false);
-    userSession.dispatch(setId(useruid));
+    setLoading(false)
+    userSession.dispatch(setId(useruid))
     navigation.reset({
       index: 0,
       routes: [{ name: targetSection, params: { useruid } }]
@@ -59,15 +58,30 @@ const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile,
 }
 
 const SignUpForm = ({ type, navigation }) => {
-  const [form, setForm] = useSignUpForm(type)
-  const [loading, setLoading] = useState(false)
+  const form = useSignUp(type)
 
-  const getInputState = InputState(form, setForm)
+  useEffect(() => {
+    console.log('username =>', form.username.ok)
+    console.log('email =>', form.email.ok)
+    console.log('password =>', form.password.ok)
+    console.log('mobile =>', form.mobile.ok)
+    console.log('checkbox =>', form.checkbox.ok)
+    console.log('dogSize =>', form.dogSize.ok)
+    console.log('address =>', form.address.ok)
+  }, [form])
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
-        UploadLeftData(type, navigation, setLoading, user.uid, form.username.value, form.mobile.value, form.dogSize.value, form.address.value)
+        UploadLeftData(
+          type,
+          navigation,
+          form.submit.setLoading,
+          user.uid,
+          form.username.value,
+          form.mobile.value,
+          form.dogSize.value,
+          form.address.value)
       }
     })
     return subscriber
@@ -75,17 +89,17 @@ const SignUpForm = ({ type, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <CustomInput title="Username" state={getInputState('username')} validation={InputValidation.string} />
-      <GenericSign title="Sign Up" form={form} setForm={setForm} loading={loading} onPress={() => {
-        setLoading(true)
-        SignUp(setLoading, form.email.value, form.password.value)
+      <CustomInput title="Username" {...form.username} />
+      <GenericSign title="Sign Up" {...form} onPress={() => {
+        form.submit.setLoading(true)
+        SignUp(form.submit.setLoading, form.email.value, form.password.value)
       }}>
-        <CustomInput title="Mobile" state={getInputState('mobile')} validation={InputValidation.phone} />
+        <CustomInput title="Mobile" {...form.mobile} />
         {type === 'walker'
-          ? <CustomPicker title="Dog size" itemdata={dogSizes} state={{ name: 'dogSize', form, setForm }} />
-          : <CustomInput title="Address" state={getInputState('address')} validation={InputValidation.string} />
+          ? <CustomPicker title="Dog size" itemdata={dogSizes} {...form.dogSize} />
+          : <CustomInput title="Address" {...form.address} />
         }
-        <CustomCheckBox texto="I am older than 18 years old" state={{ name: 'checkbox', form, setForm }} />
+        <CustomCheckBox texto="I am older than 18 years old" {...form.checkbox} />
       </GenericSign>
     </ScrollView>
   )

@@ -16,6 +16,8 @@ target 'foo' do
 
   pod 'react-native-geolocation-service', :path => '../node_modules/react-native-geolocation-service'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'fooTests' do
     inherit! :complete
     # Pods for testing
