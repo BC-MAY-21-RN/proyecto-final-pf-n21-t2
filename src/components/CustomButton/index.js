@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const getDefaultOk = (ok) => {
   return ok ?? true
-};
+}
 
 const CustomButton = ({ color, marginBottom, marginTop, style, loading, ok, title, onPress, width, leftIconName }) => {
   const iconWithTextStyle = title ? styles.iconWithText : null
