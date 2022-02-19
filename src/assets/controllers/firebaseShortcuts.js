@@ -28,8 +28,13 @@ const handleThen = (req, callback) => {
   })
 }
 
+
 const add = (collection, id, newValue, callback) => {
   handleThen(getDoc(collection, id).set(newValue), callback)
+}
+
+const push = (collection, id, newValue, callback) => {
+  handleThen(getDoc(collection, id).push(newValue), callback)
 }
 
 const updateDoc = (collection, doc, newValue, callback) => {
@@ -40,7 +45,8 @@ const fbShortcuts = {
   getUserByUID,
   updateDoc,
   add,
-  getCollection
+  getCollection,
+  push
 }
 
 export default fbShortcuts

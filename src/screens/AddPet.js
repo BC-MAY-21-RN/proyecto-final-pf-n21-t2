@@ -1,23 +1,48 @@
-import React, { useState } from 'react'
+import { Alert } from 'react-native'
+import React from 'react'
 import GenericContainer from '../containers/GenericContainer'
-import { CustomInput } from '../components/CustomInput'
+import CustomInput from '../components/CustomInput'
 import ImageInput from '../components/ImageInput'
 import theme from '../themes/lights'
 import CustomButton from '../components/CustomButton'
+import { firebase } from '@react-native-firebase/firestore'
+import usePetSignUp from '../hooks/usePetSignUp'
+import { userSession } from '../store/reducers/userSession'
+import fileUpload from '../assets/controllers/FileUpload'
+
+const getFormResult = form => {
+  return {
+    name: form.name.value,
+    age: form.age.value,
+    height: form.height.value,
+    weight: form.weight.value,
+    specialCares: form.specialCares.value,
+    useruid: userSession.getState().id
+  }
+}
 
 const AddPet = () => {
-  const [value, setValue] = useState()
-  const [ok, setOk] = useState()
+  const form = usePetSignUp()
+
+  const fireStoreAdd = () => {
+    form.submit.setLoading(true)
+    firebase.firestore().collection('Pets').add(getFormResult(form)).then(e => {
+      fileUpload(form.petImage.value, e._documentPath._parts[1]).then(() => {
+        Alert.alert('Esto se ha agregado correctamente')
+        form.submit.setLoading(false)
+      })
+    })
+  }
 
   return (
     <GenericContainer scroll={true}>
-      <CustomInput title={'Pet Name'}/>
-      <CustomInput title={'Age'} />
-      <CustomInput title={'Weight'} />
-      <CustomInput title={'Height'} />
-      <CustomInput height={100} title={'Special Cares'} />
-      <ImageInput title="imagen" {...{ value, setValue, setOk }} />
-      <CustomButton width={150} marginTop={theme.spacing.xl} title={'ADD'} />
+      <CustomInput title="Name" {...form.name} />
+      <CustomInput title="Age" {...form.age} />
+      <CustomInput title="Weight" {...form.weight} />
+      <CustomInput title="Height" {...form.height} />
+      <CustomInput title="SpecialCares" {...form.specialCares} />
+      <ImageInput title="Pet image" {...form.petImage} />
+      <CustomButton width={150} marginTop={theme.spacing.xl} {...form.submit} title={'ADD'} onPress={fireStoreAdd}/>
     </GenericContainer>
   )
 }
