@@ -3,17 +3,15 @@ import { View, Text } from 'react-native'
 import CheckBox from '@react-native-community/checkbox'
 import styles from './styles'
 
-export const CustomCheckBox = ({ state, texto }) => {
-  const [toggleCheckBox, seTtoggleCheckBox] = useState(false)
-
+export const CustomCheckBox = ({ value, setValue, setOk, texto }) => {
   return (
     <View style={styles.container}>
       <CheckBox
         disabled={false}
-        value={toggleCheckBox}
+        value={value}
         onValueChange={ (newValue) => {
-          seTtoggleCheckBox(newValue)
-          state.setForm(state.name, true, true)
+          setValue(newValue)
+          setOk(newValue)
         } }
         tintColors={{ true: '#007EFF', false: '#CACACA' }}
       />

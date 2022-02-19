@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import SignWelcome from '../../SignWelcome'
 import WalkerServices from '../../WalkerServices'
 import SignUpWalker from '../../SignUpWalker'

@@ -1,30 +1,54 @@
-import { Text, StyleSheet, Alert, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import { Alert } from 'react-native'
+import React from 'react'
 import GenericContainer from '../containers/GenericContainer'
-import { CustomInput } from '../components/CustomInput'
+import CustomInput from '../components/CustomInput'
+import ImageInput from '../components/ImageInput'
 import theme from '../themes/lights'
 import CustomButton from '../components/CustomButton'
-import { firebase } from '@react-native-firebase/firestore';
+import { firebase } from '@react-native-firebase/firestore'
 import usePetSignUp from '../hooks/usePetSignUp'
+import { userSession } from '../store/reducers/userSession'
+import fileUpload from '../assets/controllers/FileUpload'
+
+const getFormResult = form => {
+  return {
+    name: form.name.value,
+    age: form.age.value,
+    height: form.height.value,
+    weight: form.weight.value,
+    specialCares: form.specialCares.value,
+    useruid: userSession.getState().id
+  }
+}
 
 const AddPet = () => {
+  // const [totalPets, setTotalPets] = useState([])
+  // firebase.firestore().collection('Pets').onSnapshot(pets=>{
+  //   pets.forEach(pet=>{
+  //      setTotalPets(pet._data.pets)
+  //   })
+  // })
+  // const { handleInputName, handleInputAge, handleInputWeight, handleInputHeight, handleInputSpecialCares, petInfo } = usePetSignUp();
+  const form = usePetSignUp()
 
-// const [totalPets, setTotalPets] = useState([])
-    // firebase.firestore().collection('Pets').onSnapshot(pets=>{
-    //   pets.forEach(pet=>{
-    //      setTotalPets(pet._data.pets)
-    //   })
-    // })  
-  const { handleInputName, handleInputAge, handleInputWeight, handleInputHeight, handleInputSpecialCares, petInfo } = usePetSignUp();
-    
-  const fireStoreAdd = () =>{
-      firebase.firestore().collection('Pets').add(petInfo)
-      Alert.alert('Esto se ha agregado correctamente');
+  const fireStoreAdd = () => {
+    form.submit.setLoading(true)
+    firebase.firestore().collection('Pets').add(getFormResult(form)).then(e => {
+      fileUpload(form.petImage.value, e._documentPath._parts[1]).then(() => {
+        Alert.alert('Esto se ha agregado correctamente')
+        form.submit.setLoading(false)
+      })
+    })
   }
 
   return (
     <GenericContainer scroll={true}>
-      <Text>Name</Text>
+      <CustomInput title="Name" {...form.name} />
+      <CustomInput title="Age" {...form.age} />
+      <CustomInput title="Weight" {...form.weight} />
+      <CustomInput title="Height" {...form.height} />
+      <CustomInput title="SpecialCares" {...form.specialCares} />
+      {/* <Text>Name</Text>
       <TextInput placeholder='Pugberto' style={styles.input} maxLength={40} onChangeText={handleInputName} />
       <Text>Age</Text>
       <TextInput placeholder='8 months' style={styles.input} maxLength={40} onChangeText={handleInputAge} />
@@ -33,48 +57,11 @@ const AddPet = () => {
       <Text>Height</Text>
       <TextInput placeholder='70 cm' style={styles.input}  maxLength={40} onChangeText={handleInputHeight}/>
       <Text>Special Cares</Text>
-      <TextInput placeholder='Eats a lot' style={[styles.input]} maxLength={40} multiline={true} numberOfLines={4} onChangeText={handleInputSpecialCares}/>
-      
-      <Text style={styles.text}>Select or Take a Photo of your pet</Text>
-      <CustomButton leftIconName="cloud-upload-outline" />
-      <CustomButton width={150} marginTop={theme.spacing.xl} title={'ADD'} onPress={fireStoreAdd}/>
+      <TextInput placeholder='Eats a lot' style={[styles.input]} maxLength={40} multiline={true} numberOfLines={4} onChangeText={handleInputSpecialCares}/> */}
+      <ImageInput title="Pet image" {...form.petImage} />
+      <CustomButton width={150} marginTop={theme.spacing.xl} {...form.submit} title={'ADD'} onPress={fireStoreAdd}/>
     </GenericContainer>
   )
 }
 
-const styles = StyleSheet.create({
-  text: {
-    color: 'black',
-    fontSize: 15,
-    fontWeight: 'bold',
-    marginBottom: 15
-  },
-  title: {
-    color: theme.color.secondary2,
-    fontSize: theme.font.m,
-    paddingLeft: theme.spacing.xs
-  },
-  input: {
-    borderWidth: 2,
-    borderColor: theme.color.secondary2,
-    paddingLeft: theme.spacing.m,
-    height: 50,
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  inputCares:{
-    height: 100,
-  },
-  inputError: {
-    color: theme.color.danger
-  }
-})
-
-
-export default AddPet;
-
-      /* <CustomInput title={'Pet Name'}/>
-      <CustomInput title={'Age'} />
-      <CustomInput title={'Weight'} />
-      <CustomInput title={'Height'} />
-      <CustomInput height={100} title={'Special Cares'} /> */
+export default AddPet

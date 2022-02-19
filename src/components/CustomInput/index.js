@@ -3,53 +3,6 @@ import React, { useRef } from 'react'
 import { Text, TextInput, View } from 'react-native'
 import styles from './styles'
 
-export const InputState = (form, setForm) => {
-  return name => {
-    return ({ name, form, setForm })
-  }
-}
-
-export const InputValidation = {
-  email: {
-    required: true,
-    min: 5,
-    max: 25,
-    not: true,
-    regex:
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-  },
-  password: {
-    required: true,
-    min: 6,
-    max: 50
-  },
-  digit15: {
-    required: true,
-    min: 15,
-    max: 15
-  },
-  adress: {
-    required: true,
-    min: 10,
-    max: 50
-  },
-  phone: {
-    required: true,
-    min: 10,
-    max: 15
-  },
-  containerNumber: {
-    required: true,
-    min: 11,
-    max: 11
-  },
-  string: {
-    required: true,
-    min: 5,
-    max: 50
-  }
-}
-
 const LOG = {
   error: {
     empty: 'Empty field',
@@ -101,7 +54,7 @@ const TriggerValidation = (text, error, validation) => {
   }
 }
 
-export const CustomInput = ({ height, type, title, label, state, validation }) => {
+const CustomInput = ({ height, type, title, label, setValue, setOk, validation }) => {
   const error = useRef(initError())
   const isPassword = type === 'password'
 
@@ -109,9 +62,10 @@ export const CustomInput = ({ height, type, title, label, state, validation }) =
     <View>
       <Text style={styles.title}>{title}</Text>
       <TextInput style={[styles.input, { height: height }]} secureTextEntry={isPassword} placeholder={title} onChangeText={text => {
-        if (validation && state) {
+        if (validation) {
           TriggerValidation(text, error, validation)
-          state.setForm(state.name, text, error.current.isOk)
+          setValue(text)
+          setOk(error.current.isOk)
         }
       }} />
       {error.current.visible
@@ -121,3 +75,5 @@ export const CustomInput = ({ height, type, title, label, state, validation }) =
     </View>
   )
 }
+
+export default CustomInput
