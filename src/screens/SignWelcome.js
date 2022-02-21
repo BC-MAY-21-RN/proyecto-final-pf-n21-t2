@@ -7,11 +7,11 @@ const screenProps = (routeName, navigation) => {
   const p = {
     login: {
       props: ['Don\'t have an account yet? ', 'SignUp', 'SignUpType'],
-      form: <UserTypeSign navigation={navigation} />
+      form: <LoginForm navigation={navigation} />
     },
     signupType: {
       props: ['Already have an account? ', 'Login', 'Login'],
-      form: <LoginForm navigation={navigation} />
+      form: <UserTypeSign navigation={navigation} />
     }
   }
   return routeName === 'Login' ? p.login : p.signupType
