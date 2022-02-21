@@ -61,16 +61,6 @@ const SignUpForm = ({ type, navigation }) => {
   const form = useSignUp(type)
 
   useEffect(() => {
-    console.log('username =>', form.username.ok)
-    console.log('email =>', form.email.ok)
-    console.log('password =>', form.password.ok)
-    console.log('mobile =>', form.mobile.ok)
-    console.log('checkbox =>', form.checkbox.ok)
-    console.log('dogSize =>', form.dogSize.ok)
-    console.log('address =>', form.address.ok)
-  }, [form])
-
-  useEffect(() => {
     const subscriber = auth().onAuthStateChanged(user => {
       if (user) {
         UploadLeftData(
