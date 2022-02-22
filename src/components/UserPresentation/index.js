@@ -2,22 +2,14 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import EnfasisText from '../EnfasisText'
 import RoundImage from '../RoundImage'
-import { AirbnbRating } from 'react-native-ratings'
+import CustomRatings from '../CustomRatings'
 
 const UserPresentation = ({ rating, name, image }) => {
   return (
     <View style={styles.container}>
       <RoundImage source={image} />
       <EnfasisText text={name} />
-      {rating
-        ? <AirbnbRating
-          isDisabled={true}
-          count={5}
-          showRating={false}
-          defaultRating={rating}
-          size={30}
-        />
-        : null}
+      <CustomRatings rating={rating}/>
     </View>
   )
 }

@@ -1,7 +1,8 @@
-import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import CustomButton from '../components/CustomButton'
 import PetCard from '../components/PetCard'
+import GenericFlatList from '../components/GenericFlatList'
 
 const DATA = [
   {
@@ -87,12 +88,7 @@ const Pets = ({ navigation }) => {
   return (
         <View style={styles.container}>
 
-            <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                key={item => item.id}
-                style={styles.lista}
-            />
+            <GenericFlatList DATA={DATA} renderItem={renderItem}/>
             <CustomButton leftIconName='add-outline' title="Pet" {...buttonStyle}
                 onPress={() => { handlePet('addPet') }}
             />

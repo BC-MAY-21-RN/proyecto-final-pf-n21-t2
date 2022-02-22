@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Image, FlatList } from 'react-native'
 import React from 'react'
 import UserPresentation from '../components/UserPresentation'
-import CustomFlatList from '../components/CustomFlatList'
 import CustomRatings from '../components/CustomRatings'
+import GenericFlatList from '../components/GenericFlatList'
 
 const DATA = [
   { id: '1', imgW: 'https://pbs.twimg.com/media/Ew-KeLXXAAAWn01.jpg', name: 'Tizoc Chavez ', rating: 5, desc: 'Great Job!' },
@@ -40,11 +40,8 @@ const Reviews = () => {
 
         <UserPresentation rating="4" name ="Manu Ríos" image={{ uri: 'https://media-exp1.licdn.com/dms/image/D4E35AQHy1DRqQt3HrA/profile-framedphoto-shrink_800_800/0/1639947131749?e=1645578000&v=beta&t=4eJfSxvN52_cgE7GsIcIXv6yvYEC_oQs53rQLlR5wX8' }} />
 
-        <FlatList 
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={item=>item.id} 
-            style={styles.listContainer} />
+        <GenericFlatList DATA={DATA} renderItem={renderItem}/>
+
     </View>
   )
 }
