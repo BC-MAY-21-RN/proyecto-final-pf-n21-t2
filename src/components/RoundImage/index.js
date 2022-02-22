@@ -8,7 +8,7 @@ const getSizeStyle = size => {
 
 const RoundImage = ({ children, source, size }) => {
   source = source ?? { uri: 'empty' }
-  const defaultSize = 80
+  const defaultSize = 200
   const sizeStyle = getSizeStyle(size ?? defaultSize)
   return (
     <View style={[styles.container, sizeStyle]}>

@@ -19,6 +19,7 @@ import AddPet from '../../AddPet'
 import PetInformation from '../../PetInformation'
 import ToHireWalkerSelection from '../../ToHireWalkerSelection'
 import AboutUS from '../../AboutUS'
+import Reviews from '../../Reviews'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const Stack = createNativeStackNavigator()
@@ -29,8 +30,7 @@ const NavigationInit = () => {
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Login'><Stack.Screen name="Login" component={SignWelcome} />
           <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
-          <Stack.Screen name="SignUpClient" component={SignUpClient} />
-          <Stack.Screen name="Walker" component={TabNavigator} />
+          <Stack.Screen name="SignUpClient" component={SignUpClient} /><Stack.Screen name="Walker" component={TabNavigator} />
           <Stack.Screen name="Client" component={TabNavigator} />
           <Stack.Screen name="WalkerServices" component={WalkerServices} />
           <Stack.Screen name="SettingsUser" component={SettingsUser} />
@@ -46,6 +46,7 @@ const NavigationInit = () => {
           <Stack.Screen name="PetInformation" component={PetInformation} />
           <Stack.Screen name="AboutUs" component={AboutUS} />
           <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} />
+          <Stack.Screen name="Reviews" component={Reviews} />
         </Stack.Navigator>
       </NavigationContainer>
   )

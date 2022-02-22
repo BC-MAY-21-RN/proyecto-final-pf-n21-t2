@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Pressable, Text } from 'react-native'
-import { AirbnbRating } from 'react-native-ratings'
 import RoundImage from '../RoundImage'
 import styles from './styles'
+import CustomRatings from '../CustomRatings'
 
 const toHireWalkerSection = (navigation, data) => {
-  navigation.navigate('ToHireWalkerSelection');
-};
+  navigation.navigate('ToHireWalkerSelection')
+}
 
 const WalkerCard = ({ title, rating, navigation }) => {
   const data = { title, rating }
@@ -19,13 +19,7 @@ const WalkerCard = ({ title, rating, navigation }) => {
       <View style={styles.rightContainer}>
         <Text style={styles.title}>{title}</Text>
         <View>
-          <AirbnbRating
-            isDisabled={true}
-            count={5}
-            showRating={false}
-            defaultRating={rating}
-            size={30}
-          />
+          <CustomRatings rating={rating}/>
         </View>
       </View>
     </Pressable>
