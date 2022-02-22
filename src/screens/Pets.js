@@ -7,6 +7,7 @@ import { userSession } from '../store/reducers/userSession'
 import CustomFlatList from '../components/CustomFlatList'
 import GenericContainer from '../containers/GenericContainer'
 
+
 const Card = ({ name, url, onPress }) => {
   const petCardStyle = { imgStyle: styles.img, txtStyle: styles.petAdded }
   return (<TouchableOpacity style={styles.card} onPress={onPress}>
@@ -47,7 +48,10 @@ const Pets = ({ navigation }) => {
     marginBottom: 50,
     marginTop: 10
   }
+
+
   return (
+
     <GenericContainer>
       <CustomFlatList render={renderItem} get={getPets} empty="No hay mascotas" />
        <CustomButton leftIconName='add-outline' title="Pet" {...buttonStyle}

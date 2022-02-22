@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import RoundImage from '../RoundImage'
-import { AirbnbRating } from 'react-native-ratings'
 import LineSeparator from '../LineSeparator'
 import styles from './styles'
+import CustomRatings from '../CustomRatings'
 
 const ReviewCard = ({ image, name, review, rating }) => {
   return (
@@ -12,13 +12,7 @@ const ReviewCard = ({ image, name, review, rating }) => {
         <RoundImage size={40} source={image} name={name} review={review} rating={rating} />
         <View>
           <Text style={styles.name}>{name}</Text>
-          <AirbnbRating
-            isDisabled={true}
-            count={5}
-            showRating={false}
-            defaultRating={rating}
-            size={20}
-          />
+          <CustomRatings rating={rating}/>
         </View>
       </View>
       <View>
