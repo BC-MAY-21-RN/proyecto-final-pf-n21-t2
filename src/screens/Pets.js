@@ -65,13 +65,13 @@ const DATA = [
 const Card = ({ name, url, onPress }) => {
   const petCardStyle = { imgStyle: styles.img, txtStyle: styles.petAdded }
   return (<TouchableOpacity style={styles.card} onPress={onPress}>
-        <PetCard url={url} {...petCardStyle} name={name} />
-    </TouchableOpacity>)
+      <PetCard url={url} {...petCardStyle} name={name} />
+  </TouchableOpacity>)
 }
 
 const Pets = ({ navigation }) => {
   const renderItem = ({ item }) => (
-        <Card {...item} onPress={() => { navigation.navigate('PetInformation', { ...item }) }}/>
+    <Card {...item} onPress={() => { navigation.navigate('PetInformation', { ...item }) }}/>
   )
 
   const handlePet = (onPress) => {
@@ -82,21 +82,19 @@ const Pets = ({ navigation }) => {
     width: 150,
     marginBottom: 50,
     marginTop: 10
-
   }
   return (
-        <View style={styles.container}>
-
-            <FlatList
-                data={DATA}
-                renderItem={renderItem}
-                key={item => item.id}
-                style={styles.lista}
-            />
-            <CustomButton leftIconName='add-outline' title="Pet" {...buttonStyle}
-                onPress={() => { handlePet('addPet') }}
-            />
-        </View>
+    <View style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        key={item => item.id}
+        style={styles.lista}
+      />
+      <CustomButton leftIconName='add-outline' title="Pet" {...buttonStyle}
+        onPress={() => { handlePet('addPet') }}
+      />
+    </View>
   )
 }
 
@@ -106,7 +104,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     justifyContent: 'space-between'
-
   },
   title: {
     color: 'black',
