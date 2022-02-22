@@ -1,6 +1,6 @@
 const inputValidations = {
   string: {
-    regex: /[^A-Za-z0-9]+/,
+    regex: /[^A-Za-z0-9 ]+/,
     min: 5,
     max: 50
   },
@@ -8,6 +8,21 @@ const inputValidations = {
     regex: /[^0-9]+/,
     min: 10,
     max: 15
+  },
+  age: {
+    regex: /[^0-9]+/,
+    min: 1,
+    max: 2
+  },
+  weight: {
+    regex: /[^0-9]+/,
+    min: 1,
+    max: 3
+  },
+  height: {
+    regex: /[^0-9]+/,
+    min: 1,
+    max: 3
   },
   email: {
     regex:

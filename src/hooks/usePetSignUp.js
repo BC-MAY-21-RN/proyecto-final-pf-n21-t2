@@ -6,11 +6,11 @@ import FormHookPipe from '../assets/controllers/FormHookPipe'
 const usePetSignUp = () => {
   return FormHookPipe({
     name: useInput(inputValidations.string),
-    age: useInput(inputValidations.string),
-    weight: useInput(inputValidations.string),
-    height: useInput(inputValidations.string),
+    age: useInput(inputValidations.age),
+    weight: useInput(inputValidations.weight),
+    height: useInput(inputValidations.height),
     specialCares: useInput(inputValidations.string),
-    petImage: useInput(inputValidations.string),
+    petImage: useInput(),
     submit: useSubmit()
   })
 }
