@@ -1,10 +1,10 @@
-import React from "react";
-import UserPresentation from "../UserPresentation";
-import { View, Text } from "react-native";
-import { AirbnbRating } from "react-native-ratings";
-import styles from "./styles";
+import React from 'react'
+import UserPresentation from '../UserPresentation'
+import { View, Text } from 'react-native'
+import { AirbnbRating } from 'react-native-ratings'
+import styles from './styles'
 
-const WalkerSelected = ({rating, name, image}) => {
+const WalkerSelected = ({ rating, name, image }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -19,7 +19,7 @@ const WalkerSelected = ({rating, name, image}) => {
       </View>
       <UserPresentation name={name} image={image} />
     </View>
-  );
-};
+  )
+}
 
 export default WalkerSelected

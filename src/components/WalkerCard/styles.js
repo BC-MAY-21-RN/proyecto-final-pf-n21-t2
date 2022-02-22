@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import theme from "../../themes/lights";
+import { StyleSheet } from 'react-native'
+import theme from '../../themes/lights'
 
 const styles = StyleSheet.create({
   container: {
@@ -9,16 +9,16 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     padding: theme.spacing.m,
-    marginBottom: theme.spacing.xl,
+    marginBottom: theme.spacing.xl
   },
   title: {
     color: theme.color.secondary2,
-    fontSize: theme.font.xxl,
+    fontSize: theme.font.xxl
   },
   rightContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
+    justifyContent: 'space-between'
+  }
+})
 
-export default styles;
+export default styles

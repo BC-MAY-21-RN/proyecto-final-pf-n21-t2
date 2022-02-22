@@ -1,19 +1,15 @@
-import { View, Text } from 'react-native';
-import React, {useState, useEffect} from 'react';
-import {Picker} from '@react-native-picker/picker';
-import styles from './styles';
+import { View, Text } from 'react-native'
+import React, { useEffect } from 'react'
+import { Picker } from '@react-native-picker/picker'
+import styles from './styles'
 
-let mounted = false;
-
-export const CustomPicker = ({state, title, itemdata}) => {
-  const [value, setValue] = useState(null);
-  
+export const CustomPicker = ({ setValue, setOk, value, title, itemdata }) => {
   useEffect(() => {
-    if (!mounted) {
-      mounted = true;
-      state.setForm(state.name, '1', true);
+    if (!value) {
+      setValue('1')
+      setOk(true)
     }
-  }, []);
+  }, [])
 
   return (
     <View>
@@ -21,14 +17,13 @@ export const CustomPicker = ({state, title, itemdata}) => {
       <Picker
         selectedValue={value}
         onValueChange={(itemValue, itemIndex) => {
-          setValue(itemValue);
-          state.setForm(state.name, itemValue, true);
+          setValue(itemValue)
+          setOk(true)
         }}>
           {itemdata?.map(item => {
-            return <Picker.Item style={styles.item} value={item.id} label={item.name} key={item.id} />;
-          })}   
+            return <Picker.Item style={styles.item} value={item.id} label={item.name} key={item.id} />
+          })}
       </Picker>
     </View>
-  );
-};
-
+  )
+}

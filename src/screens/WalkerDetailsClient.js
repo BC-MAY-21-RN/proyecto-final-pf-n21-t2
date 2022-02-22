@@ -1,20 +1,18 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react';
-import CustomButton from '../components/CustomButton';
-import theme from '../themes/lights';
+import { StyleSheet, Text, View, Image } from 'react-native'
+import React from 'react'
+import CustomButton from '../components/CustomButton'
+import theme from '../themes/lights'
 
-
-const WalkerDetailsClient = ({route}) => {
-  const {Name, Duration, Start, ImageUri} = route.params;
-
-  const buttonStyle = {width: 300, marginBottom: theme.spacing.xxxl};
+const WalkerDetailsClient = ({ route }) => {
+  const { Name, Duration, Start, ImageUri } = route.params
+  const buttonStyle = { width: 300, marginBottom: theme.spacing.xxxl }
 
   return (
     <View style={styles.container}>
       <View style={styles.owner}>
         <Image style={styles.image}
           source={{
-            uri: ImageUri,
+            uri: ImageUri
           }}
 
         />
@@ -30,23 +28,23 @@ const WalkerDetailsClient = ({route}) => {
       </View>
       <View style={styles.buttons}>
         <CustomButton {...buttonStyle} title='Aceptar' />
-        <CustomButton  {...buttonStyle}title='Cancelar' />
+        <CustomButton {...buttonStyle}title='Cancelar' />
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default WalkerDetailsClient;
-                                              
+export default WalkerDetailsClient
+
 const styles = StyleSheet.create({
-  container:{
+  container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
   },
-  owner:{
+  owner: {
     flexDirection: 'row',
-    marginTop: 30,
+    marginTop: 30
   },
   image: {
     width: 100,
@@ -54,24 +52,24 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     marginRight: 20
   },
-  info:{
-    marginBottom: 30,
+  info: {
+    marginBottom: 30
   },
-  info1:{
+  info1: {
     fontSize: 17,
     color: 'gray'
   },
-  info2:{
+  info2: {
     color: 'black',
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 10
   },
-  info3:{
-    color: 'black',
-    
+  info3: {
+    color: 'black'
+
   },
-  dogData:{
+  dogData: {
     width: 300,
     height: 200,
     borderWidth: 5,
@@ -79,7 +77,7 @@ const styles = StyleSheet.create({
     borderColor: '#A239EA',
     marginBottom: 30
   },
-  buttons:{
+  buttons: {
 
   }
-});
+})

@@ -1,10 +1,10 @@
-import React from 'react';
-import CustomButton from "../components/CustomButton";
-import GenericContainer from '../containers/GenericContainer';
-import EnfasisText from '../components/EnfasisText';
-import theme from '../themes/lights';
+import React from 'react'
+import CustomButton from '../components/CustomButton'
+import GenericContainer from '../containers/GenericContainer'
+import EnfasisText from '../components/EnfasisText'
+import theme from '../themes/lights'
 
-const HomeClient = ({navigation}) => {
+const HomeClient = ({ navigation }) => {
   return (
     <GenericContainer>
       <GenericContainer type="enfasis">
@@ -14,7 +14,7 @@ const HomeClient = ({navigation}) => {
           leftIconName="search-outline" onPress={() => navigation.navigate('ClientWalkers')} />
       </GenericContainer>
     </GenericContainer>
-  );
-};
+  )
+}
 
-export default HomeClient;
+export default HomeClient
