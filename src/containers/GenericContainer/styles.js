@@ -5,8 +5,7 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: theme.spacing.xl,
     marginHorizontal: theme.spacing.xxxl,
-    flex: 1,
-    display: 'flex'
+    flex: 1
   },
   enfasisContainer: {
     display: 'flex',

@@ -28,7 +28,6 @@ const handleThen = (req, callback) => {
   })
 }
 
-
 const add = (collection, id, newValue, callback) => {
   handleThen(getDoc(collection, id).set(newValue), callback)
 }
