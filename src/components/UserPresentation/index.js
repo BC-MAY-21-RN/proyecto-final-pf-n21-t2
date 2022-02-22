@@ -4,7 +4,7 @@ import EnfasisText from '../EnfasisText'
 import RoundImage from '../RoundImage'
 import CustomRatings from '../CustomRatings'
 
-const UserPresentation = ({ rating, name, image, size }) => {
+const UserPresentation = ({ rating, name, image }) => {
   return (
     <View style={styles.container}>
       <RoundImage source={image} />

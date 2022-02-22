@@ -11,7 +11,7 @@ const DATA = [
   { id: '4', imgW: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a832a1c3adf9857ab3a421841b24e36a20b4e8ad_full.jpg', name: 'Obama Albino', rating: 1, desc: 'My dog arrived hurt ' },
   { id: '5', imgW: 'https://www.quever.news/u/fotografias/m/2021/12/24/f608x342-20849_50572_13.jpg', name: 'Monica', rating: 5, desc: 'My dog is very Happy :D!!' }
 ]
-const ListReviews = ({ imgW, name, rating, desc, size }) => {
+const ListReviews = ({ imgW, name, rating, desc }) => {
   // Nombre foto Estrellas texto
   return (
         <View style={styles.containerCard}>
@@ -21,7 +21,7 @@ const ListReviews = ({ imgW, name, rating, desc, size }) => {
             <View style={styles.contarinerInfo}>
               <View style={styles.texts}>
                   <Text style={styles.color}>{name}</Text>
-                  <CustomRatings rating={rating} size={13}/>
+                  <CustomRatings rating={rating}/>
               </View>
               <Text style={styles.color}>{desc}</Text>
             </View>

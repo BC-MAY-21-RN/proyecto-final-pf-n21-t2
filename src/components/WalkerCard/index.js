@@ -8,7 +8,7 @@ const toHireWalkerSection = (navigation, data) => {
   navigation.navigate('ToHireWalkerSelection')
 }
 
-const WalkerCard = ({ title, rating, navigation, size }) => {
+const WalkerCard = ({ title, rating, navigation }) => {
   const data = { title, rating }
 
   return (
@@ -19,7 +19,7 @@ const WalkerCard = ({ title, rating, navigation, size }) => {
       <View style={styles.rightContainer}>
         <Text style={styles.title}>{title}</Text>
         <View>
-          <CustomRatings rating={rating} size={13}/>
+          <CustomRatings rating={rating}/>
         </View>
       </View>
     </Pressable>
