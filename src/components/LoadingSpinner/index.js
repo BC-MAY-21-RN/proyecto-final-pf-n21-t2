@@ -20,7 +20,6 @@ const getSize = size => {
     default:
       result = theme.font.m
   }
-  console.log(result)
   return result
 }
 

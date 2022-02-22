@@ -7,7 +7,6 @@ import { userSession } from '../store/reducers/userSession'
 import CustomFlatList from '../components/CustomFlatList'
 import GenericContainer from '../containers/GenericContainer'
 
-
 const Card = ({ name, url, onPress }) => {
   const petCardStyle = { imgStyle: styles.img, txtStyle: styles.petAdded }
   return (<TouchableOpacity style={styles.card} onPress={onPress}>
@@ -27,7 +26,8 @@ const getPets = setPets => {
       const newPets = []
       querySnapshot.forEach((snapshot) => {
         const row = snapshot.data()
-        row.image = getImage(`Pets%2F${snapshot.ref._documentPath._parts[1]}%2F${row.imageName}`)
+        row.id = snapshot.ref._documentPath._parts[1]
+        row.image = getImage(`Pets%2F${row.id}%2F${row.imageName}`)
         newPets.push(row)
       })
       setPets(newPets)
@@ -35,9 +35,11 @@ const getPets = setPets => {
 }
 
 const Pets = ({ navigation }) => {
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }) => {
+    return (
     <Card {...item} url={item.image} onPress={() => { navigation.navigate('PetInformation', { ...item }) }}/>
-  )
+    )
+  }
 
   const handlePet = (onPress) => {
     navigation.navigate('AddPet')
@@ -48,7 +50,6 @@ const Pets = ({ navigation }) => {
     marginBottom: 50,
     marginTop: 10
   }
-
 
   return (
     <GenericContainer style={styles.container}>
