@@ -17,19 +17,19 @@ const getFormResult = form => {
     height: form.height.value,
     weight: form.weight.value,
     specialCares: form.specialCares.value,
-    useruid: userSession.getState().id
+    useruid: userSession.getState().id,
+    imageName: form.petImage.value.name
   }
 }
 
-const AddPet = () => {
+const AddPet = ({ navigation }) => {
   const form = usePetSignUp()
 
   const fireStoreAdd = () => {
     form.submit.setLoading(true)
     firebase.firestore().collection('Pets').add(getFormResult(form)).then(e => {
       fileUpload(form.petImage.value, e._documentPath._parts[1]).then(() => {
-        Alert.alert('Esto se ha agregado correctamente')
-        form.submit.setLoading(false)
+        navigation.goBack()
       })
     })
   }

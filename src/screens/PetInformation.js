@@ -3,12 +3,12 @@ import React from 'react'
 import PetCard from '../components/PetCard'
 
 const PetInformation = ({ route }) => {
-  const { age, weight, height, specialCares } = route.params
+  const { age, weight, height, specialCares, image } = route.params
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <PetCard {...route.params} imgStyle={styles.img} txtStyle={styles.petName} />
+        <PetCard {...route.params} url={image} imgStyle={styles.img} txtStyle={styles.petName} />
       </View>
         <View style={styles.petInfo}>
           <View style={styles.info}>
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   img: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
     borderRadius: 60,
     marginRight: 20,
     marginLeft: 20
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     elevation: 18
   },
   petName: {
-    fontSize: 30,
+    fontSize: 24,
     color: 'white',
     fontWeight: 'bold',
     marginTop: 10
