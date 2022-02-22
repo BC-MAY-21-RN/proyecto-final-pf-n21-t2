@@ -51,8 +51,7 @@ const Pets = ({ navigation }) => {
 
 
   return (
-
-    <GenericContainer>
+    <GenericContainer style={styles.container}>
       <CustomFlatList render={renderItem} get={getPets} empty="No hay mascotas" />
        <CustomButton leftIconName='add-outline' title="Pet" {...buttonStyle}
         onPress={() => { handlePet('addPet') }}
@@ -64,9 +63,7 @@ const Pets = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'space-between'
+    display: 'flex'
   },
   title: {
     color: 'black',

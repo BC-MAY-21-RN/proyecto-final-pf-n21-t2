@@ -1,4 +1,3 @@
-import { Alert } from 'react-native'
 import React from 'react'
 import GenericContainer from '../containers/GenericContainer'
 import CustomInput from '../components/CustomInput'
