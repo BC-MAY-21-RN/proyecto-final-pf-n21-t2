@@ -27,7 +27,7 @@ const NavigationInit = () => {
   realtimeLocation.listen()
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='SignUpType'><Stack.Screen name="Login" component={SignWelcome} />
+        <Stack.Navigator initialRouteName='Login'><Stack.Screen name="Login" component={SignWelcome} />
           <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
           <Stack.Screen name="SignUpClient" component={SignUpClient} />
           <Stack.Screen name="Walker" component={TabNavigator} />

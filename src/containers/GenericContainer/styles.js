@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     marginVertical: theme.spacing.xl,
     marginHorizontal: theme.spacing.xxxl,
     flex: 1,
-    display: 'flex'
+    display: 'flex',
+    alignItems: 'center'
   },
   enfasisContainer: {
     display: 'flex',
