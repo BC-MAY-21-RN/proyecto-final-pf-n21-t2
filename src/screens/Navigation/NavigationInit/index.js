@@ -30,8 +30,7 @@ const NavigationInit = () => {
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Reviews'><Stack.Screen name="Login" component={SignWelcome} />
           <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
-          <Stack.Screen name="SignUpClient" component={SignUpClient} />
-          <Stack.Screen name="Walker" component={TabNavigator} />
+          <Stack.Screen name="SignUpClient" component={SignUpClient} /><Stack.Screen name="Walker" component={TabNavigator} />
           <Stack.Screen name="Client" component={TabNavigator} />
           <Stack.Screen name="WalkerServices" component={WalkerServices} />
           <Stack.Screen name="SettingsUser" component={SettingsUser} />
