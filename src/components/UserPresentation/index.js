@@ -4,12 +4,12 @@ import EnfasisText from '../EnfasisText'
 import RoundImage from '../RoundImage'
 import CustomRatings from '../CustomRatings'
 
-const UserPresentation = ({ rating, name, image }) => {
+const UserPresentation = ({ rating, name, image, size }) => {
   return (
     <View style={styles.container}>
       <RoundImage source={image} />
       <EnfasisText text={name} />
-      <CustomRatings rating={rating}/>
+      <CustomRatings rating={rating} size={20}/>
     </View>
   )
 }

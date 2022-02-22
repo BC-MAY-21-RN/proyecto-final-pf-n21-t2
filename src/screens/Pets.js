@@ -83,12 +83,17 @@ const Pets = ({ navigation }) => {
     width: 150,
     marginBottom: 50,
     marginTop: 10
-
   }
+
+  const mTopBottom = {
+    paddingTop: 10,
+    paddingBottom: 10
+  }
+
   return (
         <View style={styles.container}>
 
-            <GenericFlatList DATA={DATA} renderItem={renderItem}/>
+            <GenericFlatList DATA={DATA} renderItem={renderItem} styles={mTopBottom}/>
             <CustomButton leftIconName='add-outline' title="Pet" {...buttonStyle}
                 onPress={() => { handlePet('addPet') }}
             />

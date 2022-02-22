@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import UserPresentation from '../components/UserPresentation'
 import CustomRatings from '../components/CustomRatings'
@@ -11,7 +11,7 @@ const DATA = [
   { id: '4', imgW: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a832a1c3adf9857ab3a421841b24e36a20b4e8ad_full.jpg', name: 'Obama Albino', rating: 1, desc: 'My dog arrived hurt ' },
   { id: '5', imgW: 'https://www.quever.news/u/fotografias/m/2021/12/24/f608x342-20849_50572_13.jpg', name: 'Monica', rating: 5, desc: 'My dog is very Happy :D!!' }
 ]
-const ListReviews = ({ imgW, name, rating, desc }) => {
+const ListReviews = ({ imgW, name, rating, desc, size }) => {
   // Nombre foto Estrellas texto
   return (
         <View style={styles.containerCard}>
@@ -21,7 +21,7 @@ const ListReviews = ({ imgW, name, rating, desc }) => {
             <View style={styles.contarinerInfo}>
               <View style={styles.texts}>
                   <Text style={styles.color}>{name}</Text>
-                  <CustomRatings rating={rating}/>
+                  <CustomRatings rating={rating} size={13}/>
               </View>
               <Text style={styles.color}>{desc}</Text>
             </View>
@@ -34,13 +34,15 @@ const Reviews = () => {
     return <ListReviews {...item}/>
   }
 
+  const mTop = { marginTop: 10 }
+
   return (
 
     <View style={styles.container}>
 
         <UserPresentation rating="4" name ="Manu Ríos" image={{ uri: 'https://media-exp1.licdn.com/dms/image/D4E35AQHy1DRqQt3HrA/profile-framedphoto-shrink_800_800/0/1639947131749?e=1645578000&v=beta&t=4eJfSxvN52_cgE7GsIcIXv6yvYEC_oQs53rQLlR5wX8' }} />
 
-        <GenericFlatList DATA={DATA} renderItem={renderItem}/>
+        <GenericFlatList DATA={DATA} renderItem={renderItem} styles={mTop}/>
 
     </View>
   )

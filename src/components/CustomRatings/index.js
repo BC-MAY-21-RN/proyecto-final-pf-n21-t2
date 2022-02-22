@@ -2,7 +2,7 @@ import { View } from 'react-native'
 import React from 'react'
 import { AirbnbRating } from 'react-native-ratings'
 
-const CustomRatings = ({ rating }) => {
+const CustomRatings = ({ rating, size }) => {
   return (
     <View>
         <AirbnbRating
@@ -10,7 +10,7 @@ const CustomRatings = ({ rating }) => {
         count={5}
         showRating={false}
         defaultRating={rating}
-        size={12}
+        size={size}
         />
     </View>
   )
