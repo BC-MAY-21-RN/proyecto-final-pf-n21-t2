@@ -1,7 +1,9 @@
 /* eslint-disable no-useless-escape */
-import React, { useRef } from 'react'
-import { Text, TextInput, View } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { Text, View, TextInput, TouchableOpacity } from 'react-native'
 import styles from './styles'
+import Icon from 'react-native-vector-icons/Ionicons'
+import theme from '../../themes/lights'
 
 const LOG = {
   error: {
@@ -54,20 +56,45 @@ const TriggerValidation = (text, error, validation) => {
   }
 }
 
-const CustomInput = ({ height, type, title, label, setValue, setOk, validation }) => {
+const ShowUnshowEye = ({ visible, setVisible, style }) => {
+  return (
+    <TouchableOpacity style={style}
+      onPress={() => {
+        setVisible(!visible)
+      }}>
+      <Icon
+        name={visible ? 'eye' : 'eye-off'}
+        size={30}
+        color={theme.color.secondary2}
+      />
+    </TouchableOpacity>
+  )
+}
+
+const CustomInput = ({ height, type, title, label, setValue, setOk, validation, placeholder, secret }) => {
   const error = useRef(initError())
   const isPassword = type === 'password'
+  const [visible, setVisible] = useState(false)
 
   return (
     <View>
       <Text style={styles.title}>{title}</Text>
-      <TextInput style={[styles.input, { height: height }]} secureTextEntry={isPassword} placeholder={title} onChangeText={text => {
-        if (validation) {
-          TriggerValidation(text, error, validation)
-          setValue(text)
-          setOk(error.current.isOk)
-        }
-      }} />
+      <TextInput style={[styles.input, { height: height }]}
+        secureTextEntry={visible}
+        placeholder={title}
+        onChangeText={text => {
+          if (validation) {
+            TriggerValidation(text, error, validation)
+            setValue(text)
+            setOk(error.current.isOk)
+          }
+        }} />
+        {(type === 'password')
+          ? <ShowUnshowEye
+        visible={visible}
+        setVisible={setVisible}
+        style={{ position: 'absolute', right: 10, top: 30 }} />
+          : undefined}
       {error.current.visible
         ? <Text style={styles.inputError}>*{error.current.message}</Text>
         : null}

@@ -7,7 +7,7 @@ const GenericSign = ({ children, title, email, password, submit, onPress }) => {
   return (
     <View>
       <CustomInput title="Email" {...email} />
-      <CustomInput type="password" title="Password" {...password} />
+      <CustomInput type="password" title="Password" {...password} secureTextEntry={true}/>
       {children}
       <ButtonSign {...submit} title={title} onPress={() => {
         if (submit.ok) {
