@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 import styles from './styles'
 import auth from '@react-native-firebase/auth'
 import useLogin from '../../hooks/useLogin'
@@ -9,6 +9,15 @@ import fbShortcuts from '../../assets/controllers/firebaseShortcuts'
 import { userSession, setId } from '../../store/reducers/userSession'
 
 let signedIn = false
+
+const showError = (err, setLoading) => {
+  setLoading(false)
+  if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+    Alert.alert('Error', 'Email nor password are wrong.')
+  } else {
+    Alert.alert('Error', 'Something went srong while signing in.')
+  }
+}
 
 const LoginForm = ({ navigation }) => {
   const { submit, email, password } = useLogin()
@@ -38,10 +47,14 @@ const LoginForm = ({ navigation }) => {
     <View style={styles.container}>
       <GenericSign title="Login" {...{ email, password, submit }} onPress={() => {
         submit.setLoading(true)
-        auth().signInWithEmailAndPassword(email.value, password.value).then(({ user }) => {
-          submit.setLoading(false)
-          userSession.dispatch(setId(user.uid))
-        })
+        auth().signInWithEmailAndPassword(email.value, password.value)
+          .catch(err => showError(err, submit.setLoading))
+          .then((userCredentials) => {
+            if (userCredentials) {
+              submit.setLoading(false)
+              userSession.dispatch(setId(userCredentials.user.uid))
+            }
+          })
       }} />
     </View>
   )
