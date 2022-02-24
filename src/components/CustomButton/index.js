@@ -10,16 +10,26 @@ const getDefaultOk = (ok) => {
   return ok ?? true
 }
 
-const CustomButton = ({ color, marginBottom, marginTop, style, loading, ok, title, onPress, width, leftIconName }) => {
-  const iconWithTextStyle = title ? styles.iconWithText : null
+const getColorStyle = (color) => {
+  return color ? { backgroundColor: color } : { backgroundColor: theme.color.primary2 }
+}
+
+const getIconWithTextStyle = (title) => {
+  return title ? styles.iconWithText : null
+}
+
+const CustomButton = ({ color, marginBottom, marginTop, style, loading, ok, title, onPress, width, borderRadius, leftIconName, textColor }) => {
+  const iconWithTextStyle = getIconWithTextStyle(title)
   const leftIcon = leftIconName ? <Icon style={[iconWithTextStyle, styles.icon, styles.textColor]} name={leftIconName} size={24} /> : null
-  const colorStyle = color ?? { backgroundColor: theme.color.primary2 }
+  const colorStyle = getColorStyle(color)
+  const borderR = borderRadius ? { borderRadius: borderRadius } : { borderRadius: 100 }
+  const txtColor = textColor ? { color: textColor } : { color: theme.color.secondary1 }
   ok = getDefaultOk(ok)
   return (
     <View style={[styles.container, style, { marginTop, marginBottom }]}>
-      <Pressable style={[{ width: width }, styles.button, colorStyle, !ok ? styles.disabled : null]} onPress={onPress} disabled={!ok}>
+      <Pressable style={[{ width: width }, styles.button, borderR, colorStyle, !ok ? styles.disabled : null]} onPress={onPress} disabled={!ok}>
         {leftIcon}
-        {loading ? <ActivityIndicator size="small" color={theme.color.secondary1} /> : <Text style={[styles.text, styles.textColor]}>{title}</Text>}
+        {loading ? <ActivityIndicator size="small" color={theme.color.secondary1} /> : <Text style={[styles.text, txtColor]}>{title}</Text>}
       </Pressable>
     </View>
   )
