@@ -3,6 +3,7 @@ import React from 'react'
 import CustomRatings from '../components/CustomRatings'
 import CustomButton from '../components/CustomButton'
 import CustomDatePicker from '../components/CustomDatePicker'
+import theme from '../themes/lights'
 
 const FormTravel = () => {
   return (
@@ -18,12 +19,12 @@ const FormTravel = () => {
 
         <View style={styles.buttons}>
           <Text style={styles.instructions}>Please customize the start and the end time of the ride: </Text>
-          <CustomDatePicker title={'Start date time'} styl={{ marginBottom: 10 }}/>
-          <CustomDatePicker title={'End date time'} width={160}/>
+          <CustomDatePicker title={'Start date time'} styl={{ marginBottom: 10 }} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
+          <CustomDatePicker title={'End date time'} width={160} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
         </View>
       </View>
 
-      <CustomButton title='Save' width={200} onPress={() => alert('XD')}/>
+      <CustomButton title='Save' width={200} borderRadius={18} color='#fff' textColor={theme.color.primary2} onPress={() => alert('XD')}/>
     </View>
   )
 }
