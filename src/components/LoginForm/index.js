@@ -7,7 +7,7 @@ import { useIsFocused } from '@react-navigation/native'
 import GenericSign from '../GenericSign'
 import fbShortcuts from '../../assets/controllers/firebaseShortcuts'
 import { userSession, setId } from '../../store/reducers/userSession'
-auth().signOut()
+
 let signedIn = false
 
 const showError = (err, setLoading) => {
