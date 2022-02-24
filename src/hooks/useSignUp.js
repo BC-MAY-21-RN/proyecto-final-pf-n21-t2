@@ -12,6 +12,7 @@ const useSignUp = (type) => {
     checkbox: useInput(),
     dogSize: useInput(inputValidations.string, null, type !== 'walker'),
     address: useInput(inputValidations.string, null, type !== 'client'),
+    image: useInput(),
     submit: useSubmit()
   })
 }

@@ -27,7 +27,7 @@ const AddPet = ({ navigation }) => {
   const fireStoreAdd = () => {
     form.submit.setLoading(true)
     firebase.firestore().collection('Pets').add(getFormResult(form)).then(e => {
-      fileUpload(form.petImage.value, e._documentPath._parts[1]).then(() => {
+      fileUpload('/Pets', form.petImage.value, e._documentPath._parts[1]).then(() => {
         navigation.goBack()
       })
     })
