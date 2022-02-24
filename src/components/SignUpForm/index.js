@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
-import { ScrollView, Alert } from 'react-native'
+import { Alert } from 'react-native'
 import CustomInput from '../CustomInput'
 import useSignUp from '../../hooks/useSignUp'
-import styles from './styles'
 import auth from '@react-native-firebase/auth'
 import { CustomPicker } from '../CustomPicker'
 import { CustomCheckBox } from '../CustomCheckBox'
 import fbShortcuts from '../../assets/controllers/firebaseShortcuts'
 import GenericSign from '../GenericSign'
 import { userSession, setId } from '../../store/reducers/userSession'
+import ImageInput from '../ImageInput'
+import GenericContainer from '../../containers/GenericContainer'
+import fileUpload from '../../assets/controllers/FileUpload'
 
 const dogSizes = require('./../../assets/datasets/dogSizes.json')
 
@@ -21,13 +23,14 @@ const SignUp = (setLoading, email, password) => {
   })
 }
 
-const getCollectionAndData = (type, useruid, username, mobile, dogSize, address) => {
+const getCollectionAndData = (type, useruid, username, mobile, dogSize, address, imageName) => {
   const dataStructure = {
     useruid: useruid,
     username: username,
     mobile: mobile,
     extraData: {},
-    lastPosition: {}
+    lastPosition: {},
+    imageName: imageName
   }
   let targetSection
   switch (type) {
@@ -45,14 +48,17 @@ const getCollectionAndData = (type, useruid, username, mobile, dogSize, address)
   return [targetSection, dataStructure]
 }
 
-const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile, dogSize, address) => {
-  const [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address)
-  fbShortcuts.add('Users', useruid, dataStructure, () => {
-    setLoading(false)
-    userSession.dispatch(setId(useruid))
-    navigation.reset({
-      index: 0,
-      routes: [{ name: targetSection, params: { useruid } }]
+const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile, dogSize, address, image) => {
+  console.log('IMAGE => ', image)
+  const [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address, image.name)
+  fbShortcuts.add('Users', useruid, dataStructure, e => {
+    fileUpload('/Users', image, useruid).then(() => {
+      setLoading(false)
+      userSession.dispatch(setId(useruid))
+      navigation.reset({
+        index: 0,
+        routes: [{ name: targetSection, params: { useruid } }]
+      })
     })
   })
 }
@@ -71,14 +77,16 @@ const SignUpForm = ({ type, navigation }) => {
           form.username.value,
           form.mobile.value,
           form.dogSize.value,
-          form.address.value)
+          form.address.value,
+          form.image.value)
       }
     })
     return subscriber
   }, [form.username.value, form.mobile.value, form.dogSize.value, form.address.value])
 
   return (
-    <ScrollView style={styles.container}>
+    <GenericContainer scroll>
+      <ImageInput title="Upload an image" {...form.image} />
       <CustomInput title="Username" {...form.username} />
       <GenericSign title="Sign Up" {...form} onPress={() => {
         form.submit.setLoading(true)
@@ -91,7 +99,7 @@ const SignUpForm = ({ type, navigation }) => {
         }
         <CustomCheckBox texto="I am older than 18 years old" {...form.checkbox} />
       </GenericSign>
-    </ScrollView>
+    </GenericContainer>
   )
 }
 
