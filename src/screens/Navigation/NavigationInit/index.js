@@ -32,8 +32,7 @@ const NavigationInit = () => {
         <Stack.Navigator initialRouteName='FormTravel' screenOptions={{ headerStyle: { backgroundColor: '#A239EA' }, headerTintColor: '#fff' }}><Stack.Screen name="Login" component={SignWelcome} />
           <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
           <Stack.Screen name="SignUpClient" component={SignUpClient} /><Stack.Screen name="Walker" component={TabNavigator} />
-          <Stack.Screen name="Client" component={TabNavigator} />
-          <Stack.Screen name="WalkerServices" component={WalkerServices} />
+          <Stack.Screen name="Client" component={TabNavigator} /><Stack.Screen name="WalkerServices" component={WalkerServices} />
           <Stack.Screen name="SettingsUser" component={SettingsUser} />
           <Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} />
           <Stack.Screen name="ClientWalkers" component={ClientWalkers} />

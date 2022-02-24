@@ -4,7 +4,7 @@ import theme from '../../themes/lights'
 const styles = StyleSheet.create({
   container: {
     marginVertical: theme.spacing.xl,
-    marginHorizontal: theme.spacing.xxxl,
+    paddingHorizontal: theme.spacing.xxxl,
     flex: 1
   },
   enfasisContainer: {
