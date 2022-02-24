@@ -23,7 +23,7 @@ const handleThen = (req, callback) => {
     Alert.alert('Error', e)
   }).then(r => {
     if (callback) {
-      callback()
+      callback(r)
     }
   })
 }
