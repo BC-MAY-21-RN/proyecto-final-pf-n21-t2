@@ -80,7 +80,7 @@ const CustomInput = ({ height, type, title, label, setValue, setOk, validation, 
     <View>
       <Text style={styles.title}>{title}</Text>
       <TextInput style={[styles.input, { height: height }]}
-        secureTextEntry={visible}
+        secureTextEntry={isPassword ? visible : false}
         placeholder={title}
         onChangeText={text => {
           if (validation) {
