@@ -27,11 +27,14 @@ const getWalkers = setWalkers => {
   fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
     q.forEach(documentSnapshot => {
       const row = documentSnapshot.data()
+      row.id = documentSnapshot.ref._documentPath._parts[1]
+      row.image = fbShortcuts.getImage(`Users%2F${row.id}%2F${row.imageName}`)
       if (isNearEnought(row.lastPosition)) {
         result.push(
           {
             id: documentSnapshot.id,
-            name: row.username
+            name: row.username,
+            image: row.image
           }
         )
       }
@@ -41,9 +44,9 @@ const getWalkers = setWalkers => {
 }
 
 const ClientWalkers = ({ navigation }) => {
-  const renderItem = ({ item }) => (
-    <WalkerCard navigation={navigation} title={item.name} rating={2.5} />
-  )
+  const renderItem = ({ item }) => {
+    return <WalkerCard navigation={navigation} {...item} title={item.name} rating={2.5} />
+  }
 
   return (
     <GenericContainer>
