@@ -14,12 +14,6 @@ const Card = ({ name, url, onPress }) => {
   </TouchableOpacity>)
 }
 
-const getImage = (filePath) => {
-  const domain = 'https://firebasestorage.googleapis.com/v0/b/take-my-dog.appspot.com/o/'
-  const tail = '?alt=media&token=816106a6-653f-48d5-8b73-7b1f04e392de'
-  return `${domain}${filePath}${tail}`
-}
-
 const getPets = setPets => {
   fbShortcuts.getCollection('Pets').where('useruid', '==', userSession.getState().id).get()
     .then((querySnapshot) => {
@@ -27,7 +21,7 @@ const getPets = setPets => {
       querySnapshot.forEach((snapshot) => {
         const row = snapshot.data()
         row.id = snapshot.ref._documentPath._parts[1]
-        row.image = getImage(`Pets%2F${row.id}%2F${row.imageName}`)
+        row.image = fbShortcuts.getImage(`Pets%2F${row.id}%2F${row.imageName}`)
         newPets.push(row)
       })
       setPets(newPets)

@@ -18,6 +18,12 @@ const getDoc = (collection, document) => {
   return getCollection(collection).doc(document)
 }
 
+const getImage = (filePath) => {
+  const domain = 'https://firebasestorage.googleapis.com/v0/b/take-my-dog.appspot.com/o/'
+  const tail = '?alt=media&token=816106a6-653f-48d5-8b73-7b1f04e392de'
+  return `${domain}${filePath}${tail}`
+}
+
 const handleThen = (req, callback) => {
   return req.catch(e => {
     Alert.alert('Error', e)
@@ -45,7 +51,8 @@ const fbShortcuts = {
   updateDoc,
   add,
   getCollection,
-  push
+  push,
+  getImage
 }
 
 export default fbShortcuts

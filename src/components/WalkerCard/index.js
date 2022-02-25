@@ -5,21 +5,21 @@ import styles from './styles'
 import CustomRatings from '../CustomRatings'
 
 const toHireWalkerSection = (navigation, data) => {
-  navigation.navigate('ToHireWalkerSelection')
+  navigation.navigate('ToHireWalkerSelection', data)
 }
 
-const WalkerCard = ({ title, rating, navigation }) => {
-  const data = { title, rating }
+const WalkerCard = ({ title, rating, navigation, image, name }) => {
+  const data = { title, rating, image, name }
 
   return (
     <Pressable style={styles.container} onPress={() => toHireWalkerSection(navigation, data)}>
       <View>
-        <RoundImage source={require('../../assets/images/image_loading.gif')} />
+        <RoundImage size={100} source={{ uri: image }} />
       </View>
       <View style={styles.rightContainer}>
         <Text style={styles.title}>{title}</Text>
         <View>
-          <CustomRatings rating={rating}/>
+          <CustomRatings rating={rating} size={20} />
         </View>
       </View>
     </Pressable>
