@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     marginRight: theme.spacing.m
   },
   icon: {
+    color: theme.color.secondary1
   }
 })
 
