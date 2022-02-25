@@ -63,7 +63,7 @@ const ShowUnshowEye = ({ visible, setVisible, style }) => {
         setVisible(!visible)
       }}>
       <Icon
-        name={visible ? 'eye' : 'eye-off'}
+        name={visible ? 'eye-off' : 'eye'}
         size={30}
         color={theme.color.secondary2}
       />
@@ -74,13 +74,13 @@ const ShowUnshowEye = ({ visible, setVisible, style }) => {
 const CustomInput = ({ height, type, title, label, setValue, setOk, validation, placeholder, secret }) => {
   const error = useRef(initError())
   const isPassword = type === 'password'
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(true)
 
   return (
     <View>
       <Text style={styles.title}>{title}</Text>
       <TextInput style={[styles.input, { height: height }]}
-        secureTextEntry={visible}
+        secureTextEntry={isPassword ? visible : false}
         placeholder={title}
         onChangeText={text => {
           if (validation) {
