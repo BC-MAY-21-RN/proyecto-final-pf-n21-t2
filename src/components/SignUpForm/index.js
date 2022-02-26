@@ -23,9 +23,10 @@ const SignUp = (setLoading, email, password) => {
   })
 }
 
-const getCollectionAndData = (type, useruid, username, mobile, dogSize, address, imageName) => {
+const getCollectionAndData = (type, useruid, email, username, mobile, dogSize, address, imageName) => {
   const dataStructure = {
     useruid: useruid,
+    email: email,
     username: username,
     mobile: mobile,
     extraData: {},
@@ -48,9 +49,8 @@ const getCollectionAndData = (type, useruid, username, mobile, dogSize, address,
   return [targetSection, dataStructure]
 }
 
-const UploadLeftData = (type, navigation, setLoading, useruid, username, mobile, dogSize, address, image) => {
-  console.log('IMAGE => ', image)
-  const [targetSection, dataStructure] = getCollectionAndData(type, useruid, username, mobile, dogSize, address, image.name)
+const UploadLeftData = (type, navigation, setLoading, useruid, email, username, mobile, dogSize, address, image) => {
+  const [targetSection, dataStructure] = getCollectionAndData(type, useruid, email, username, mobile, dogSize, address, image.name)
   fbShortcuts.add('Users', useruid, dataStructure, e => {
     fileUpload('/Users', image, useruid).then(() => {
       setLoading(false)
@@ -74,6 +74,7 @@ const SignUpForm = ({ type, navigation }) => {
           navigation,
           form.submit.setLoading,
           user.uid,
+          form.email.value,
           form.username.value,
           form.mobile.value,
           form.dogSize.value,

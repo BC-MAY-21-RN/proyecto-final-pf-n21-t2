@@ -34,7 +34,9 @@ const getWalkers = setWalkers => {
           {
             id: documentSnapshot.id,
             name: row.username,
-            image: row.image
+            image: row.image,
+            mobile: row.mobile,
+            email: row.email
           }
         )
       }

@@ -8,8 +8,8 @@ const toHireWalkerSection = (navigation, data) => {
   navigation.navigate('ToHireWalkerSelection', data)
 }
 
-const WalkerCard = ({ title, rating, navigation, image, name }) => {
-  const data = { title, rating, image, name }
+const WalkerCard = ({ title, rating, navigation, image, name, email, mobile }) => {
+  const data = { title, rating, image, name, email, mobile }
 
   return (
     <Pressable style={styles.container} onPress={() => toHireWalkerSection(navigation, data)}>
