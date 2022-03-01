@@ -65,7 +65,7 @@ const ShowUnshowEye = ({ visible, setVisible, style }) => {
       <Icon
         name={visible ? 'eye-off' : 'eye'}
         size={30}
-        color={theme.color.secondary2}
+        color={theme.color.primary2}
       />
     </TouchableOpacity>
   )
