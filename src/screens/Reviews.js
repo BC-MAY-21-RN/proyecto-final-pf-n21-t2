@@ -40,7 +40,7 @@ const Reviews = () => {
 
     <View style={styles.container}>
 
-        <UserPresentation rating="4" name ="Manu Ríos" image={{ uri: 'https://media-exp1.licdn.com/dms/image/D4E35AQHy1DRqQt3HrA/profile-framedphoto-shrink_800_800/0/1639947131749?e=1645578000&v=beta&t=4eJfSxvN52_cgE7GsIcIXv6yvYEC_oQs53rQLlR5wX8' }} />
+        <UserPresentation rating="4" name ="Manuel" image={{ uri: 'https://media-exp1.licdn.com/dms/image/D4E35AQHy1DRqQt3HrA/profile-framedphoto-shrink_800_800/0/1639947131749?e=1646258400&v=beta&t=wCUrBIrVvu3_mUnK6XFgjJwCB2UkR2rsY5QRzIopOdA' }} />
 
         <GenericFlatList DATA={DATA} renderItem={renderItem} styles={mTop}/>
 

@@ -13,7 +13,7 @@ let signedIn = false
 const showError = (err, setLoading) => {
   setLoading(false)
   if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
-    Alert.alert('Error', 'Email nor password are wrong.')
+    Alert.alert('Error', 'Email or password is wrong.')
   } else {
     Alert.alert('Error', 'Something went srong while signing in.')
   }

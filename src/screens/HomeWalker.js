@@ -1,4 +1,4 @@
-import { View, FlatList } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import CardGeneric from '../components/GenericCard'
 
@@ -21,7 +21,7 @@ const HomeWalker = ({ navigation }) => {
   )
 
   return (
-    <View>
+    <View style={styles.whiteBack}>
       <FlatList
         data={DATA}
         renderItem={renderItem}
@@ -30,5 +30,12 @@ const HomeWalker = ({ navigation }) => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  whiteBack: {
+    backgroundColor: 'white',
+    flex: 1
+  }
+})
 
 export default HomeWalker

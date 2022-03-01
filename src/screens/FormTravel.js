@@ -24,7 +24,7 @@ const FormTravel = () => {
         </View>
       </View>
 
-      <CustomButton title='Save' width={200} borderRadius={18} color='#fff' textColor={theme.color.primary2} onPress={() => alert('XD')}/>
+      <CustomButton title='Save' width={200} borderRadius={18} textColor={theme.color.secondary1} onPress={() => alert('XD')}/>
     </View>
   )
 }

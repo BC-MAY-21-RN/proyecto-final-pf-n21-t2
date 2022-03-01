@@ -87,15 +87,15 @@ const SignUpForm = ({ type, navigation }) => {
   return (
     <GenericContainer scroll>
       <ImageInput title="Upload an image" {...form.image} />
-      <CustomInput title="Username" {...form.username} />
+      <CustomInput title="Full Name" placeholder="example: Manuel Rios"{...form.username} />
       <GenericSign title="Sign Up" {...form} onPress={() => {
         form.submit.setLoading(true)
         SignUp(form.submit.setLoading, form.email.value, form.password.value)
       }}>
-        <CustomInput title="Mobile" {...form.mobile} />
+        <CustomInput title="Mobile" placeholder="example: 3133789278" {...form.mobile} />
         {type === 'walker'
           ? <CustomPicker title="Dog size" itemdata={dogSizes} {...form.dogSize} />
-          : <CustomInput title="Address" {...form.address} />
+          : <CustomInput title="Address" {...form.address} placeholder="Concha Street 124, Bikini Bottom"/>
         }
         <CustomCheckBox texto="I am older than 18 years old" {...form.checkbox} />
       </GenericSign>

@@ -6,7 +6,7 @@ import theme from '../themes/lights'
 
 const HomeClient = ({ navigation }) => {
   return (
-    <GenericContainer>
+    <GenericContainer style={ { backgroundColor: 'white' } }>
       <GenericContainer type="enfasis">
         <EnfasisText text="There are 69,420 walkers right now" />
         <CustomButton marginTop={theme.spacing.xxxl} title='Search Walker'

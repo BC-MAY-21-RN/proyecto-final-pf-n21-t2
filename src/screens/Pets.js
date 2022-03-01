@@ -47,10 +47,9 @@ const Pets = ({ navigation }) => {
 
   return (
     <GenericContainer style={styles.container}>
-      <CustomFlatList render={renderItem} get={getPets} empty="No hay mascotas" />
+      <CustomFlatList render={renderItem} get={getPets} empty="No pets registred" />
        <CustomButton leftIconName='add-outline' title="Pet" {...buttonStyle}
-        onPress={() => { handlePet('addPet') }}
-      />
+        onPress={() => { handlePet('addPet') } }/>
     </GenericContainer>
   )
 }
