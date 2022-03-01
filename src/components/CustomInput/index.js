@@ -81,7 +81,7 @@ const CustomInput = ({ height, type, title, label, setValue, setOk, validation, 
       <Text style={styles.title}>{title}</Text>
       <TextInput style={[styles.input, { height: height }]}
         secureTextEntry={isPassword ? visible : false}
-        placeholder={title}
+        placeholder={placeholder}
         onChangeText={text => {
           if (validation) {
             TriggerValidation(text, error, validation)

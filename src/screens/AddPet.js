@@ -35,12 +35,12 @@ const AddPet = ({ navigation }) => {
 
   return (
     <GenericContainer scroll={true}>
-      <ImageInput title="Pet image" {...form.petImage} />
-      <CustomInput title="Name" {...form.name} />
-      <CustomInput title="Age" {...form.age} />
-      <CustomInput title="Weight" label="Weight in kilograms" {...form.weight} />
-      <CustomInput title="Height" label="Height in centimeters" {...form.height} />
-      <CustomInput title="SpecialCares" label="Does your pet needs special cares?, this will be helpfull to walkers" {...form.specialCares} />
+      <ImageInput title="Pet image" {...form.petImage}/>
+      <CustomInput title="Name" {...form.name} placeholder="example: Pugberto"/>
+      <CustomInput title="Age (in years)" {...form.age} placeholder="example: 6"/>
+      <CustomInput title="Weight (in kilograms)" {...form.weight} placeholder="example: 10"/>
+      <CustomInput title="Height (in centimeters)" {...form.height} placeholder="example: 40"/>
+      <CustomInput title="SpecialCares" label="Does your pet needs special cares? This will be helpfull to our walkers" {...form.specialCares} placeholder="example: Get thirsty too fast"/>
       <CustomButton width={150} marginTop={theme.spacing.xl} {...form.submit} title={'ADD'} onPress={fireStoreAdd}/>
     </GenericContainer>
   )

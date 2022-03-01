@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     left: 15,
     borderColor: theme.color.primary1,
     height: 100,
-    width: 360,
+    width: 320,
     borderWidth: 2,
     borderRadius: 20,
     flexDirection: 'row'

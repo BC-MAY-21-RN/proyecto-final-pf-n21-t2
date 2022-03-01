@@ -13,7 +13,7 @@ const ToHireWalkerSection = ({ navigation, route }) => {
       <CustomButton marginTop={theme.spacing.xl} title="See reviews" onPress={() => navigation.navigate('Reviews')} />
       <LineSeparator marginVertical={theme.spacing.xxl} />
       <UserInfo address="Molusco #139" age="22" email="hmaldonado0@ucol.mx" services="1230" />
-      <CustomButton marginTop={theme.spacing.xxxl} width={300} title="Take my dog" onPress={() => console.log('take my dog')} />
+      <CustomButton marginTop={theme.spacing.xxxl} width={300} title="Take my dog" onPress={() => navigation.navigate('FormTravel')} />
     </GenericContainer>
   )
 }
