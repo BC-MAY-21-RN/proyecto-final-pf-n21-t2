@@ -27,8 +27,7 @@ const getWalkers = setWalkers => {
   fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
     q.forEach(documentSnapshot => {
       const row = documentSnapshot.data()
-      row.id = documentSnapshot.ref._documentPath._parts[1]
-      row.image = fbShortcuts.getImage(`Users%2F${row.id}%2F${row.imageName}`)
+      row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
       if (isNearEnought(row.lastPosition)) {
         result.push(
           {
