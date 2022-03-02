@@ -22,6 +22,7 @@ import AboutUS from '../../AboutUS'
 import FormTravel from '../../FormTravel'
 import Reviews from '../../Reviews'
 import AddReview from '../../AddReview'
+import ClientChoosePet from '../../ClientChoosePet'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const Stack = createNativeStackNavigator()
@@ -47,7 +48,7 @@ const NavigationInit = () => {
           <Stack.Screen name="AboutUs" component={AboutUS} />
           <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} />
           <Stack.Screen name="Reviews" component={Reviews} />
-          <Stack.Screen name="FormTravel" component={FormTravel} />
+          <Stack.Screen name="FormTravel" component={FormTravel} /><Stack.Screen name="ClientChoosePet" component={ClientChoosePet} />
           <Stack.Screen name="AddReview" component={AddReview} />
         </Stack.Navigator>
       </NavigationContainer>

@@ -4,27 +4,31 @@ import CustomRatings from '../components/CustomRatings'
 import CustomButton from '../components/CustomButton'
 import CustomDatePicker from '../components/CustomDatePicker'
 import theme from '../themes/lights'
+import useWalkDatetime from '../hooks/useWalkDatetime'
 
-const FormTravel = () => {
+const FormTravel = ({ navigation, route }) => {
+  const form = useWalkDatetime()
+  const chooseDog = () => {
+    navigation.navigate('ClientChoosePet', {
+      startDatetime: form.start.value,
+      endDatetime: form.end.value,
+      walkerId: route.params.id
+    })
+  }
   return (
     <View style={styles.container}>
       <View style={styles.align}>
-
         <Text style={styles.info}>The walker will be: </Text>
-
-        <Image source={{ uri: 'https://i.ytimg.com/vi/Q0P8ig5STAY/maxresdefault.jpg' }} style={styles.img}/>
+        <Image source={{ uri: route.params.image }} style={styles.img}/>
         <Text style={styles.instructions}>Tizoc Chavez</Text>
-
         <CustomRatings rating={3} size={25}/>
-
         <View style={styles.buttons}>
           <Text style={styles.instructions}>Please customize the start and the end time of the ride: </Text>
-          <CustomDatePicker title={'Start date time'} styl={{ marginBottom: 10 }} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
-          <CustomDatePicker title={'End date time'} width={160} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
+          <CustomDatePicker {...form.start} title={'Start date time'} styl={{ marginBottom: 10 }} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
+          <CustomDatePicker {...form.end} title={'End date time'} width={160} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
         </View>
       </View>
-
-      <CustomButton title='Save' width={200} borderRadius={18} textColor={theme.color.secondary1} onPress={() => alert('XD')}/>
+      <CustomButton {...form.submit} title='Choose pet' width={200} borderRadius={18} color='#fff' textColor={theme.color.primary2} onPress={() => chooseDog()}/>
     </View>
   )
 }
