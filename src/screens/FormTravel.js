@@ -11,7 +11,8 @@ const FormTravel = ({ navigation, route }) => {
   const chooseDog = () => {
     navigation.navigate('ClientChoosePet', {
       startDatetime: form.start.value,
-      endDatetime: form.end.value
+      endDatetime: form.end.value,
+      walkerId: route.params.id
     })
   }
   return (

@@ -9,11 +9,12 @@ const getDiference = (val1, val2) => {
   return Math.abs(Math.abs(val1) - Math.abs(val2))
 }
 
-const isNearEnought = lastPosition => {
+const isNearEnought = (lastPosition, currentPosition) => {
   const oneMinute = 1000 * 60
-  const currentPosition = userSession.getState().lastPosition
   const maxDistance = 0.01
-  if ((new Date().getTime() - lastPosition.timestamp) > oneMinute &&
+  if (!currentPosition) {
+    return true
+  } else if ((new Date().getTime() - lastPosition.timestamp) > oneMinute &&
     getDiference(lastPosition.latitude, currentPosition.latitude) > maxDistance &&
     getDiference(lastPosition.longitude, currentPosition.longitude) > maxDistance
   ) {
@@ -24,11 +25,12 @@ const isNearEnought = lastPosition => {
 
 const getWalkers = setWalkers => {
   const result = []
+  const currentPosition = userSession.getState().lastPosition
   fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
     q.forEach(documentSnapshot => {
       const row = documentSnapshot.data()
       row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
-      if (isNearEnought(row.lastPosition)) {
+      if (isNearEnought(row.lastPosition, currentPosition)) {
         result.push(
           {
             id: documentSnapshot.id,

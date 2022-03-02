@@ -15,7 +15,10 @@ const getCollection = collection => {
 }
 
 const getDoc = (collection, document) => {
-  return getCollection(collection).doc(document)
+  if (document) {
+    return getCollection(collection).doc(document)
+  }
+  return getCollection(collection).doc()
 }
 
 const getImage = (filePath) => {
@@ -35,7 +38,11 @@ const handleThen = (req, callback) => {
 }
 
 const add = (collection, id, newValue, callback) => {
-  handleThen(getDoc(collection, id).set(newValue), callback)
+  if (id) {
+    handleThen(getDoc(collection, id).set(newValue), callback)
+  } else {
+    handleThen(getDoc(collection).set(newValue), callback)
+  }
 }
 
 const push = (collection, id, newValue, callback) => {
