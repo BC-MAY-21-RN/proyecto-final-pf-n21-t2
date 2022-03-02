@@ -7,13 +7,15 @@ import UserInfo from '../components/UserInfo'
 import theme from '../themes/lights'
 
 const ToHireWalkerSection = ({ navigation, route }) => {
+  const img = route.params.images
   return (
     <GenericContainer>
-      <UserPresentation rating="2" name={route.params.name} image={{ uri: route.params.image }} />
+      <UserPresentation rating="2" name={route.params.name} image={{ uri: img }} />
       <CustomButton marginTop={theme.spacing.xl} title="See reviews" onPress={() => navigation.navigate('Reviews')} />
       <LineSeparator marginVertical={theme.spacing.xxl} />
       <UserInfo address="Molusco #139" age="22" email="hmaldonado0@ucol.mx" services="1230" />
       <CustomButton marginTop={theme.spacing.xxxl} width={300} title="Take my dog" onPress={() => navigation.navigate('FormTravel')} />
+      <CustomButton marginTop={theme.spacing.xxxxl} borderRadius={20} color={'white'} textColor={'purple'} title="Add Review" onPress={() => navigation.navigate('AddReview', { img })} />
     </GenericContainer>
   )
 }
