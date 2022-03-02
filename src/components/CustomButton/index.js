@@ -29,7 +29,7 @@ const CustomButton = ({ color, marginBottom, marginTop, style, loading, ok, titl
     <View style={[styles.container, style, { marginTop, marginBottom }]}>
       <Pressable style={[{ width: width }, styles.button, borderR, colorStyle, !ok ? styles.disabled : null]} onPress={onPress} disabled={!ok}>
         {leftIcon}
-        {loading ? <ActivityIndicator size="small" color={theme.color.secondary1} /> : <Text style={[styles.text, txtColor]}>{title}</Text>}
+        {loading ? <ActivityIndicator size="small" color={textColor ?? color} /> : <Text style={[styles.text, txtColor]}>{title}</Text>}
       </Pressable>
     </View>
   )

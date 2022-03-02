@@ -30,7 +30,7 @@ const NavigationInit = () => {
   realtimeLocation.listen()
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='Login' screenOptions={{ headerStyle: { backgroundColor: '#A239EA' }, headerTintColor: '#fff' }}><Stack.Screen name="Login" component={SignWelcome} />
+        <Stack.Navigator initialRouteName='Login' screenOptions={{ contentStyle: { backgroundColor: 'white' }, headerStyle: { backgroundColor: '#A239EA' }, headerTintColor: '#fff' } }><Stack.Screen name="Login" component={SignWelcome} />
           <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
           <Stack.Screen name="SignUpClient" component={SignUpClient} /><Stack.Screen name="Walker" component={TabNavigator} />
           <Stack.Screen name="Client" component={TabNavigator} /><Stack.Screen name="WalkerServices" component={WalkerServices} />

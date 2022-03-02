@@ -116,7 +116,7 @@ const ClientChoosePet = ({ navigation, route }) => {
       </View>
       {pets
         ? (
-        <CustomButton title="Take My Dog" {...submit} onPress={handleSubmit} />
+        <CustomButton title="Take my dog" borderRadius={18} color='#fff' textColor={theme.color.primary2} {...submit} onPress={handleSubmit} />
           )
         : <LoadingSpinner size="huge" scale={2} />}
     </GenericContainer>

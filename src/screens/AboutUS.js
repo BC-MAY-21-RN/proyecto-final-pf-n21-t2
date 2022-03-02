@@ -27,7 +27,7 @@ const AboutUS = () => {
   }
 
   return (
-    <View style={styles.body}>
+    <View>
       <FlatList
         data = {teamMembers}
         renderItem = {renderItem}
@@ -52,7 +52,9 @@ const styles = StyleSheet.create({
     width: 330,
     alignItems: 'center',
     flexDirection: 'row',
-    padding: 10
+    padding: 10,
+    marginLeft: 40,
+    marginTop: 20
   },
   img: {
     width: 80,
