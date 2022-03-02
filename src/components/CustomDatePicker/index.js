@@ -1,54 +1,74 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Platform, Text, StyleSheet } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import CustomButton from '../CustomButton'
+import theme from '../../themes/lights'
 
-const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor }) => {
+const getDateString = (date) => {
+  const tempDate = new Date(date)
+  return `${tempDate.toLocaleDateString()} ${tempDate.toLocaleTimeString().slice(0, 5)}`
+}
+
+const doUpdate = ({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode }) => {
+  if (selectedDate) {
+    setDate(currentDate)
+    if (mode === 'date') {
+      showTimepicker()
+    } else {
+      setMode('date')
+    }
+  }
+}
+
+const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, setValue, setOk }) => {
   const [date, setDate] = useState(new Date())
   const [mode, setMode] = useState('date')
   const [show, setShow] = useState(false)
-  const [fTime, setFtime] = useState('00:00')
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date
-    setShow(Platform.OS === 'ios')
-    setDate(currentDate)
-
-    const tempDate = new Date(currentDate)
-    setFtime(`${tempDate.getHours()}:${tempDate.getMinutes()}`)
-
-    console.log(fTime)
-  }
 
   const showMode = (currentMode) => {
     setShow(true)
     setMode(currentMode)
   }
 
-  // const showDatepicker = () => {
-  //   showMode('date')
-  // }
-
   const showTimepicker = () => {
     showMode('time')
   }
 
+  const showDatepicker = () => {
+    showMode('date')
+  }
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date
+    setShow(Platform.OS === 'ios')
+    doUpdate({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode })
+  }
+
+  useEffect(() => {
+    setOk(true)
+    setValue(date.getTime())
+  }, [date])
+
   return (
     <View style={[styl, styles.container]}>
       <View>
-        <CustomButton onPress={showTimepicker} title={title} width={width} color={color} borderRadius={borderRadius} textColor={textColor}/>
-        {show && (
+        <CustomButton onPress={showDatepicker} title={title} width={width} color={color} borderRadius={borderRadius} textColor={textColor}/>
+        {show
+          ? (
           <DateTimePicker
-          testID="dateTimePicker"
           value={date}
           mode={mode}
           is24Hour={true}
           display="spinner"
           onChange={onChange}
         />
-        )}
+            )
+          : null}
       </View>
-      <Text style={styles.hour}>{fTime}</Text>
+      <View style={styles.datetimeRow}>
+        <Text style={styles.hour}>{getDateString(date).slice(0, 8)}</Text>
+        <Text style={styles.hour}>{getDateString(date).slice(9)}</Text>
+      </View>
     </View>
   )
 }
@@ -64,7 +84,9 @@ const styles = StyleSheet.create({
     padding: 10
   },
   hour: {
-    fontSize: 30
+    fontSize: theme.font.xl
+  },
+  datetimeRow: {
+    display: 'flex'
   }
-
 })

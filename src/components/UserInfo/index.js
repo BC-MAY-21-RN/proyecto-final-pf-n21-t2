@@ -12,13 +12,13 @@ const DataRow = ({ style, left, right, bold }) => {
   )
 }
 
-const UserInfo = ({ address, age, email, services }) => {
+const UserInfo = ({ mobile, age, email, services }) => {
   return (
     <View style={styles.container}>
-      <DataRow left="Address" right="Age" />
-      <DataRow style={styles.separator} left={address} right={age} bold={true} />
       <DataRow left="Email" right="Services" />
       <DataRow left={email} right={services} bold={true} />
+      <DataRow left="Mobile" right="" />
+      <DataRow style={styles.separator} left={mobile} right="" bold={true} />
     </View>
   )
 }
