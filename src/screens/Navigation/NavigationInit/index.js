@@ -48,8 +48,7 @@ const NavigationInit = () => {
           <Stack.Screen name="AboutUs" component={AboutUS} />
           <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} />
           <Stack.Screen name="Reviews" component={Reviews} />
-          <Stack.Screen name="FormTravel" component={FormTravel} />
-          <Stack.Screen name="ClientChoosePet" component={ClientChoosePet} />
+          <Stack.Screen name="FormTravel" component={FormTravel} /><Stack.Screen name="ClientChoosePet" component={ClientChoosePet} />
         </Stack.Navigator>
       </NavigationContainer>
   )

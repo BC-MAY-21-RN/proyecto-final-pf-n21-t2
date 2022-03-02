@@ -9,6 +9,17 @@ const getDateString = (date) => {
   return `${tempDate.toLocaleDateString()} ${tempDate.toLocaleTimeString().slice(0, 5)}`
 }
 
+const doUpdate = ({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode }) => {
+  if (selectedDate) {
+    setDate(currentDate)
+    if (mode === 'date') {
+      showTimepicker()
+    } else {
+      setMode('date')
+    }
+  }
+}
+
 const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, setValue, setOk }) => {
   const [date, setDate] = useState(new Date())
   const [mode, setMode] = useState('date')
@@ -30,14 +41,7 @@ const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date
     setShow(Platform.OS === 'ios')
-    if (selectedDate) {
-      setDate(currentDate)
-      if (mode === 'date') {
-        showTimepicker()
-      } else {
-        setMode('date')
-      }
-    }
+    doUpdate({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode })
   }
 
   useEffect(() => {
