@@ -3,12 +3,13 @@ import theme from '../../themes/lights'
 
 const styles = StyleSheet.create({
   CardBox: {
-    left: 15,
     borderColor: theme.color.primary1,
     height: 100,
     width: 320,
     borderWidth: 2,
     borderRadius: 20,
+    marginBottom: 10,
+    alignSelf: 'center',
     flexDirection: 'row'
   },
   Img: {
@@ -24,15 +25,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   Tittle: {
-    color: 'lightgrey'
+    color: theme.color.secondary2
   },
   Owner: {
     fontWeight: 'bold'
-  },
-  Space: {
-    paddingVertical: 10
   }
-
 })
 
 export default styles
