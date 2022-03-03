@@ -9,7 +9,7 @@ const UserPresentation = ({ rating, name, image }) => {
     <View style={styles.container}>
       <RoundImage source={image} />
       <EnfasisText text={name} />
-      <CustomRatings rating={rating} size={20}/>
+      {rating ? <CustomRatings rating={rating} size={20}/> : null}
     </View>
   )
 }
