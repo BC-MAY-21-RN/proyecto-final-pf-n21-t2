@@ -25,21 +25,21 @@ const getHumanValue = value => {
 
 const getTravelValues = (startDatetime, endDatetime) => {
   const currentDate = new Date()
-  const rawDuration = currentDate.getTime() - parseInt(startDatetime)
+  const rawDuration = parseInt(startDatetime) - parseInt(endDatetime)
   const humanDuration = getHumanValue(rawDuration)
-  const rawStartsIn = parseInt(endDatetime) - parseInt(startDatetime)
+  const rawStartsIn = currentDate.getTime() - parseInt(startDatetime)
   const humanStartsIn = getHumanValue(rawStartsIn)
   return [humanDuration, humanStartsIn]
 }
 
-const CardGeneric = ({ navigation, Name, Duration, Start, ImageUri, startDatetime, endDatetime }) => {
+const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, pets, id, isPending }) => {
+  const [travelDuration, travelStartsIn] = getTravelValues(startDatetime, endDatetime)
   const onPress = () => {
-    navigation.navigate('WalkerDetailsClient', {
-      Name, Duration, Start, ImageUri
+    const nextScreen = isPending ? 'WalkerDetailsClient' : 'WalkerCurrentService'
+    navigation.navigate(nextScreen, {
+      Name, ImageUri, Duration: travelDuration, Start: travelStartsIn, pets, id
     })
   }
-
-  const [travelDuration, travelStartsIn] = getTravelValues(startDatetime, endDatetime)
 
   return (
     <TouchableOpacity style={styles.CardBox} onPress={onPress}>
