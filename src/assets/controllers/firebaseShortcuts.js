@@ -58,8 +58,8 @@ const fbShortcuts = {
   updateDoc,
   add,
   getCollection,
-  push,
-  getImage
+  getImage,
+  getDoc
 }
 
 export default fbShortcuts
