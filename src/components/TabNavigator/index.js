@@ -28,11 +28,11 @@ const TabNavigator = ({ navigation, route }) => {
   switch (route.name) {
     case 'Walker':
       settingsType = 'Walker'
-      screens = getScreens('HomeWalker', HomeWalker, 'home-outline', 'WalkerServices', WalkerServices, 'walk')
+      screens = getScreens('HomeWalkerPendings', HomeWalker, 'home-outline', 'WalkerWalkerCurrents', HomeWalker, 'walk')
       break
     case 'Client':
       settingsType = 'Client'
-      screens = getScreens('HomeClient', HomeClient, 'home-outline', 'ClientDogWalker', ClientDogWalker, 'walk')
+      screens = getScreens('HomeClientPendings', HomeClient, 'home-outline', 'HomeClientCurrents', HomeClient, 'walk')
       break
   }
 

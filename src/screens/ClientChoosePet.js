@@ -79,7 +79,11 @@ const ClientChoosePet = ({ navigation, route }) => {
       const petRow = {
         image: pets[pet].image,
         name: pets[pet].name,
-        petId: pets[pet].id
+        petId: pets[pet].id,
+        specialCares: pets[pet].specialCares,
+        age: pets[pet].age,
+        height: pets[pet].height,
+        weight: pets[pet].weight
       }
       petsData.push(petRow)
     }

@@ -5,6 +5,7 @@ buildscript {
         buildToolsVersion = "30.0.2"
         minSdkVersion = 21
         compileSdkVersion = 30
+        androidMapsUtilsVersion = "2.3.0"
         targetSdkVersion = 30
         ndkVersion = "21.4.7075529"
     }
