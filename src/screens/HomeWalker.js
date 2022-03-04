@@ -5,8 +5,18 @@ import GenericContainer from '../containers/GenericContainer'
 import fbShortcuts from '../assets/controllers/firebaseShortcuts'
 import { userSession } from '../store/reducers/userSession'
 
+const finalUpdateClients = (data, setClients, walkings) => {
+  data.forEach((client, index) => {
+    client.forEach(clientData => {
+      const clientRow = clientData.data()
+      walkings[index].image = fbShortcuts.getImage(`Users%2F${clientRow.useruid}%2F${clientRow.imageName}`)
+      walkings[index].username = clientRow.username
+    })
+  })
+  setClients(walkings)
+}
+
 const getClients = (isPending) => {
-  console.log(isPending)
   const isPayed = isPending ? '0' : '1'
   return setClients => {
     const walkerId = userSession.getState().id
@@ -24,16 +34,7 @@ const getClients = (isPending) => {
             walkings.push(row)
           })
           Promise.all(getClients).then(data => resolve(data))
-        }).then(data => {
-          data.forEach((client, index) => {
-            client.forEach(clientData => {
-              const clientRow = clientData.data()
-              walkings[index].image = fbShortcuts.getImage(`Users%2F${clientRow.useruid}%2F${clientRow.imageName}`)
-              walkings[index].username = clientRow.username
-            })
-          })
-          setClients(walkings)
-        })
+        }).then(data => finalUpdateClients(data, setClients, walkings))
       })
   }
 }

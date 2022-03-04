@@ -1,43 +1,22 @@
-import { Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import styles from './styles'
+import { Text, View, TouchableOpacity } from 'react-native'
 import CustomImage from '../CustomImage'
-
-const getHumanValue = value => {
-  let result = ''
-  const seconds = 1000
-  const minutes = seconds * 60
-  const hours = minutes * 60
-  const days = hours * 24
-  if (value < 1000) {
-    result = 'just now'
-  } if (value / seconds > 1) {
-    result = `${Math.floor(value / seconds)} seconds`
-  } if (value / minutes > 1) {
-    result = `${Math.floor(value / minutes)} minutes`
-  } if (value / hours > 1) {
-    result = `${Math.floor(value / hours)} hours`
-  } if (value / days > 1) {
-    result = `${Math.floor(value / days)} days`
-  }
-  return result
-}
-
-const getTravelValues = (startDatetime, endDatetime) => {
-  const currentDate = new Date()
-  const rawDuration = parseInt(startDatetime) - parseInt(endDatetime)
-  const humanDuration = getHumanValue(rawDuration)
-  const rawStartsIn = currentDate.getTime() - parseInt(startDatetime)
-  const humanStartsIn = getHumanValue(rawStartsIn)
-  return [humanDuration, humanStartsIn]
-}
+import DateShortcuts from '../../assets/controllers/DateShortcuts'
+import styles from './styles'
 
 const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, pets, id, isPending }) => {
-  const [travelDuration, travelStartsIn] = getTravelValues(startDatetime, endDatetime)
+  const [travelDuration, travelStartsIn] = DateShortcuts.getTravelValues(startDatetime, endDatetime)
   const onPress = () => {
     const nextScreen = isPending ? 'WalkerDetailsClient' : 'WalkerCurrentService'
     navigation.navigate(nextScreen, {
-      Name, ImageUri, Duration: travelDuration, Start: travelStartsIn, pets, id
+      Name,
+      ImageUri,
+      Duration: travelDuration,
+      Start: travelStartsIn,
+      pets,
+      id,
+      startDatetime,
+      endDatetime
     })
   }
 
