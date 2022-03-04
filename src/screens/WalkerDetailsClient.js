@@ -15,6 +15,13 @@ const updateService = (setLoading, newValue, walkingId, navigation) => {
   })
 }
 
+const CustomRow = ({ val1, val2 }) => (
+  <View style={styles.row}>
+    <Text style={styles.petSecondary}>{val1} </Text>
+    <Text>{val2}</Text>
+  </View>
+)
+
 const WalkerDetailsClient = ({ route, navigation }) => {
   const [aceptLoading, setAceptLoading] = useState(false)
   const [denyLoading, setDenyLoading] = useState(false)
@@ -41,18 +48,9 @@ const WalkerDetailsClient = ({ route, navigation }) => {
           </View>
         </View>
         <View style={styles.petRowDetails}>
-          <View style={styles.row}>
-            <Text style={styles.petSecondary}>Age: </Text>
-            <Text>{item.age}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.petSecondary}>Height: </Text>
-            <Text>{item.height}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.petSecondary}>Weight: </Text>
-            <Text>{item.weight}</Text>
-          </View>
+          <CustomRow val1="Age:" val2={item.age} />
+          <CustomRow val1="Height:" val2={item.height} />
+          <CustomRow val1="Width:" val2={item.width} />
         </View>
       </View>
     </View>
