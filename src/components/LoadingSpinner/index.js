@@ -5,8 +5,8 @@ import theme from '../../themes/lights'
 const getSize = size => {
   let result
   switch (size) {
-    case 'small':
-      result = theme.font.m
+    case 'tiny':
+      result = theme.font.xs
       break
     case 'medium':
       result = theme.font.xl
@@ -26,7 +26,7 @@ const getSize = size => {
 const LoadingSpinner = ({ size, scale, color }) => {
   color = color ?? theme.color.primary1
   return (
-    <ActivityIndicator size={parseInt(getSize(size)) * (parseInt(scale) ?? 1)} color={color} />
+    <ActivityIndicator size={parseInt(getSize(size)) * (scale ?? 1)} color={color} />
   )
 }
 

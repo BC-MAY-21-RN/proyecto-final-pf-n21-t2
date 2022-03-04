@@ -6,7 +6,6 @@ import fbShortcuts from '../assets/controllers/firebaseShortcuts'
 import { userSession } from '../store/reducers/userSession'
 
 const getClients = (isPending) => {
-  console.log(isPending)
   const isPayed = isPending ? '0' : '1'
   return setClients => {
     const walkerId = userSession.getState().id
