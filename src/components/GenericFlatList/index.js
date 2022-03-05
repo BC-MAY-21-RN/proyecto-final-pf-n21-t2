@@ -6,7 +6,7 @@ const index = ({ DATA, renderItem, styles }) => {
     <FlatList
         data={DATA}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `${item.useruid}${Math.floor(Math.random() * 100000000)}` }
         style={styles}
     />
   )

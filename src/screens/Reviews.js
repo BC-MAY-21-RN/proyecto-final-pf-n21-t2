@@ -4,34 +4,29 @@ import UserPresentation from '../components/UserPresentation'
 import CustomRatings from '../components/CustomRatings'
 import GenericFlatList from '../components/GenericFlatList'
 // import fbShortcuts from '../assets/controllers/firebaseShortcuts'
-import firestore from '@react-native-firebase/firestore'
+// import firestore from '@react-native-firebase/firestore'
+import EnfasisText from '../components/EnfasisText'
+import fbShortcuts from '../assets/controllers/firebaseShortcuts'
+// import { userSession } from '../store/reducers/userSession'
 
-const DATA = [
-  { id: '1', imgW: 'https://pbs.twimg.com/media/Ew-KeLXXAAAWn01.jpg', name: 'Tizoc Chavez ', rating: 5, desc: 'Great Job!' },
-  { id: '2', imgW: 'https://pbs.twimg.com/profile_images/1450931329382719496/sZ-Z4HCx_400x400.jpg', name: 'Marcelo', rating: 1, desc: 'He lost my dog!' },
-  { id: '3', imgW: 'https://img.brut.media/thumbnail/keanu-reeves-una-vida-de-tragedia-y-triunfo-f6eaff55-f741-4c21-9efa-31d7c1bd348b-square.jpg', name: 'Keanu Reeves', rating: 4, desc: 'Nice Dude' },
-  { id: '4', imgW: 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/a8/a832a1c3adf9857ab3a421841b24e36a20b4e8ad_full.jpg', name: 'Obama Wero', rating: 1, desc: 'My dog arrived hurt ' },
-  { id: '5', imgW: 'https://www.quever.news/u/fotografias/m/2021/12/24/f608x342-20849_50572_13.jpg', name: 'Monica', rating: 5, desc: 'My dog is very Happy :D!!' }
-]
-
-const ListReviews = ({ imgW, name, rating, desc, id }) => {
+const ListReviews = ({ userImg, userName, review, ratings }) => {
   return (
         <View style={styles.containerCard}>
 
-            <Image source={ { uri: imgW } } style={styles.img}/>
+            <Image source={ { uri: userImg } } style={styles.img}/>
 
             <View style={styles.contarinerInfo}>
               <View style={styles.texts}>
-                  <Text style={styles.color}>{name}</Text>
-                  <CustomRatings rating={rating}/>
+                  <Text style={styles.color}>{userName}</Text>
+                  <CustomRatings rating={ratings}/>
               </View>
-              <Text style={styles.color}>{desc}</Text>
+              <Text style={styles.color}>{review}</Text>
             </View>
         </View>
   )
 }
 
-const Reviews = ({ route: { params: { image, name } } }) => {
+const Reviews = ({ route: { params: { image, name, id } } }) => {
   const renderItem = ({ item }) => {
     return <ListReviews {...item}/>
   }
@@ -39,20 +34,35 @@ const Reviews = ({ route: { params: { image, name } } }) => {
 
   const mTop = { marginTop: 10 }
 
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState(null)
 
   const getReviews = () => {
-    firestore().collection('Reviews').onSnapshot(querySnapshot => {
-      const review = []
-      querySnapshot.forEach(documentSnapshot => {
-        review.push({
-          ...documentSnapshot.data()
+    const result = []
+    fbShortcuts.getCollection('Reviews').where('walkeruid', '==', id).get()
+      .then(q => {
+        q.forEach(documentSnapshot => {
+          const row = documentSnapshot.data()
+          result.push(row)
         })
+        setReviews(result)
       })
-      console.log(review)
-      setReviews(review)
-    })
   }
+
+  // const GetAverage = () => {
+  //   const ValueRatings = []
+  //   fbShortcuts.getCollection('Reviews').where('walkeruid', '==', id).get().then(q => {
+  //     q.forEach(documentSnapshot => {
+  //       const row = documentSnapshot.data()
+  //       row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
+  //       result.push({
+  //         review: row.review,
+  //         ratings: row.ratings,
+
+  //       })
+  //     })
+  //     setReviews(result)
+  //   })
+  // }
 
   useEffect(() => {
     getReviews()
@@ -64,7 +74,7 @@ const Reviews = ({ route: { params: { image, name } } }) => {
 
         <UserPresentation rating="4" name={name} image={{ uri: image }} />
 
-        <GenericFlatList DATA={DATA} renderItem={renderItem} styles={mTop}/>
+        {reviews ? <GenericFlatList DATA={reviews} renderItem={renderItem} styles={mTop} /> : <EnfasisText text="There are no reviews yet"/> }
 
     </View>
   )
