@@ -44,6 +44,7 @@ const Reviews = ({ route: { params: { image, name, id } } }) => {
           const row = documentSnapshot.data()
           result.push(row)
         })
+        result.sort((a, b) => b.ratings - a.ratings)
         setReviews(result)
       })
   }
