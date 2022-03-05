@@ -45,7 +45,7 @@ const Reviews = ({ route: { params: { image, name, id } } }) => {
           result.push(row)
         })
         result.sort((a, b) => b.ratings - a.ratings)
-        setReviews(result)
+        setReviews(() => (result.length === 0) ? null : result)
       })
   }
 
