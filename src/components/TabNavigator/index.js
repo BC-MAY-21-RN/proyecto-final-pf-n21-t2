@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import HomeWalker from '../../screens/HomeWalker'
+import GlobalServices from '../../screens/GlobalServices'
 import HomeClient from '../../screens/HomeClient'
-import WalkerServices from '../../screens/WalkerServices'
-import ClientDogWalker from '../../screens/ClientDogWalker'
 import MenuButton from '../MenuButton'
 import theme from '../../themes/lights'
 import tabNavUtils from '../../assets/controllers/tabNavigationUtils'
@@ -28,11 +26,11 @@ const TabNavigator = ({ navigation, route }) => {
   switch (route.name) {
     case 'Walker':
       settingsType = 'Walker'
-      screens = getScreens('HomeWalkerPendings', HomeWalker, 'home-outline', 'WalkerWalkerCurrents', HomeWalker, 'walk')
+      screens = getScreens('HomeWalkerPendings', GlobalServices, 'home-outline', 'WalkerWalkerCurrents', GlobalServices, 'walk')
       break
     case 'Client':
       settingsType = 'Client'
-      screens = getScreens('HomeClientPendings', HomeClient, 'home-outline', 'HomeClientCurrents', HomeClient, 'walk')
+      screens = getScreens('HomeClientPendings', HomeClient, 'home-outline', 'HomeClientCurrents', GlobalServices, 'walk')
       break
   }
 
