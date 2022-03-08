@@ -48,23 +48,6 @@ const Reviews = ({ route: { params: { image, name, id } } }) => {
         setReviews(() => (result.length === 0) ? null : result)
       })
   }
-
-  // const GetAverage = () => {
-  //   const ValueRatings = []
-  //   fbShortcuts.getCollection('Reviews').where('walkeruid', '==', id).get().then(q => {
-  //     q.forEach(documentSnapshot => {
-  //       const row = documentSnapshot.data()
-  //       row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
-  //       result.push({
-  //         review: row.review,
-  //         ratings: row.ratings,
-
-  //       })
-  //     })
-  //     setReviews(result)
-  //   })
-  // }
-
   useEffect(() => {
     getReviews()
   }, [])

@@ -23,12 +23,40 @@ const isNearEnought = (lastPosition, currentPosition) => {
   return true
 }
 
-const getWalkers = setWalkers => {
+const getReviews = (id) => {
+  const result = []
+  let suma = 0
+  return new Promise((resolve) => {
+    fbShortcuts.getCollection('Reviews').where('walkeruid', '==', id).get()
+      .then(q => {
+        let bool = false
+        q.forEach(documentSnapshot => {
+          bool = true
+          const row = documentSnapshot.data()
+          result.push(row)
+        })
+        if (bool === false) {
+          resolve(0)
+        }
+        result.forEach((rate) => {
+          suma += rate.ratings
+        })
+        resolve(suma / result.length)
+      })
+  })
+
+  // return (result.length === 0) ? 0 : (suma / result.length)
+}
+
+const getWalkers = (setWalkers) => {
+  const promises = []
   const result = []
   const currentPosition = userSession.getState().lastPosition
   fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
     q.forEach(documentSnapshot => {
       const row = documentSnapshot.data()
+      const rate = getReviews(row.useruid)
+      promises.push(rate)
       row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
       if (isNearEnought(row.lastPosition, currentPosition)) {
         result.push(
@@ -40,15 +68,22 @@ const getWalkers = setWalkers => {
             email: row.email
           }
         )
+        Promise.all(promises).then((resolve) => {
+          for (let i = 0; i < result.length; i++) {
+            result[i].ratings = resolve[i]
+          }
+          console.log(resolve)
+          console.log(result)
+          setWalkers(result)
+        })
       }
     })
-    setWalkers(result)
   })
 }
 
 const ClientWalkers = ({ navigation }) => {
   const renderItem = ({ item }) => {
-    return <WalkerCard navigation={navigation} {...item} title={item.name} rating={2.5} />
+    return <WalkerCard navigation={navigation} {...item} title={item.name} rating={item.ratings} />
   }
 
   return (
