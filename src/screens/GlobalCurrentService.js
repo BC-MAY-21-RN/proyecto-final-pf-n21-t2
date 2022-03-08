@@ -7,6 +7,7 @@ import { userSession } from '../store/reducers/userSession'
 import DateShortcuts from '../assets/controllers/DateShortcuts'
 import LoadingSpinner from '../components/LoadingSpinner'
 import fbShortcuts from '../assets/controllers/firebaseShortcuts'
+import CustomButton from '../components/CustomButton'
 
 const styles = {
   header: {
@@ -22,7 +23,8 @@ const styles = {
   mapContainer: {
     flex: 1,
     overflow: 'hidden',
-    borderRadius: 15
+    borderRadius: 15,
+    position: 'relative'
   },
   subTitle: {
     fontWeight: '500',
@@ -38,18 +40,30 @@ const styles = {
   row: {
     display: 'flex',
     flexDirection: 'row'
+  },
+  buttonContainer: {
+    marginTop: theme.spacing.xl,
+    position: 'absolute',
+    bottom: theme.spacing.xl,
+    left: 0,
+    right: 0
   }
 }
 
-const LeftTime = ({ startDatetime, endDatetime, setWalkingPhase, walkingPhase }) => {
+const getCustomMessage = screenType => {
+  return screenType === 3 ? 'the walker is returning with your friends' : 'bring back the furry friends to their owner'
+}
+
+const LeftTime = ({ startDatetime, endDatetime, setWalkingPhase, walkingPhase, screenType }) => {
   const currentDatetime = new Date().getTime()
   const leftTime = parseInt(endDatetime) - currentDatetime
   let result
   let phase
   if (leftTime < 1000) {
     phase = 0
+    const customMessage = getCustomMessage(screenType)
     result = (
-      <Text style={styles.subTitle}>The walking has end, bring back the furry friends to their owner</Text>
+      <Text style={styles.subTitle}>The walking has end, {customMessage}</Text>
     )
   } else if (parseInt(startDatetime) > currentDatetime && parseInt(endDatetime) < currentDatetime) {
     phase = 1
@@ -100,14 +114,17 @@ const getTravelData = (walkingId, setTravelLocations) => {
   })
 }
 
-const WalkerCurrentService = ({ route }) => {
+const GlobalCurrentService = ({ route }) => {
   const { lastPosition } = userSession.getState()
   const [walkingPhase, setWalkingPhase] = useState(null)
   const [travelLocations, setTravelLocations] = useState(null)
+  const handleFinishWalking = () => {
+    console.log('pay walking and make walkers review')
+  }
   useEffect(() => {
     if (!uploadLocationLoop) {
       uploadLocationLoop = setInterval(() => {
-        if (walkingPhase === 1) {
+        if (walkingPhase === 1 && route.params.screenType === 2) {
           uploadLocation(route.params.id)
           getTravelData(route.params.id, setTravelLocations)
         }
@@ -120,9 +137,9 @@ const WalkerCurrentService = ({ route }) => {
   }, [walkingPhase])
   return (
     <GenericContainer>
-      <Text style={styles.header}>Ruta del paseo</Text>
+      <Text style={styles.header}>Walking road</Text>
       <View style={styles.row}>
-      <LeftTime setWalkingPhase={setWalkingPhase} walkingPhase={walkingPhase} startDatetime={route.params.startDatetime} endDatetime={route.params.endDatetime} />
+        <LeftTime setWalkingPhase={setWalkingPhase} screenType={route.params.screenType} walkingPhase={walkingPhase} startDatetime={route.params.startDatetime} endDatetime={route.params.endDatetime} />
       </View>
       <View style={styles.mapContainer}>
         <MapView
@@ -132,12 +149,19 @@ const WalkerCurrentService = ({ route }) => {
             longitude: lastPosition.longitude,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
-          }}
-        />
-        {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
+          }}>
+            {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
+          </MapView>
+          {walkingPhase === 0 && route.params.screenType === 3
+            ? (
+            <View style={styles.buttonContainer}>
+              <CustomButton title="Finish walking" onPress={handleFinishWalking} />
+            </View>
+              )
+            : null}
       </View>
     </GenericContainer>
   )
 }
 
-export default WalkerCurrentService
+export default GlobalCurrentService
