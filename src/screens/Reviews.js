@@ -26,7 +26,7 @@ const ListReviews = ({ userImg, userName, review, ratings }) => {
   )
 }
 
-const Reviews = ({ route: { params: { image, name, id } } }) => {
+const Reviews = ({ route: { params: { image, name, id, rating } } }) => {
   const renderItem = ({ item }) => {
     return <ListReviews {...item}/>
   }
@@ -56,7 +56,7 @@ const Reviews = ({ route: { params: { image, name, id } } }) => {
 
     <View style={styles.container}>
 
-        <UserPresentation rating="4" name={name} image={{ uri: image }} />
+        <UserPresentation rating={rating} name={name} image={{ uri: image }} />
 
         {reviews ? <GenericFlatList DATA={reviews} renderItem={renderItem} styles={mTop} /> : <EnfasisText text="There are no reviews yet"/> }
 

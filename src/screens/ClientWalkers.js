@@ -70,7 +70,7 @@ const getWalkers = (setWalkers) => {
         )
         Promise.all(promises).then((resolve) => {
           for (let i = 0; i < result.length; i++) {
-            result[i].ratings = resolve[i]
+            result[i].rating = resolve[i]
           }
           console.log(resolve)
           console.log(result)
@@ -83,7 +83,7 @@ const getWalkers = (setWalkers) => {
 
 const ClientWalkers = ({ navigation }) => {
   const renderItem = ({ item }) => {
-    return <WalkerCard navigation={navigation} {...item} title={item.name} rating={item.ratings} />
+    return <WalkerCard navigation={navigation} {...item} title={item.name} rating={item.rating} />
   }
 
   return (
