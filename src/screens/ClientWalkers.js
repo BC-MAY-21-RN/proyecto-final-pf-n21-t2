@@ -68,15 +68,13 @@ const getWalkers = (setWalkers) => {
             email: row.email
           }
         )
-        Promise.all(promises).then((resolve) => {
-          for (let i = 0; i < result.length; i++) {
-            result[i].rating = resolve[i]
-          }
-          console.log(resolve)
-          console.log(result)
-          setWalkers(result)
-        })
       }
+    })
+    Promise.all(promises).then((resolve) => {
+      for (let i = 0; i < result.length; i++) {
+        result[i].rating = resolve[i]
+      }
+      setWalkers(result)
     })
   })
 }
@@ -88,7 +86,7 @@ const ClientWalkers = ({ navigation }) => {
 
   return (
     <GenericContainer>
-      <CustomFlatList render={renderItem} get={getWalkers} empty="No hay conductores cerca" />
+      <CustomFlatList render={renderItem} get={getWalkers} empty="No Walkers Registred" />
     </GenericContainer>
   )
 }
