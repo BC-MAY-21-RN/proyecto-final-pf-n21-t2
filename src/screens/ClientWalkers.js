@@ -55,28 +55,23 @@ const getWalkers = (setWalkers) => {
   fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
     q.forEach(documentSnapshot => {
       const row = documentSnapshot.data()
-      const rate = getReviews(row.useruid)
-      promises.push(rate)
+      promises.push(getReviews(row.useruid))
       row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
       if (isNearEnought(row.lastPosition, currentPosition)) {
-        result.push(
-          {
-            id: documentSnapshot.id,
-            name: row.username,
-            image: row.image,
-            mobile: row.mobile,
-            email: row.email
-          }
-        )
-        Promise.all(promises).then((resolve) => {
-          for (let i = 0; i < result.length; i++) {
-            result[i].rating = resolve[i]
-          }
-          console.log(resolve)
-          console.log(result)
-          setWalkers(result)
+        result.push({
+          id: documentSnapshot.id,
+          name: row.username,
+          image: row.image,
+          mobile: row.mobile,
+          email: row.email
         })
       }
+    })
+    Promise.all(promises).then((resolve) => {
+      for (let i = 0; i < result.length; i++) {
+        result[i].rating = resolve[i]
+      }
+      setWalkers(result)
     })
   })
 }
@@ -88,7 +83,7 @@ const ClientWalkers = ({ navigation }) => {
 
   return (
     <GenericContainer>
-      <CustomFlatList render={renderItem} get={getWalkers} empty="No hay conductores cerca" />
+      <CustomFlatList render={renderItem} get={getWalkers} empty="No Walkers Registred" />
     </GenericContainer>
   )
 }
