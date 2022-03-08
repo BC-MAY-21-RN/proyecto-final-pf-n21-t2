@@ -71,7 +71,7 @@ const ShowUnshowEye = ({ visible, setVisible, style }) => {
   )
 }
 
-const CustomInput = ({ height, type, title, label, setValue, setOk, validation, placeholder, secret }) => {
+const CustomInput = ({ height, type, title, label, setValue, setOk, validation, placeholder }) => {
   const error = useRef(initError())
   const isPassword = type === 'password'
   const [visible, setVisible] = useState(true)

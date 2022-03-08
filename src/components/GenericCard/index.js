@@ -4,10 +4,25 @@ import CustomImage from '../CustomImage'
 import DateShortcuts from '../../assets/controllers/DateShortcuts'
 import styles from './styles'
 
-const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, pets, id, isPending }) => {
+const getNextScreen = screenType => {
+  let screenName
+  switch (screenType) {
+    case 1:
+      screenName = 'WalkerDetailsClient'
+      break
+    case 2:
+      screenName = 'GlobalCurrentService'
+      break
+    default:
+      screenName = 'GlobalCurrentService'
+  }
+  return screenName
+}
+
+const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, pets, id, screenType }) => {
   const [travelDuration, travelStartsIn] = DateShortcuts.getTravelValues(startDatetime, endDatetime)
   const onPress = () => {
-    const nextScreen = isPending ? 'WalkerDetailsClient' : 'WalkerCurrentService'
+    const nextScreen = getNextScreen(screenType)
     navigation.navigate(nextScreen, {
       Name,
       ImageUri,
@@ -16,7 +31,8 @@ const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, p
       pets,
       id,
       startDatetime,
-      endDatetime
+      endDatetime,
+      screenType
     })
   }
 

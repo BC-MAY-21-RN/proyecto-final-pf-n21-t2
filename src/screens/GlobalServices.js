@@ -16,11 +16,17 @@ const finalUpdateClients = (data, setClients, walkings) => {
   setClients(walkings)
 }
 
-const getClients = (isPending) => {
-  const isPayed = isPending ? '0' : '1'
+const getArrData = screenType => {
+  const isPayed = screenType === 1 ? '0' : '1'
+  const userType = screenType === 3 ? 'clientId' : 'walkerId'
+  return [isPayed, userType]
+}
+
+const getClients = (screenType) => {
+  const [isPayed, userType] = getArrData(screenType)
   return setClients => {
-    const walkerId = userSession.getState().id
-    fbShortcuts.getCollection('Walkings').where('walkerId', '==', walkerId)
+    const currentUserId = userSession.getState().id
+    fbShortcuts.getCollection('Walkings').where(userType, '==', currentUserId)
       .where('isPayed', '==', isPayed).get()
       .then(async (querySnapshot) => {
         const walkings = []
@@ -43,8 +49,23 @@ const getEmptyLabel = (value) => {
   return value ? 'No pending services' : 'No current services'
 }
 
-const HomeWalker = ({ navigation, route }) => {
-  const isPending = route.name === 'HomeWalkerPendings'
+const getScreenType = routeName => {
+  let type
+  switch (routeName) {
+    case 'HomeWalkerPendings':
+      type = 1
+      break
+    case 'HomeClientCurrents':
+      type = 3
+      break
+    default:
+      type = 2
+  }
+  return type
+}
+
+const GlobalServices = ({ navigation, route }) => {
+  const screenType = getScreenType(route.name)
 
   const renderItem = ({ item }) => (
     <CardGeneric
@@ -57,15 +78,15 @@ const HomeWalker = ({ navigation, route }) => {
       endDatetime={item.endDatetime}
       pets={item.pets}
       id={item.id}
-      isPending={isPending}
+      screenType={screenType}
       />
   )
 
   return (
     <GenericContainer>
-      <CustomFlatList render={renderItem} get={getClients(isPending)} empty={getEmptyLabel(isPending)} />
+      <CustomFlatList render={renderItem} get={getClients(screenType)} empty={getEmptyLabel(screenType)} />
     </GenericContainer>
   )
 }
 
-export default HomeWalker
+export default GlobalServices
