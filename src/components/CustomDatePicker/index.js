@@ -61,6 +61,10 @@ const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, 
           is24Hour={true}
           display="spinner"
           onChange={onChange}
+          minimumDate={() => {
+            const date = new Date()
+            return `${date.getFullYear()}, ${date.getMonth()}, ${date.getDate()}`
+          }}
         />
             )
           : null}
