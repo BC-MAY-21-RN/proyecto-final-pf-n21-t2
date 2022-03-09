@@ -23,37 +23,67 @@ const isNearEnought = (lastPosition, currentPosition) => {
   return true
 }
 
-const getWalkers = setWalkers => {
+const getReviews = (id) => {
+  const result = []
+  let suma = 0
+  return new Promise((resolve) => {
+    fbShortcuts.getCollection('Reviews').where('walkeruid', '==', id).get()
+      .then(q => {
+        let bool = false
+        q.forEach(documentSnapshot => {
+          bool = true
+          const row = documentSnapshot.data()
+          result.push(row)
+        })
+        if (bool === false) {
+          resolve(0)
+        }
+        result.forEach((rate) => {
+          suma += rate.ratings
+        })
+        resolve(suma / result.length)
+      })
+  })
+
+  // return (result.length === 0) ? 0 : (suma / result.length)
+}
+
+const getWalkers = (setWalkers) => {
+  const promises = []
   const result = []
   const currentPosition = userSession.getState().lastPosition
   fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
     q.forEach(documentSnapshot => {
       const row = documentSnapshot.data()
+      promises.push(getReviews(row.useruid))
       row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
       if (isNearEnought(row.lastPosition, currentPosition)) {
-        result.push(
-          {
-            id: documentSnapshot.id,
-            name: row.username,
-            image: row.image,
-            mobile: row.mobile,
-            email: row.email
-          }
-        )
+        result.push({
+          id: documentSnapshot.id,
+          name: row.username,
+          image: row.image,
+          mobile: row.mobile,
+          email: row.email
+        })
       }
     })
-    setWalkers(result)
+    Promise.all(promises).then((resolve) => {
+      for (let i = 0; i < result.length; i++) {
+        result[i].rating = resolve[i]
+      }
+      setWalkers(result)
+    })
   })
 }
 
 const ClientWalkers = ({ navigation }) => {
   const renderItem = ({ item }) => {
-    return <WalkerCard navigation={navigation} {...item} title={item.name} rating={2.5} />
+    return <WalkerCard navigation={navigation} {...item} title={item.name} rating={item.rating} />
   }
 
   return (
     <GenericContainer>
-      <CustomFlatList render={renderItem} get={getWalkers} empty="No hay conductores cerca" />
+      <CustomFlatList render={renderItem} get={getWalkers} empty="No Walkers Registred" />
     </GenericContainer>
   )
 }
