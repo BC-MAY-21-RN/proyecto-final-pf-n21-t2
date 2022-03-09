@@ -23,12 +23,7 @@ const getBorderRaiusStyle = borderRadius => {
 }
 
 const CustomButton = ({ absoluteError, color, marginBottom, marginTop, style, loading, ok, title, onPress, width, borderRadius, leftIconName, textColor }) => {
-  console.log('FOO =>', absoluteError)
-  // console.log('before =>', absoluteError)
-  // absoluteError = absoluteError === undefined ? true : absoluteError
-  // console.log('after =>', absoluteError)
-  
-  // console.log(absoluteError)
+  absoluteError = absoluteError === undefined ? true : absoluteError
   const iconWithTextStyle = getIconWithTextStyle(title)
   const leftIcon = leftIconName ? <Icon style={[iconWithTextStyle, styles.icon, styles.textColor]} name={leftIconName} size={24} /> : null
   const colorStyle = getColorStyle(color)
@@ -37,7 +32,7 @@ const CustomButton = ({ absoluteError, color, marginBottom, marginTop, style, lo
   ok = getDefaultOk(ok)
   return (
     <View style={[styles.container, style, { marginTop, marginBottom }]}>
-      <Pressable style={[{ width: width }, styles.button, borderR, colorStyle, !ok && !absoluteError ? styles.disabled : null]} onPress={onPress} disabled={!ok && !absoluteError}>
+      <Pressable style={[{ width: width }, styles.button, borderR, colorStyle, !ok || !absoluteError ? styles.disabled : null]} onPress={onPress} disabled={!ok || !absoluteError}>
         {leftIcon}
         {loading ? <ActivityIndicator size="small" color={textColor ?? theme.color.secondary1} /> : <Text style={[styles.text, txtColor]}>{title}</Text>}
       </Pressable>

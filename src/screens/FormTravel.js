@@ -12,16 +12,16 @@ const datesValidation = (form, setErrorText, setAbsoluteError) => {
   if (startDatetime > endDatetime) {
     setErrorText('*Error: start datetime must be higher thant end datetime')
     setAbsoluteError(false)
+  } else {
+    setErrorText('')
+    setAbsoluteError(true)
   }
 }
 
 const FormTravel = ({ navigation, route }) => {
   const form = useWalkDatetime()
   const [errorText, setErrorText] = useState('')
-  const [absoluteError, setAbsoluteError] = useState(undefined)
-  /* form.start.value
-  form.end.value
-  form.submit.setOK(true) */
+  const [absoluteError, setAbsoluteError] = useState(true)
   const chooseDog = () => {
     navigation.navigate('ClientChoosePet', {
       startDatetime: form.start.value,
@@ -44,10 +44,10 @@ const FormTravel = ({ navigation, route }) => {
           <Text style={styles.instructions}>Please customize the start and the end time of the ride: </Text>
           <CustomDatePicker {...form.start} title={'Start date time'} styl={{ marginBottom: 10 }} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
           <CustomDatePicker {...form.end} title={'End date time'} width={160} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
-          <Text style={styles.error}>{errorText}</Text>
         </View>
       </View>
-      <CustomButton {...form.submit} absoluteError={absoluteError} title='Choose pet' width={200} borderRadius={18} color='#fff' textColor={theme.color.primary2} onPress={() => chooseDog()}/>
+      <Text style={styles.error}>{errorText}</Text>
+      <CustomButton {...form.submit} {...{ absoluteError }} title='Choose pet' width={200} borderRadius={18} color='#fff' textColor={theme.color.primary2} onPress={() => chooseDog()}/>
     </View>
   )
 }
