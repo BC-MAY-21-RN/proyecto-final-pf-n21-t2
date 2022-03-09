@@ -9,7 +9,7 @@ import { userSession } from '../store/reducers/userSession'
 import useAddReview from '../hooks/useAddReview'
 import theme from '../themes/lights'
 
-const resetNavigation = navigation => {
+export const resetNavigation = navigation => {
   navigation.reset({
     index: 0,
     routes: [{ name: 'Client', params: { useruid: userSession.getState().id } }]
