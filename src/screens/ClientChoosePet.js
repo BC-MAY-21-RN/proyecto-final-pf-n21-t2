@@ -8,6 +8,7 @@ import theme from '../themes/lights'
 import CustomButton from '../components/CustomButton'
 import LoadingSpinner from '../components/LoadingSpinner'
 import useSubmit from '../hooks/useSubmit'
+import { resetNavigation } from './AddReview'
 
 const getPets = (setPets, setSelectedPets) => {
   fbShortcuts.getCollection('Pets').where('useruid', '==', userSession.getState().id).get()
@@ -46,10 +47,7 @@ const signupWalking = (walking, submit, navigation) => {
   submit.setLoading(true)
   fbShortcuts.add('Walkings', null, walking, () => {
     submit.setLoading(false)
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Client', params: { useruid: userSession.getState().id } }]
-    })
+    resetNavigation(navigation)
   })
 }
 
