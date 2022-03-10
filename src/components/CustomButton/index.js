@@ -22,16 +22,26 @@ const getBorderRaiusStyle = borderRadius => {
   return borderRadius ? { borderRadius: borderRadius } : { borderRadius: 100 }
 }
 
-const CustomButton = ({ color, marginBottom, marginTop, style, loading, ok, title, onPress, width, borderRadius, leftIconName, textColor }) => {
+const getAbsoluteError = absoluteError => {
+  return absoluteError === undefined ? true : absoluteError
+}
+
+const getIsDisabled = (ok, absoluteError) => {
+  return !ok || !absoluteError
+}
+
+const CustomButton = ({ absoluteError, color, marginBottom, marginTop, style, loading, ok, title, onPress, width, borderRadius, leftIconName, textColor }) => {
+  absoluteError = getAbsoluteError(absoluteError)
   const iconWithTextStyle = getIconWithTextStyle(title)
   const leftIcon = leftIconName ? <Icon style={[iconWithTextStyle, styles.icon, styles.textColor]} name={leftIconName} size={24} /> : null
   const colorStyle = getColorStyle(color)
   const borderR = getBorderRaiusStyle(borderRadius)
   const txtColor = textColor ? { color: textColor } : { color: theme.color.secondary1 }
+  const isDisabled = getIsDisabled(ok, absoluteError)
   ok = getDefaultOk(ok)
   return (
     <View style={[styles.container, style, { marginTop, marginBottom }]}>
-      <Pressable style={[{ width: width }, styles.button, borderR, colorStyle, !ok ? styles.disabled : null]} onPress={onPress} disabled={!ok}>
+      <Pressable style={[{ width: width }, styles.button, borderR, colorStyle, isDisabled ? styles.disabled : null]} onPress={onPress} disabled={isDisabled}>
         {leftIcon}
         {loading ? <ActivityIndicator size="small" color={textColor ?? theme.color.secondary1} /> : <Text style={[styles.text, txtColor]}>{title}</Text>}
       </Pressable>

@@ -9,18 +9,20 @@ const getDateString = (date) => {
   return `${tempDate.toLocaleDateString()} ${tempDate.toLocaleTimeString().slice(0, 5)}`
 }
 
-const doUpdate = ({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode }) => {
+const doUpdate = ({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode, setValue, setOk }) => {
   if (selectedDate) {
     setDate(currentDate)
     if (mode === 'date') {
       showTimepicker()
     } else {
       setMode('date')
+      setOk(true)
+      setValue(selectedDate.getTime())
     }
   }
 }
 
-const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, setValue, setOk }) => {
+const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, setValue, setOk, ok }) => {
   const [date, setDate] = useState(new Date())
   const [mode, setMode] = useState('date')
   const [show, setShow] = useState(false)
@@ -41,13 +43,15 @@ const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date
     setShow(Platform.OS === 'ios')
-    doUpdate({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode })
+    doUpdate({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode, setValue, setOk })
   }
 
   useEffect(() => {
-    setOk(true)
-    setValue(date.getTime())
-  }, [date])
+    if (!ok && date !== undefined) {
+      setOk(true)
+      setValue(date.getTime())
+    }
+  }, [date, ok])
 
   return (
     <View style={[styl, styles.container]}>
@@ -61,6 +65,10 @@ const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, 
           is24Hour={true}
           display="spinner"
           onChange={onChange}
+          minimumDate={() => {
+            const date = new Date()
+            return `${date.getFullYear()}, ${date.getMonth()}, ${date.getDate()}`
+          }}
         />
             )
           : null}

@@ -1,19 +1,38 @@
+const seconds = 1000
+const minutes = seconds * 60
+const hours = minutes * 60
+const days = hours * 24
+const week = days * 7
+const values = {
+  seconds,
+  minutes,
+  hours,
+  days,
+  week
+}
+
+const getValidity = (value) => (timeValue) => {
+  return value / timeValue > 1
+}
+
+const getTimeResultString = (value) => (timeValue) => {
+  Math.floor(value / timeValue)
+}
+
 const getHumanValue = value => {
   let result = ''
-  const seconds = 1000
-  const minutes = seconds * 60
-  const hours = minutes * 60
-  const days = hours * 24
+  const validity = getValidity(value)
+  const getTimeResult = getTimeResultString(value)
   if (value < 1000) {
     result = 'just now'
-  } if (value / seconds > 1) {
-    result = `${Math.floor(value / seconds)} seconds`
-  } if (value / minutes > 1) {
-    result = `${Math.floor(value / minutes)} minutes`
-  } if (value / hours > 1) {
-    result = `${Math.floor(value / hours)} hours`
-  } if (value / days > 1) {
-    result = `${Math.floor(value / days)} days`
+  } if (validity(values.seconds)) {
+    result = `${getTimeResult(values.seconds)} seconds`
+  } if (validity(values.minutes)) {
+    result = `${getTimeResult(values.minutes)} minutes`
+  } if (validity(values.hours)) {
+    result = `${getTimeResult(values.hours)} hours`
+  } if (validity(values.days)) {
+    result = `${getTimeResult(values.days)} days`
   }
   return result
 }
@@ -31,7 +50,8 @@ const getTravelValues = (startDatetime, endDatetime) => {
 
 const DateShortcuts = {
   getTravelValues,
-  getHumanValue
+  getHumanValue,
+  values
 }
 
 export default DateShortcuts
