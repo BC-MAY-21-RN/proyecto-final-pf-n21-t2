@@ -11,18 +11,28 @@ const values = {
   week
 }
 
+const getValidity = (value) => (timeValue) => {
+  return value / timeValue > 1
+}
+
+const getTimeResultString = (value) => (timeValue) => {
+  Math.floor(value / timeValue)
+}
+
 const getHumanValue = value => {
   let result = ''
+  const validity = getValidity(value)
+  const getTimeResult = getTimeResultString(value)
   if (value < 1000) {
     result = 'just now'
-  } if (value / values.seconds > 1) {
-    result = `${Math.floor(value / values.seconds)} seconds`
-  } if (value / values.minutes > 1) {
-    result = `${Math.floor(value / values.minutes)} minutes`
-  } if (value / values.hours > 1) {
-    result = `${Math.floor(value / values.hours)} hours`
-  } if (value / values.days > 1) {
-    result = `${Math.floor(value / values.days)} days`
+  } if (validity(values.seconds)) {
+    result = `${getTimeResult(values.seconds)} seconds`
+  } if (validity(values.minutes)) {
+    result = `${getTimeResult(values.minutes)} minutes`
+  } if (validity(values.hours)) {
+    result = `${getTimeResult(values.hours)} hours`
+  } if (validity(values.days)) {
+    result = `${getTimeResult(values.days)} days`
   }
   return result
 }

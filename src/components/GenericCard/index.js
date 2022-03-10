@@ -23,11 +23,14 @@ const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, p
   const [travelDuration, travelStartsIn] = DateShortcuts.getTravelValues(startDatetime, endDatetime)
   const onPress = () => {
     const nextScreen = getNextScreen(screenType)
+    const fooParams = {
+      Duration: travelDuration,
+      Start: travelStartsIn
+    }
     navigation.navigate(nextScreen, {
       Name,
       ImageUri,
-      Duration: travelDuration,
-      Start: travelStartsIn,
+      ...fooParams,
       pets,
       id,
       startDatetime,
