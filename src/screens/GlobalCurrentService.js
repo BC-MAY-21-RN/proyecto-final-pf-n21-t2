@@ -114,12 +114,28 @@ const getTravelData = (walkingId, setTravelLocations) => {
   })
 }
 
-const GlobalCurrentService = ({ route }) => {
+const finishWalking = (navigation, walker, setLoading) => {
+  setLoading(true)
+  fbShortcuts.updateDoc('Walkings', walker.id, {
+    isPayed: '2'
+  }, () => {
+    setLoading(false)
+    navigation.navigate('AddReview', walker)
+  })
+}
+
+const GlobalCurrentService = ({ navigation, route }) => {
   const { lastPosition } = userSession.getState()
   const [walkingPhase, setWalkingPhase] = useState(null)
   const [travelLocations, setTravelLocations] = useState(null)
+  const [loadingFinish, setLoadingFinish] = useState(false)
   const handleFinishWalking = () => {
-    console.log('pay walking and make walkers review')
+    const walker = {
+      id: route.params.id,
+      image: route.params.ImageUri,
+      name: route.params.Name
+    }
+    finishWalking(navigation, walker, setLoadingFinish)
   }
   useEffect(() => {
     if (!uploadLocationLoop) {
@@ -155,7 +171,7 @@ const GlobalCurrentService = ({ route }) => {
           {walkingPhase === 0 && route.params.screenType === 3
             ? (
             <View style={styles.buttonContainer}>
-              <CustomButton title="Finish walking" onPress={handleFinishWalking} />
+              <CustomButton title="Finish walking" loading={loadingFinish} onPress={handleFinishWalking} />
             </View>
               )
             : null}

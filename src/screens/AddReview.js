@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CustomInput from '../components/CustomInput'
 import GenericContainer from '../containers/GenericContainer'
 import CustomButton from '../components/CustomButton'
@@ -7,53 +7,48 @@ import UserPresentation from '../components/UserPresentation'
 import { firebase } from '@react-native-firebase/firestore'
 import { userSession } from '../store/reducers/userSession'
 import useAddReview from '../hooks/useAddReview'
-import fbShortcuts from '../assets/controllers/firebaseShortcuts'
+import theme from '../themes/lights'
+
+export const resetNavigation = navigation => {
+  navigation.reset({
+    index: 0,
+    routes: [{ name: 'Client', params: { useruid: userSession.getState().id } }]
+  })
+}
 
 const AddReview = ({ navigation, route }) => {
   const form = useAddReview()
-
-  const [ratings, setRatings] = useState(5)
-  const [user, setUser] = useState({})
-
-  const getUserNameAndImage = () => {
-    fbShortcuts.getCollection('Users').where('useruid', '==', userSession.getState().id).get().then(q => {
-      q.forEach(documentSnapshot => {
-        const row = documentSnapshot.data()
-        row.image = fbShortcuts.getImage(`Users%2F${documentSnapshot.id}%2F${row.imageName}`)
-        setUser({
-          name: row.username,
-          image: row.image
-        })
-      })
-    })
-  }
-
-  useEffect(() => {
-    getUserNameAndImage()
-  }, [])
+  const [loading, setLoading] = useState(false)
+  const [ratings, setRatings] = useState(0)
 
   const getFormResult = form => {
     return {
       review: form.review.value,
       ratings: ratings,
       useruid: userSession.getState().id,
-      walkeruid: route.params.id,
-      userImg: user.image,
-      userName: user.name
+      walkeruid: route.params.id
     }
   }
 
   const { image, name } = route.params
   const handleAddReview = () => {
-    firebase.firestore().collection('Reviews').add(getFormResult(form)).then(() => navigation.goBack())
+    setLoading(true)
+    firebase.firestore().collection('Reviews').add(getFormResult(form)).then(() => {
+      setLoading(false)
+      resetNavigation(navigation)
+    })
+  }
+  const handleCancel = () => {
+    resetNavigation(navigation)
   }
 
   return (
-    <GenericContainer>
+    <GenericContainer scroll>
       <UserPresentation name={name} image={{ uri: image }} />
       <AirbnbRating onFinishRating={(rating) => setRatings(rating)} defaultRating={5}/>
       <CustomInput placeholder={'Add your review here...'} {...form.review}/>
-      <CustomButton title={'Save Review'} borderRadius={15} onPress={ handleAddReview }/>
+      <CustomButton title={'Save Review'} width={150} loading={loading} borderRadius={15} onPress={ handleAddReview }/>
+      <CustomButton title={'Cancel'} width={100} marginTop={theme.spacing.m} borderRadius={15} onPress={ handleCancel }/>
     </GenericContainer>
   )
 }
