@@ -26,6 +26,10 @@ const getAbsoluteError = absoluteError => {
   return absoluteError === undefined ? true : absoluteError
 }
 
+const getIsDisabled = (ok, absoluteError) => {
+  return !ok || !absoluteError
+}
+
 const CustomButton = ({ absoluteError, color, marginBottom, marginTop, style, loading, ok, title, onPress, width, borderRadius, leftIconName, textColor }) => {
   absoluteError = getAbsoluteError(absoluteError)
   const iconWithTextStyle = getIconWithTextStyle(title)
@@ -33,7 +37,7 @@ const CustomButton = ({ absoluteError, color, marginBottom, marginTop, style, lo
   const colorStyle = getColorStyle(color)
   const borderR = getBorderRaiusStyle(borderRadius)
   const txtColor = textColor ? { color: textColor } : { color: theme.color.secondary1 }
-  const isDisabled = !ok || !absoluteError
+  const isDisabled = getIsDisabled(ok, absoluteError)
   ok = getDefaultOk(ok)
   return (
     <View style={[styles.container, style, { marginTop, marginBottom }]}>
