@@ -22,8 +22,12 @@ const getBorderRaiusStyle = borderRadius => {
   return borderRadius ? { borderRadius: borderRadius } : { borderRadius: 100 }
 }
 
+const getAbsoluteError = absoluteError => {
+  return absoluteError === undefined ? true : absoluteError
+}
+
 const CustomButton = ({ absoluteError, color, marginBottom, marginTop, style, loading, ok, title, onPress, width, borderRadius, leftIconName, textColor }) => {
-  absoluteError = absoluteError === undefined ? true : absoluteError
+  absoluteError = getAbsoluteError(absoluteError)
   const iconWithTextStyle = getIconWithTextStyle(title)
   const leftIcon = leftIconName ? <Icon style={[iconWithTextStyle, styles.icon, styles.textColor]} name={leftIconName} size={24} /> : null
   const colorStyle = getColorStyle(color)

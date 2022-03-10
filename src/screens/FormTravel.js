@@ -7,15 +7,6 @@ import theme from '../themes/lights'
 import useWalkDatetime from '../hooks/useWalkDatetime'
 import DateShortcuts from '../assets/controllers/DateShortcuts'
 
-/* Tiempo minimo
-Tiempo Maximo
-Fecha inicial min 3h
-Fecha maxima 1 semana
-Horario 8am-8pm
-
-semana en mili = 604800000
- */
-
 const startDateIsLowerThanEndDate = (startDatetime, endDatetime) => {
   return (startDatetime > endDatetime)
 }
@@ -43,22 +34,26 @@ const isInhumanSchedule = (startDatetime, endDatetime) => {
   return true
 }
 
+const getFoo = (startDatetime, endDatetime, errController) => {
+  if (minimunOneWeek(startDatetime)) {
+    // Fecha tiene que ser mayor a la de inicio
+    errController('*Maximum one week to schedule walk', false)
+    return true
+  } else if (startDateIsLowerThanEndDate(startDatetime, endDatetime)) {
+    //  Fecha limite maximo una semana
+    errController('*Start datetime must be lower than end datetime', false)
+    return true
+  }
+  return false
+}
+
 const datesValidation = (form, setErrorText, setAbsoluteError) => {
   const startDatetime = parseInt(form.start.value)
   const endDatetime = parseInt(form.end.value)
   const errController = errorController(setErrorText, setAbsoluteError)
-  console.log(new Date(startDatetime).getHours())
 
-  const dia = new Date(startDatetime)
-  console.log(dia.getHours())
-
-  if (minimunOneWeek(startDatetime)) {
-    // Fecha tiene que ser mayor a la de inicio
-    errController('*Maximum one week to schedule walk', false)
-  } else if (startDateIsLowerThanEndDate(startDatetime, endDatetime)) {
-    //  Fecha limite maximo una semana
-    errController('*Start datetime must be lower than end datetime', false)
-    // console.log(new Date(startDatetime + DateShortcuts.values.week))
+  // eslint-disable-next-line no-empty
+  if (getFoo(startDatetime, endDatetime, errController)) {
   } else if (minimunOneHour(startDatetime, endDatetime)) {
     // Tiempo Minimo de 1 hora
     errController('*Minimun 1 hour Walk', false)
