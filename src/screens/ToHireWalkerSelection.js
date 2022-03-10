@@ -14,7 +14,7 @@ const ToHireWalkerSection = ({ navigation, route }) => {
       <CustomButton marginTop={theme.spacing.xl} title="See reviews" onPress={() => navigation.navigate('Reviews', { image, name, id, rating })} />
       <LineSeparator marginVertical={theme.spacing.xxl} />
       <UserInfo mobile={mobile} age="22" email={email} services="1230" />
-      <CustomButton marginTop={theme.spacing.xxxl} title='Set schedule' width={200} borderRadius={18} color='#fff' textColor={theme.color.primary2} onPress={() => navigation.navigate('FormTravel', { image, id })} />
+      <CustomButton marginTop={theme.spacing.xxxl} title='Set schedule' width={200} borderRadius={18} color='#fff' textColor={theme.color.primary2} onPress={() => navigation.navigate('FormTravel', { image, id, name, rating })} />
     </GenericContainer>
   )
 }

@@ -5,16 +5,71 @@ import CustomButton from '../components/CustomButton'
 import CustomDatePicker from '../components/CustomDatePicker'
 import theme from '../themes/lights'
 import useWalkDatetime from '../hooks/useWalkDatetime'
+import DateShortcuts from '../assets/controllers/DateShortcuts'
+
+/* Tiempo minimo
+Tiempo Maximo
+Fecha inicial min 3h
+Fecha maxima 1 semana
+Horario 8am-8pm
+
+semana en mili = 604800000
+ */
+
+const startDateIsLowerThanEndDate = (startDatetime, endDatetime) => {
+  return (startDatetime > endDatetime)
+}
+
+const errorController = (setErrorText, setAbsoluteError) => {
+  return (text, error) => {
+    setErrorText(text)
+    setAbsoluteError(error)
+  }
+}
+
+const minimunOneWeek = (startDatetime) => {
+  return startDatetime >= (new Date().getTime() + DateShortcuts.values.week)
+}
+
+const minimunOneHour = (startDatetime, endDatetime) => {
+  return ((endDatetime - startDatetime) <= DateShortcuts.values.hours)
+}
+
+const isInhumanSchedule = (startDatetime, endDatetime) => {
+  if (new Date(startDatetime).getHours() > '8' &&
+  new Date(endDatetime).getHours() < '20') {
+    return false
+  }
+  return true
+}
 
 const datesValidation = (form, setErrorText, setAbsoluteError) => {
   const startDatetime = parseInt(form.start.value)
   const endDatetime = parseInt(form.end.value)
-  if (startDatetime > endDatetime) {
-    setErrorText('*Error: start datetime must be higher thant end datetime')
-    setAbsoluteError(false)
+  const errController = errorController(setErrorText, setAbsoluteError)
+  console.log(new Date(startDatetime).getHours())
+
+  const dia = new Date(startDatetime)
+  console.log(dia.getHours())
+
+  if (minimunOneWeek(startDatetime)) {
+    // Fecha tiene que ser mayor a la de inicio
+    errController('*Maximum one week to schedule walk', false)
+  } else if (startDateIsLowerThanEndDate(startDatetime, endDatetime)) {
+    //  Fecha limite maximo una semana
+    errController('*Start datetime must be lower than end datetime', false)
+    // console.log(new Date(startDatetime + DateShortcuts.values.week))
+  } else if (minimunOneHour(startDatetime, endDatetime)) {
+    // Tiempo Minimo de 1 hora
+    errController('*Minimun 1 hour Walk', false)
+  } else if ((endDatetime - startDatetime) >= (DateShortcuts.values.hours * 3)) {
+    //  Tiempo maximo de 3 horas
+    errController('*Maximum 3 hours Walk', false)
+  } else if (isInhumanSchedule(startDatetime, endDatetime)) {
+    //  Horario de 8am-8pm
+    errController('*Schedule must be between 8:00 A.M and 8:00 P.M', false)
   } else {
-    setErrorText('')
-    setAbsoluteError(true)
+    errController('', true)
   }
 }
 
@@ -38,8 +93,8 @@ const FormTravel = ({ navigation, route }) => {
       <View style={styles.align}>
         <Text style={styles.info}>The walker will be: </Text>
         <Image source={{ uri: route.params.image }} style={styles.img}/>
-        <Text style={styles.instructions}>Tizoc Chavez</Text>
-        <CustomRatings rating={3} size={25}/>
+        <Text style={styles.instructions}>{route.params.name}</Text>
+        <CustomRatings rating={route.params.rating} size={25}/>
         <View style={styles.buttons}>
           <Text style={styles.instructions}>Please customize the start and the end time of the ride: </Text>
           <CustomDatePicker {...form.start} title={'Start date time'} styl={{ marginBottom: 10 }} color='#fff' borderRadius={15} textColor={theme.color.primary2}/>
