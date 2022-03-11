@@ -37,8 +37,8 @@ const CustomButton = ({ absoluteError, color, marginBottom, marginTop, style, lo
   const colorStyle = getColorStyle(color)
   const borderR = getBorderRaiusStyle(borderRadius)
   const txtColor = textColor ? { color: textColor } : { color: theme.color.secondary1 }
-  const isDisabled = getIsDisabled(ok, absoluteError)
   ok = getDefaultOk(ok)
+  const isDisabled = getIsDisabled(ok, absoluteError)
   return (
     <View style={[styles.container, style, { marginTop, marginBottom }]}>
       <Pressable style={[{ width: width }, styles.button, borderR, colorStyle, isDisabled ? styles.disabled : null]} onPress={onPress} disabled={isDisabled}>
