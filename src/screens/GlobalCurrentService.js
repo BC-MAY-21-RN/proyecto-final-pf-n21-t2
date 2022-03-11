@@ -65,7 +65,7 @@ const LeftTime = ({ startDatetime, endDatetime, setWalkingPhase, walkingPhase, s
     result = (
       <Text style={styles.subTitle}>The walking has end, {customMessage}</Text>
     )
-  } else if (parseInt(startDatetime) > currentDatetime && parseInt(endDatetime) < currentDatetime) {
+  } else if (parseInt(startDatetime) < currentDatetime && parseInt(endDatetime) > currentDatetime) {
     phase = 1
     const leftValue = DateShortcuts.getTravelValues(startDatetime, endDatetime)[2]
     result = (
