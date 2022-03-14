@@ -151,6 +151,14 @@ const GlobalCurrentService = ({ navigation, route }) => {
       }
     }
   }, [walkingPhase])
+
+  const currentRegion = {
+    latitude: lastPosition.latitude,
+    longitude: lastPosition.longitude,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421
+  }
+
   return (
     <GenericContainer>
       <Text style={styles.header}>Walking road</Text>
@@ -160,12 +168,8 @@ const GlobalCurrentService = ({ navigation, route }) => {
       <View style={styles.mapContainer}>
         <MapView
           style={styles.map}
-          initialRegion={{
-            latitude: lastPosition.latitude,
-            longitude: lastPosition.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}>
+          region={currentRegion}
+          initialRegion={currentRegion}>
             {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
           </MapView>
           {walkingPhase === 0 && route.params.screenType === 3
