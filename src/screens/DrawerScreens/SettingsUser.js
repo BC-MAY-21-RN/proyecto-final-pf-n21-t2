@@ -30,7 +30,7 @@ const SettingsUser = ({ navigation, route }) => {
   return (
     <MenuOptions navigation={navigation} buttonWidth={buttonStyle.width}>
 
-      <CustomButton leftIconName={person} title="User settings" {...buttonStyle}
+      <CustomButton leftIconName={person} ok={false} title="User settings" {...buttonStyle}
         onPress={() => { handleNavigation('UserSettingsWalker') }}
       />
       <CustomButton leftIconName={help} title="Help" {...buttonStyle}
