@@ -71,10 +71,14 @@ const LeftTime = ({ startDatetime, endDatetime, setWalkingPhase, walkingPhase, s
     result = (
       <>
         <Text style={styles.subTitle}>The walking ends in {leftValue}</Text>
-        <View style={styles.row}>
+        {screenType === 2
+          ? (
+          <View style={styles.row}>
           <Text style={styles.red}>Uploading current location</Text>
           <LoadingSpinner />
         </View>
+            )
+          : null}
       </>
     )
   } else {
@@ -111,6 +115,7 @@ const getTravelData = (walkingId, setTravelLocations) => {
       result.push(snapshot.data())
     })
     setTravelLocations(result)
+    console.log(result[result.length - 1])
   })
 }
 
@@ -142,8 +147,8 @@ const GlobalCurrentService = ({ navigation, route }) => {
       uploadLocationLoop = setInterval(() => {
         if (walkingPhase === 1 && route.params.screenType === 2) {
           uploadLocation(route.params.id)
-          getTravelData(route.params.id, setTravelLocations)
         }
+        getTravelData(route.params.id, setTravelLocations)
       }, 5000)
       return () => {
         clearInterval(uploadLocationLoop)
@@ -152,11 +157,16 @@ const GlobalCurrentService = ({ navigation, route }) => {
     }
   }, [walkingPhase])
 
+  const usedPosition = travelLocations?.length > 0
+    ? {
+        ...travelLocations[0]
+      }
+    : null
+
   const currentRegion = {
-    latitude: lastPosition.latitude,
-    longitude: lastPosition.longitude,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421
+    ...usedPosition,
+    latitudeDelta: 0.0050,
+    longitudeDelta: 0.0050
   }
 
   return (
@@ -166,12 +176,16 @@ const GlobalCurrentService = ({ navigation, route }) => {
         <LeftTime setWalkingPhase={setWalkingPhase} screenType={route.params.screenType} walkingPhase={walkingPhase} startDatetime={route.params.startDatetime} endDatetime={route.params.endDatetime} />
       </View>
       <View style={styles.mapContainer}>
-        <MapView
-          style={styles.map}
-          region={currentRegion}
-          initialRegion={currentRegion}>
-            {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
-          </MapView>
+        {usedPosition
+          ? (
+          <MapView
+            style={styles.map}
+            region={currentRegion}
+            initialRegion={currentRegion}>
+              {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
+            </MapView>
+            )
+          : <LoadingSpinner />}
           {walkingPhase === 0 && route.params.screenType === 3
             ? (
             <View style={styles.buttonContainer}>

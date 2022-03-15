@@ -25,6 +25,7 @@ import GlobalCurrentService from '../../GlobalCurrentService'
 import AddReview from '../../AddReview'
 import ClientChoosePet from '../../ClientChoosePet'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import TestPosition from '../../TestPosition'
 
 const Stack = createNativeStackNavigator()
 
@@ -33,7 +34,7 @@ const NavigationInit = () => {
   return (
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Login' screenOptions={{ contentStyle: { backgroundColor: 'white' }, headerStyle: { backgroundColor: '#A239EA' }, headerTintColor: '#fff' } }><Stack.Screen name="Login" component={SignWelcome} />
-          <Stack.Screen name="SignUpType" component={SignWelcome} options={{ title: 'Select Type' }}/><Stack.Screen name="SignUpWalker" component={SignUpWalker} options={{ title: 'Sign Up' }}/>
+          <Stack.Screen name="TestPosition" component={TestPosition} options={{ title: 'Test position' }}/><Stack.Screen name="SignUpType" component={SignWelcome} options={{ title: 'Sign Up' }}/><Stack.Screen name="SignUpWalker" component={SignUpWalker} options={{ title: 'Sign Up' }}/>
           <Stack.Screen name="SignUpClient" component={SignUpClient} options={{ title: 'Sign Up' }}/><Stack.Screen name="Walker" component={TabNavigator} />
           <Stack.Screen name="Client" component={TabNavigator} /><Stack.Screen name="WalkerServices" component={WalkerServices} />
           <Stack.Screen name="SettingsUser" component={SettingsUser} options={{ title: 'Settings' }}/><Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} options={{ title: 'Client Details' }}/>
