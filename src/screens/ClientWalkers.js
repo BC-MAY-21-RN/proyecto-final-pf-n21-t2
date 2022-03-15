@@ -26,6 +26,7 @@ const isNearEnought = (lastPosition, currentPosition) => {
 const getReviews = (id) => {
   const result = []
   let suma = 0
+  // console.log('inint =>>>>>>>>>>>>>>>>s')
   return new Promise((resolve) => {
     fbShortcuts.getCollection('Reviews').where('walkeruid', '==', id).get()
       .then(q => {
@@ -36,12 +37,14 @@ const getReviews = (id) => {
           result.push(row)
         })
         if (bool === false) {
-          resolve(0)
+          resolve({ id, rating: 0 })
+        } else {
+          result.forEach((rate) => {
+            suma += rate.ratings
+          })
+          // console.log(suma)
+          resolve({ id, rating: suma / result.length })
         }
-        result.forEach((rate) => {
-          suma += rate.ratings
-        })
-        resolve(suma / result.length)
       })
   })
 
@@ -49,8 +52,7 @@ const getReviews = (id) => {
 }
 
 const getWalkers = (setWalkers) => {
-  const promises = []
-  const result = []
+  const [promises, result] = [[], []]
   const currentPosition = userSession.getState().lastPosition
   fbShortcuts.getCollection('Users').where('type', '==', '2').get().then(q => {
     q.forEach(documentSnapshot => {
@@ -69,8 +71,8 @@ const getWalkers = (setWalkers) => {
     })
     Promise.all(promises).then((resolve) => {
       for (let i = 0; i < result.length; i++) {
-        result[i].rating = resolve[i]
-      }
+        result[i].rating = resolve.filter(row => row.id === result[i].id)[0].rating }
+      result.sort((a, b) => b.rating - a.rating)
       setWalkers(result)
     })
   })
