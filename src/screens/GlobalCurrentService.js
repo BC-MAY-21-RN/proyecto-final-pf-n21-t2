@@ -54,6 +54,17 @@ const getCustomMessage = screenType => {
   return screenType === 3 ? 'the walker is returning with your friends' : 'bring back the furry friends to their owner'
 }
 
+const getCurrentUploadingText = (screenType) => {
+  return screenType === 2
+    ? (
+    <View style={styles.row}>
+    <Text style={styles.red}>Uploading current location</Text>
+    <LoadingSpinner />
+  </View>
+      )
+    : null
+}
+
 const LeftTime = ({ startDatetime, endDatetime, setWalkingPhase, walkingPhase, screenType }) => {
   const currentDatetime = new Date().getTime()
   const leftTime = parseInt(endDatetime) - currentDatetime
@@ -71,14 +82,7 @@ const LeftTime = ({ startDatetime, endDatetime, setWalkingPhase, walkingPhase, s
     result = (
       <>
         <Text style={styles.subTitle}>The walking ends in {leftValue}</Text>
-        {screenType === 2
-          ? (
-          <View style={styles.row}>
-          <Text style={styles.red}>Uploading current location</Text>
-          <LoadingSpinner />
-        </View>
-            )
-          : null}
+        {getCurrentUploadingText(screenType)}
       </>
     )
   } else {
@@ -129,6 +133,14 @@ const finishWalking = (navigation, walker, setLoading) => {
   })
 }
 
+const getComplexTravelLocations = (travelLocations) => {
+  return travelLocations?.length > 0
+    ? {
+        ...travelLocations[0]
+      }
+    : null
+}
+
 const GlobalCurrentService = ({ navigation, route }) => {
   const { lastPosition } = userSession.getState()
   const [walkingPhase, setWalkingPhase] = useState(null)
@@ -157,11 +169,7 @@ const GlobalCurrentService = ({ navigation, route }) => {
     }
   }, [walkingPhase])
 
-  const usedPosition = travelLocations?.length > 0
-    ? {
-        ...travelLocations[0]
-      }
-    : null
+  const usedPosition = getComplexTravelLocations(travelLocations)
 
   const currentRegion = {
     ...usedPosition,
