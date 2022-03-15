@@ -33,24 +33,24 @@ const NavigationInit = () => {
   return (
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Login' screenOptions={{ contentStyle: { backgroundColor: 'white' }, headerStyle: { backgroundColor: '#A239EA' }, headerTintColor: '#fff' } }><Stack.Screen name="Login" component={SignWelcome} />
-          <Stack.Screen name="SignUpType" component={SignWelcome} /><Stack.Screen name="SignUpWalker" component={SignUpWalker} />
-          <Stack.Screen name="SignUpClient" component={SignUpClient} /><Stack.Screen name="Walker" component={TabNavigator} />
+          <Stack.Screen name="SignUpType" component={SignWelcome} options={{ title: 'Select Type' }}/><Stack.Screen name="SignUpWalker" component={SignUpWalker} options={{ title: 'Sign Up' }}/>
+          <Stack.Screen name="SignUpClient" component={SignUpClient} options={{ title: 'Sign Up' }}/><Stack.Screen name="Walker" component={TabNavigator} />
           <Stack.Screen name="Client" component={TabNavigator} /><Stack.Screen name="WalkerServices" component={WalkerServices} />
-          <Stack.Screen name="SettingsUser" component={SettingsUser} /><Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} />
-          <Stack.Screen name="ClientWalkers" component={ClientWalkers} />
-          <Stack.Screen name="ClientDogWalker" component={ClientDogWalker} />
-          <Stack.Screen name="ClientWalkerReviews" component={ClientWalkerReviews} />
+          <Stack.Screen name="SettingsUser" component={SettingsUser} options={{ title: 'Settings' }}/><Stack.Screen name="WalkerDetailsClient" component={WalkerDetailsClient} options={{ title: 'Client Details' }}/>
+          <Stack.Screen name="ClientWalkers" component={ClientWalkers} options={{ title: 'Dog Walkers' }}/>
+          <Stack.Screen name="ClientDogWalker" component={ClientDogWalker} options={{ title: 'Dog Walkers' }}/>
+          <Stack.Screen name="ClientWalkerReviews" component={ClientWalkerReviews} options={{ title: 'Reviews' }}/>
           <Stack.Screen name="ClientDateForm" component={ClientDateForm} />
-          <Stack.Screen name="UserSettingsWalker" component={UserSettingsWalker} />
-          <Stack.Screen name="HelpUser" component={HelpUser} />
-          <Stack.Screen name="Pets" component={Pets} />
-          <Stack.Screen name="AddPet" component={AddPet} />
-          <Stack.Screen name="PetInformation" component={PetInformation} />
-          <Stack.Screen name="AboutUs" component={AboutUS} />
-          <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} />
+          <Stack.Screen name="UserSettingsWalker" component={UserSettingsWalker} options={{ title: 'Settings' }}/>
+          <Stack.Screen name="HelpUser" component={HelpUser} options={{ title: 'Help' }}/>
+          <Stack.Screen name="Pets" component={Pets} options={{ title: 'Your Pets' }}/>
+          <Stack.Screen name="AddPet" component={AddPet} options={{ title: 'Add New Pet' }}/>
+          <Stack.Screen name="PetInformation" component={PetInformation} options={{ title: 'Pet Details' }}/>
+          <Stack.Screen name="AboutUs" component={AboutUS} options={{ title: 'Team' }}/>
+          <Stack.Screen name="ToHireWalkerSelection" component={ToHireWalkerSelection} options={{ title: 'Hire Your Walker' }}/>
           <Stack.Screen name="Reviews" component={Reviews} />
-          <Stack.Screen name="FormTravel" component={FormTravel} /><Stack.Screen name="ClientChoosePet" component={ClientChoosePet} />
-          <Stack.Screen name="AddReview" component={AddReview} /><Stack.Screen name="GlobalCurrentService" component={GlobalCurrentService} />
+          <Stack.Screen name="FormTravel" component={FormTravel} options={{ title: 'Walk Form' }} /><Stack.Screen name="ClientChoosePet" component={ClientChoosePet} options={{ title: 'Your Pets' }}/>
+          <Stack.Screen name="AddReview" component={AddReview} options={{ title: 'New Review' }}/><Stack.Screen name="GlobalCurrentService" component={GlobalCurrentService} />
         </Stack.Navigator>
       </NavigationContainer>
   )
