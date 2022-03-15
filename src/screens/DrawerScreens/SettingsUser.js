@@ -39,6 +39,9 @@ const SettingsUser = ({ navigation, route }) => {
       <CustomButton leftIconName={about} title="About Us" {...buttonStyle}
         onPress={() => { handleNavigation('AboutUs') }}
       />
+      <CustomButton leftIconName={about} title="Test Position" {...buttonStyle}
+        onPress={() => { handleNavigation('TestPosition') }}
+      />
       {settingsContent}
     </MenuOptions>
   )
