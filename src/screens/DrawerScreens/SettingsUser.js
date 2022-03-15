@@ -33,7 +33,7 @@ const SettingsUser = ({ navigation, route }) => {
       <CustomButton leftIconName={person} ok={false} title="User settings" {...buttonStyle}
         onPress={() => { handleNavigation('UserSettingsWalker') }}
       />
-      <CustomButton leftIconName={help} title="Help" {...buttonStyle}
+      <CustomButton leftIconName={help} ok={false} title="Help" {...buttonStyle}
         onPress={() => { handleNavigation('HelpUser') }}
       />
       <CustomButton leftIconName={about} title="About Us" {...buttonStyle}
