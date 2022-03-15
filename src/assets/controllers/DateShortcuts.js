@@ -16,7 +16,7 @@ const getValidity = (value) => (timeValue) => {
 }
 
 const getTimeResultString = (value) => (timeValue) => {
-  Math.floor(value / timeValue)
+  return Math.floor(value / timeValue)
 }
 
 const getHumanValue = value => {
