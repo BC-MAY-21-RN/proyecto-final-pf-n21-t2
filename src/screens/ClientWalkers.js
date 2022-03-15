@@ -47,8 +47,6 @@ const getReviews = (id) => {
         }
       })
   })
-
-  // return (result.length === 0) ? 0 : (suma / result.length)
 }
 
 const getWalkers = (setWalkers) => {
@@ -71,7 +69,8 @@ const getWalkers = (setWalkers) => {
     })
     Promise.all(promises).then((resolve) => {
       for (let i = 0; i < result.length; i++) {
-        result[i].rating = resolve.filter(row => row.id === result[i].id)[0].rating }
+        result[i].rating = resolve.filter(row => row.id === result[i].id)[0].rating
+      }
       result.sort((a, b) => b.rating - a.rating)
       setWalkers(result)
     })
