@@ -12,6 +12,7 @@ const getDiference = (val1, val2) => {
 const isNearEnought = (lastPosition, currentPosition) => {
   const oneMinute = 1000 * 60
   const maxDistance = 0.01
+  return true
   if (!currentPosition) {
     return true
   } else if ((new Date().getTime() - lastPosition.timestamp) > oneMinute &&

@@ -26,14 +26,15 @@ const SettingsUser = ({ navigation, route }) => {
   const person = 'person-circle-outline'
   const help = 'help-circle-outline'
   const about = 'people-outline'
+  const disOk = { ok: false }
 
   return (
     <MenuOptions navigation={navigation} buttonWidth={buttonStyle.width}>
 
-      <CustomButton leftIconName={person} ok={false} title="User settings" {...buttonStyle}
+      <CustomButton leftIconName={person} {...{ disOk }} title="User settings" {...buttonStyle}
         onPress={() => { handleNavigation('UserSettingsWalker') }}
       />
-      <CustomButton leftIconName={help} ok={false} title="Help" {...buttonStyle}
+      <CustomButton leftIconName={help} {...{ disOk }} title="Help" {...buttonStyle}
         onPress={() => { handleNavigation('HelpUser') }}
       />
       <CustomButton leftIconName={about} title="About Us" {...buttonStyle}
