@@ -10,13 +10,6 @@ import fbShortcuts from '../assets/controllers/firebaseShortcuts'
 import CustomButton from '../components/CustomButton'
 
 const styles = {
-  header: {
-    color: theme.color.secondary2,
-    fontSize: theme.font.xl,
-    borderBottomColor: theme.color.secondary2,
-    borderBottomWidth: 2,
-    marginBottom: theme.spacing.xs
-  },
   map: {
     flex: 1
   },
@@ -36,7 +29,15 @@ const styles = {
     fontSize: theme.font.m,
     color: theme.color.danger,
     paddingTop: 0,
+    paddingBottom: 0,
     paddingRight: theme.spacing.m
+  },
+  header: {
+    fontSize: theme.font.xl,
+    color: theme.color.secondary2,
+    borderBottomColor: theme.color.secondary2,
+    borderBottomWidth: 2,
+    marginBottom: theme.spacing.xs
   },
   row: {
     display: 'flex',
