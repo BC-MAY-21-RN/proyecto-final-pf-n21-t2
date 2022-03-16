@@ -82,7 +82,6 @@ const FormTravel = ({ navigation, route }) => {
   useEffect(() => {
     datesValidation(form, setErrorText, setAbsoluteError)
   }, [form.start.value, form.end.value])
-  useEffect(() => console.log('ERROR =>', absoluteError), [absoluteError])
   return (
     <View style={styles.container}>
       <View style={styles.align}>

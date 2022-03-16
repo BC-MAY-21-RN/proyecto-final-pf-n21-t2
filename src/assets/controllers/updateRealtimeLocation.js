@@ -45,14 +45,13 @@ const getCurrentPosition = callback => {
     (error) => {
       console.log(error.code, error.message)
     },
-    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000, accuracy: { android: 'hight' } }
   )
 }
 
 const listen = async () => {
   afterUserStartSession(user => {
     clearInterval(updateUsersLocationsInterval)
-
     afterHaveLocationPermissions(() => {
       const doGetAndUpdatePosition = () => {
         getCurrentPosition(position => {
