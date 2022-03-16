@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import CustomButton from '../components/CustomButton'
 import PetCard from '../components/PetCard'
 import fbShortcuts from '../assets/controllers/firebaseShortcuts'
@@ -9,9 +9,13 @@ import GenericContainer from '../containers/GenericContainer'
 
 const Card = ({ name, url, onPress }) => {
   const petCardStyle = { imgStyle: styles.img, txtStyle: styles.petAdded }
-  return (<TouchableOpacity style={styles.card} onPress={onPress}>
-      <PetCard url={url} {...petCardStyle} name={name} row />
-  </TouchableOpacity>)
+  return (
+    <View style={styles.fatherContainer}>
+      <TouchableOpacity style={styles.card} onPress={onPress}>
+          <PetCard url={url} {...petCardStyle} name={name} row />
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 const getPets = setPets => {
@@ -55,6 +59,10 @@ const Pets = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  fatherContainer: {
+    width: 335,
+    paddingHorizontal: 20
+  },
   container: {
     alignItems: 'center',
     display: 'flex'
@@ -69,9 +77,9 @@ const styles = StyleSheet.create({
   img: {
     width: 60,
     height: 60,
-    borderRadius: 30,
+    borderRadius: 10,
     marginRight: 20,
-    marginLeft: 20
+    marginLeft: 10
   },
   card: {
     width: 300,
@@ -79,19 +87,26 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: '#F0D9E7',
-    alignItems: 'center',
+    borderColor: 'white',
     marginBottom: 20,
-    borderRadius: 50,
-    borderWidth: 1
+    borderRadius: 20,
+    borderWidth: 2,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 14
   },
   petAdded: {
     fontSize: 20,
     color: 'black'
-
   },
   lista: {
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 20
   }
 })
 
