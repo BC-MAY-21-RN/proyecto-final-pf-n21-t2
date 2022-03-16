@@ -19,11 +19,12 @@ const finalUpdateClients = (data, setClients, walkings) => {
 const getArrData = screenType => {
   const isPayed = screenType === 1 ? '0' : '1'
   const userType = screenType === 3 ? 'clientId' : 'walkerId'
-  return [isPayed, userType]
+  const userTypeImageId = screenType === 3 ? 'walkerId' : 'clientId'
+  return [isPayed, userType, userTypeImageId]
 }
 
 const getClients = (screenType) => {
-  const [isPayed, userType] = getArrData(screenType)
+  const [isPayed, userType, userTypeImageId] = getArrData(screenType)
   return setClients => {
     const currentUserId = userSession.getState().id
     fbShortcuts.getCollection('Walkings').where(userType, '==', currentUserId)
@@ -35,7 +36,7 @@ const getClients = (screenType) => {
           querySnapshot.forEach(async (snapshot) => {
             const row = snapshot.data()
             row.id = snapshot.id
-            const user = fbShortcuts.getCollection('Users').where('useruid', '==', row.clientId).get()
+            const user = fbShortcuts.getCollection('Users').where('useruid', '==', row[userTypeImageId]).get()
             getClients.push(user)
             walkings.push(row)
           })
@@ -78,6 +79,7 @@ const GlobalServices = ({ navigation, route }) => {
       endDatetime={item.endDatetime}
       pets={item.pets}
       id={item.id}
+      walkerId={item.walkerId}
       screenType={screenType}
       />
   )

@@ -6,18 +6,18 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import { useSelector } from 'react-redux'
 
 const TestPosition = () => {
-  const position = useSelector(userSession.getState)
+  const lastPosition = useSelector(userSession.getState)?.lastPosition
 
   return (
     <GenericContainer>
-      {position
+      {lastPosition
         ? (
         <>
-          <Text>{position?.lastPosition?.latitude}</Text>
-          <Text>{position?.lastPosition?.longitude}</Text>
+          <Text>{lastPosition?.latitude}</Text>
+          <Text>{lastPosition?.longitude}</Text>
         </>
           )
-        : <LoadingSpinner />}
+        : <LoadingSpinner size="huge" scale={2} />}
     </GenericContainer>
   )
 }

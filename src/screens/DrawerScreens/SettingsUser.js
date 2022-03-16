@@ -1,5 +1,6 @@
 import React from 'react'
 import CustomButton from '../../components/CustomButton'
+import DisabledButton from '../../components/DisabledButton'
 import MenuOptions from '../../components/MenuOptions'
 import theme from '../../themes/lights'
 
@@ -30,10 +31,10 @@ const SettingsUser = ({ navigation, route }) => {
   return (
     <MenuOptions navigation={navigation} buttonWidth={buttonStyle.width}>
 
-      <CustomButton leftIconName={person} ok={false} title="User settings" {...buttonStyle}
+      <DisabledButton leftIconName={person} title="User settings" {...buttonStyle}
         onPress={() => { handleNavigation('UserSettingsWalker') }}
       />
-      <CustomButton leftIconName={help} title="Help" {...buttonStyle}
+      <DisabledButton leftIconName={help} title="Help" {...buttonStyle}
         onPress={() => { handleNavigation('HelpUser') }}
       />
       <CustomButton leftIconName={about} title="About Us" {...buttonStyle}

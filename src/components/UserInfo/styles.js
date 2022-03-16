@@ -5,6 +5,9 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex'
   },
+  spinnerContainer: {
+    alignSelf: 'flex-end'
+  },
   text: {
     fontSize: theme.font.m,
     color: theme.color.secondary2

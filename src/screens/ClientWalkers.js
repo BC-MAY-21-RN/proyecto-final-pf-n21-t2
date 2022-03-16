@@ -26,7 +26,6 @@ const isNearEnought = (lastPosition, currentPosition) => {
 const getReviews = (id) => {
   const result = []
   let suma = 0
-  // console.log('inint =>>>>>>>>>>>>>>>>s')
   return new Promise((resolve) => {
     fbShortcuts.getCollection('Reviews').where('walkeruid', '==', id).get()
       .then(q => {
@@ -42,7 +41,6 @@ const getReviews = (id) => {
           result.forEach((rate) => {
             suma += rate.ratings
           })
-          // console.log(suma)
           resolve({ id, rating: suma / result.length })
         }
       })
@@ -84,7 +82,7 @@ const ClientWalkers = ({ navigation }) => {
 
   return (
     <GenericContainer>
-      <CustomFlatList render={renderItem} get={getWalkers} empty="No Walkers Registred" />
+      <CustomFlatList render={renderItem} get={getWalkers} empty="There are no walkers near" />
     </GenericContainer>
   )
 }

@@ -10,13 +10,6 @@ import fbShortcuts from '../assets/controllers/firebaseShortcuts'
 import CustomButton from '../components/CustomButton'
 
 const styles = {
-  header: {
-    color: theme.color.secondary2,
-    fontSize: theme.font.xl,
-    borderBottomColor: theme.color.secondary2,
-    borderBottomWidth: 2,
-    marginBottom: theme.spacing.xs
-  },
   map: {
     flex: 1
   },
@@ -35,7 +28,16 @@ const styles = {
     marginBottom: theme.spacing.xs,
     fontSize: theme.font.m,
     color: theme.color.danger,
+    paddingTop: 0,
+    paddingBottom: 0,
     paddingRight: theme.spacing.m
+  },
+  header: {
+    fontSize: theme.font.xl,
+    color: theme.color.secondary2,
+    borderBottomColor: theme.color.secondary2,
+    borderBottomWidth: 2,
+    marginBottom: theme.spacing.xs
   },
   row: {
     display: 'flex',
@@ -119,7 +121,6 @@ const getTravelData = (walkingId, setTravelLocations) => {
       result.push(snapshot.data())
     })
     setTravelLocations(result)
-    console.log(result[result.length - 1])
   })
 }
 
@@ -142,13 +143,13 @@ const getComplexTravelLocations = (travelLocations) => {
 }
 
 const GlobalCurrentService = ({ navigation, route }) => {
-  const { lastPosition } = userSession.getState()
   const [walkingPhase, setWalkingPhase] = useState(null)
   const [travelLocations, setTravelLocations] = useState(null)
   const [loadingFinish, setLoadingFinish] = useState(false)
   const handleFinishWalking = () => {
     const walker = {
       id: route.params.id,
+      walkerId: route.params.walkerId,
       image: route.params.ImageUri,
       name: route.params.Name
     }
@@ -193,7 +194,7 @@ const GlobalCurrentService = ({ navigation, route }) => {
               {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
             </MapView>
             )
-          : <LoadingSpinner />}
+          : <LoadingSpinner size="huge" scale={2} />}
           {walkingPhase === 0 && route.params.screenType === 3
             ? (
             <View style={styles.buttonContainer}>

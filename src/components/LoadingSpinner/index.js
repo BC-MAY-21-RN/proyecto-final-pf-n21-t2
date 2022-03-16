@@ -23,10 +23,10 @@ const getSize = size => {
   return result
 }
 
-const LoadingSpinner = ({ size, scale, color }) => {
+const LoadingSpinner = ({ style, size, scale, color }) => {
   color = color ?? theme.color.primary1
   return (
-    <ActivityIndicator size={parseInt(getSize(size)) * (scale ?? 1)} color={color} />
+    <ActivityIndicator style={style} size={parseInt(getSize(size)) * (scale ?? 1)} color={color} />
   )
 }
 

@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
+import GenericContainer from '../containers/GenericContainer'
+import theme from '../themes/lights'
 
 const teamMembers = [
   { id: '1', name: 'Hugo Zachariel \nAlvarez Garcia', age: 21, picture: require('../assets/images/members/1.png') },
@@ -27,45 +29,39 @@ const AboutUS = () => {
   }
 
   return (
-    <View>
+    <GenericContainer>
       <FlatList
         data = {teamMembers}
         renderItem = {renderItem}
         keyExtractor = {item => item.id}
       />
-    </View>
+    </GenericContainer>
   )
 }
 
 export default AboutUS
 
 const styles = StyleSheet.create({
-  body: {
-    alignItems: 'center',
-    marginTop: 15
-  },
   back: {
     backgroundColor: '#A239EA',
-    marginBottom: 20,
+    marginBottom: theme.spacing.xl,
     borderRadius: 20,
     alignContent: 'center',
-    width: 330,
+    width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    padding: 10,
-    marginLeft: 40,
-    marginTop: 20
+    padding: theme.spacing.m
   },
   img: {
     width: 80,
     height: 110
   },
   text: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: theme.font.xl,
+    color: theme.color.secondary1,
     fontWeight: 'bold'
   },
   texts: {
-    marginLeft: 15
+    marginLeft: theme.spacing.m
   }
 })
