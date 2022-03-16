@@ -8,6 +8,7 @@ import DateShortcuts from '../assets/controllers/DateShortcuts'
 import LoadingSpinner from '../components/LoadingSpinner'
 import fbShortcuts from '../assets/controllers/firebaseShortcuts'
 import CustomButton from '../components/CustomButton'
+import MapViewDirections from 'react-native-maps-directions'
 
 const styles = {
   map: {
@@ -142,6 +143,21 @@ const getComplexTravelLocations = (travelLocations) => {
     : null
 }
 
+const MapRoute = ({ travelLocations }) => {
+  return travelLocations
+    ? (
+    <MapViewDirections
+    origin={travelLocations[0]}
+    destination={travelLocations[travelLocations.length - 1]}
+    apikey="AIzaSyBzU8R59mOHoOmCI0OiHuTd2lgoCYD-2AA"
+    mode="WALKING"
+    strokeWidth={3}
+    strokeColor={theme.color.primary2}
+  />
+      )
+    : null
+}
+
 const GlobalCurrentService = ({ navigation, route }) => {
   const [walkingPhase, setWalkingPhase] = useState(null)
   const [travelLocations, setTravelLocations] = useState(null)
@@ -174,8 +190,8 @@ const GlobalCurrentService = ({ navigation, route }) => {
 
   const currentRegion = {
     ...usedPosition,
-    latitudeDelta: 0.0050,
-    longitudeDelta: 0.0050
+    latitudeDelta: 0.0100,
+    longitudeDelta: 0.0100
   }
 
   return (
@@ -189,9 +205,9 @@ const GlobalCurrentService = ({ navigation, route }) => {
           ? (
           <MapView
             style={styles.map}
-            region={currentRegion}
+            // region={currentRegion}
             initialRegion={currentRegion}>
-              {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
+              <MapRoute travelLocations={travelLocations} />
             </MapView>
             )
           : <LoadingSpinner size="huge" scale={2} />}
