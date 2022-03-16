@@ -34,6 +34,11 @@ const styles = {
     borderBottomWidth: 2,
     borderColor: theme.color.secondary2
   },
+  empty: {
+    fontSize: theme.font.xl,
+    textAlign: 'center',
+    color: theme.color.secondary2
+  },
   petName: {
     fontSize: theme.font.xl,
     marginLeft: theme.spacing.xl
@@ -49,6 +54,14 @@ const signupWalking = (walking, submit, navigation) => {
     submit.setLoading(false)
     resetNavigation(navigation)
   })
+}
+
+const getEmptyOrButton = (pets, submit, handleSubmit) => {
+  return pets
+    ? (
+        !pets || pets.length === 0 ? (<Text style={styles.empty}>There are no pets saved</Text>) : <CustomButton title="Take my dog" borderRadius={18} color='#fff' textColor={theme.color.primary2} {...submit} onPress={handleSubmit} />
+      )
+    : <LoadingSpinner size="huge" scale={2} />
 }
 
 const ClientChoosePet = ({ navigation, route }) => {
@@ -116,11 +129,7 @@ const ClientChoosePet = ({ navigation, route }) => {
           )
         })}
       </View>
-      {pets
-        ? (
-        <CustomButton title="Take my dog" borderRadius={18} color='#fff' textColor={theme.color.primary2} {...submit} onPress={handleSubmit} />
-          )
-        : <LoadingSpinner size="huge" scale={2} />}
+      {getEmptyOrButton(pets, submit, handleSubmit)}
     </GenericContainer>
   )
 }
