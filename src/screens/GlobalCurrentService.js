@@ -147,6 +147,7 @@ const GlobalCurrentService = ({ navigation, route }) => {
   const handleFinishWalking = () => {
     const walker = {
       id: route.params.id,
+      walkerId: route.params.walkerId,
       image: route.params.ImageUri,
       name: route.params.Name
     }
