@@ -19,7 +19,7 @@ const getNextScreen = screenType => {
   return screenName
 }
 
-const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, pets, id, screenType, walkerId }) => {
+const CardGeneric = ({ navigation, Name, ImageUri, startDatetime, endDatetime, pets, id, screenType, walkerId, fua }) => {
   const [travelDuration, travelStartsIn] = DateShortcuts.getTravelValues(startDatetime, endDatetime)
   const onPress = () => {
     const nextScreen = getNextScreen(screenType)
