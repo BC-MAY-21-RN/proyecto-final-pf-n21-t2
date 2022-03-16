@@ -4,6 +4,11 @@ const inputValidations = {
     min: 5,
     max: 50
   },
+  review: {
+    regex: /[^A-Za-z0-9 ,]+/,
+    min: 5,
+    max: 50
+  },
   phone: {
     regex: /[^0-9]+/,
     min: 10,

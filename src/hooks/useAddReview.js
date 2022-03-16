@@ -5,7 +5,7 @@ import FormHookPipe from '../assets/controllers/FormHookPipe'
 
 const useAddReview = () => {
   return FormHookPipe({
-    review: useInput(inputValidations.string),
+    review: useInput(inputValidations.review),
     submit: useSubmit()
   })
 }
