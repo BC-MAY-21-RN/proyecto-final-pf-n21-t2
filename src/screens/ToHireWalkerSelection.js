@@ -6,10 +6,9 @@ import LineSeparator from '../components/LineSeparator'
 import UserInfo from '../components/UserInfo'
 import theme from '../themes/lights'
 import fbShortcuts from '../assets/controllers/firebaseShortcuts'
-import { userSession } from '../store/reducers/userSession'
 
-const getServices = setServices => {
-  fbShortcuts.getCollection('Walking').where('walkerId', '==', userSession.getState().id).get()
+const getServices = (setServices, walkerId) => {
+  fbShortcuts.getCollection('Walkings').where('walkerId', '==', walkerId).get()
     .then((querySnapshot) => {
       const services = []
       querySnapshot.forEach((snapshot) => {
@@ -26,7 +25,7 @@ const ToHireWalkerSection = ({ navigation, route }) => {
 
   useEffect(() => {
     if (!services) {
-      getServices(setServices)
+      getServices(setServices, id)
     }
   }, [services])
 
