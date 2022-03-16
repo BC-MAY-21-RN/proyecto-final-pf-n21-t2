@@ -35,6 +35,7 @@ const styles = {
     marginBottom: theme.spacing.xs,
     fontSize: theme.font.m,
     color: theme.color.danger,
+    paddingTop: 0,
     paddingRight: theme.spacing.m
   },
   row: {
