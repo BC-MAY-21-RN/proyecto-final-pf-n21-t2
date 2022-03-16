@@ -119,7 +119,6 @@ const getTravelData = (walkingId, setTravelLocations) => {
       result.push(snapshot.data())
     })
     setTravelLocations(result)
-    console.log(result[result.length - 1])
   })
 }
 
@@ -142,7 +141,6 @@ const getComplexTravelLocations = (travelLocations) => {
 }
 
 const GlobalCurrentService = ({ navigation, route }) => {
-  const { lastPosition } = userSession.getState()
   const [walkingPhase, setWalkingPhase] = useState(null)
   const [travelLocations, setTravelLocations] = useState(null)
   const [loadingFinish, setLoadingFinish] = useState(false)
@@ -193,7 +191,7 @@ const GlobalCurrentService = ({ navigation, route }) => {
               {travelLocations ? <Polyline coordinates={travelLocations} /> : null}
             </MapView>
             )
-          : <LoadingSpinner />}
+          : <LoadingSpinner size="huge" scale={2} />}
           {walkingPhase === 0 && route.params.screenType === 3
             ? (
             <View style={styles.buttonContainer}>
