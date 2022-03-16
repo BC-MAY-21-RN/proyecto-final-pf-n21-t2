@@ -84,7 +84,7 @@ const ClientWalkers = ({ navigation }) => {
 
   return (
     <GenericContainer>
-      <CustomFlatList render={renderItem} get={getWalkers} empty="No Walkers near" />
+      <CustomFlatList render={renderItem} get={getWalkers} empty="There are no walkers near" />
     </GenericContainer>
   )
 }
