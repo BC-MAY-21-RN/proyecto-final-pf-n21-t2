@@ -12,10 +12,10 @@ const getDateString = (date) => {
 const doUpdate = ({ selectedDate, currentDate, mode, setDate, showTimepicker, setMode, setValue, setOk }) => {
   if (selectedDate) {
     setDate(currentDate)
-    if (mode === 'date') {
-      showTimepicker()
-    } else {
-      setMode('date')
+    if (mode === 'time') {
+    //   showTimepicker()
+    // } else {
+    //   setMode('date')
       setOk(true)
       setValue(selectedDate.getTime())
     }
@@ -24,7 +24,7 @@ const doUpdate = ({ selectedDate, currentDate, mode, setDate, showTimepicker, se
 
 const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, setValue, setOk, ok }) => {
   const [date, setDate] = useState(new Date())
-  const [mode, setMode] = useState('date')
+  const [mode, setMode] = useState('time')
   const [show, setShow] = useState(false)
 
   const showMode = (currentMode) => {
@@ -56,7 +56,7 @@ const CustomDatePicker = ({ title, styl, width, color, borderRadius, textColor, 
   return (
     <View style={[styl, styles.container]}>
       <View>
-        <CustomButton onPress={showDatepicker} title={title} width={width} color={color} borderRadius={borderRadius} textColor={textColor}/>
+        <CustomButton onPress={showTimepicker} title={title} width={width} color={color} borderRadius={borderRadius} textColor={textColor}/>
         {show
           ? (
           <DateTimePicker
